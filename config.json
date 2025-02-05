@@ -1,55 +1,55 @@
 {
-  "websiteName": "WriteDocs Documentation",
+  "websiteName": "CoolRool Documentation",
   "description": "Explore our documentation to learn how to create beautiful, scalable developer portals with WriteDocs.",
   "images": {
-    "logo": "media/logo.png",
+    "logo": "media/logo_blue.png",
     "favicon": "media/favicon.ico",
-    "darkLogo": ""
+    "darkLogo": "media/logo_blue.png"
   },
   "languages": [
     "en"
   ],
   "styles": {
-    "mainColor": "#0029F5",
-    "darkModeMainColor": "#F0F0FF",
-    "navbarColor": "#000621",
-    "navbarDarkModeColor": "#000621",
-    "pagination": false
+    "mainColor": "#2F4B99",
+    "darkModeMainColor": "#F49300",
+    "navbarColor": "#FFFFFF",
+    "navbarDarkModeColor": "#000000",
+    "backgroundDarkModeColor": "#000000",
+    "pagination": true,
+    "logoSize": "large"
   },
-  "apiFiles": [],
-  "homepage": "/introduction",
+  "apiFiles": [
+    "example.yml"
+  ],
+  "homepage": "/overview/what-is-coolrool",
   "changelog": false,
   "navbar": [
     {
-      "label": "Guides",
-      "sidebarRef": "guides"
+      "label": "API Reference",
+      "sidebarRef": "api-reference"
     }
   ],
-  "externalLinks": [],
+  "externalLinks": [
+    {
+      "link": "https://calendly.com/coolrool/partenaire",
+      "name": "Become a partner",
+      "style": "button"
+    },
+    {
+      "link": "https://calendly.com/coolrool/club",
+      "name": "Register my club",
+      "style": "button"
+    }
+  ],
   "sidebars": [
     {
       "sidebarRef": "guides",
       "categories": [
         {
-          "categoryName": "Getting Started",
+          "categoryName": "Overview",
           "pages": [
-            "getting-started/introduction",
-            "getting-started/local-development"
-          ]
-        },
-        {
-          "categoryName": "Basics",
-          "pages": [
-            "basics/global-settings",
-            "basics/markdown-basics",
-            {
-              "groupName": "Page Templates",
-              "subpages": [
-                "basics/page-templates/api-introduction",
-                "basics/page-templates/environments",
-                "basics/page-templates/authentication"
-              ]
-            }
+            "overview/what-is-coolrool",
+            "overview/benefits"
           ]
         }
       ]
