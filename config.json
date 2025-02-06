@@ -25,8 +25,8 @@
   "changelog": false,
   "navbar": [
     {
-      "label": "API Reference",
-      "sidebarRef": "api-reference"
+      "label": "Guides",
+      "sidebarRef": "guides"
     }
   ],
   "externalLinks": [
