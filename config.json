@@ -26,19 +26,19 @@
   "changelog": false,
   "navbar": [
     {
-      "label": "Guides",
-      "sidebarRef": "guides"
+      "label": "API Reference",
+      "sidebarRef": "api-reference"
     }
   ],
   "externalLinks": [
     {
-      "link": "https://calendly.com/coolrool/partenaire",
-      "name": "Become a partner",
-      "style": "button"
+      "link": "https://drive.google.com/file/d/19WsmVUWSBJy7jXRu6q6ZXqRa-K6YAhB8/view?usp=drive_link",
+      "name": "Pitch Deck",
+      "style": "link"
     },
     {
-      "link": "https://calendly.com/coolrool/club",
-      "name": "Register my club",
+      "link": "https://calendly.com/coolrool/30min",
+      "name": "Contact",
       "style": "button"
     }
   ],
@@ -47,10 +47,19 @@
       "sidebarRef": "guides",
       "categories": [
         {
-          "categoryName": "Overview",
+          "categoryName": "Getting Started",
           "pages": [
-            "overview/what-is-coolrool",
-            "overview/benefits"
+            "/guides/what-is-coolrool",
+            "/guides/benefits",
+            "/guides/technical-overview",
+            {
+              "page": "/guides/integration-options/index",
+              "groupName": "Integration Options",
+              "subpages": [
+                "/guides/integration-options/api-integration",
+                "/guides/integration-options/source-code-integration"
+              ]
+            }
           ]
         }
       ]
