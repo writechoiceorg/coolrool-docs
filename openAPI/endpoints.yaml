@@ -1,0 +1,6730 @@
+openapi: 3.0.0
+info:
+  version: '1.0'
+  title: coolrool
+  description: coolrool Routes Documentation
+  contact: {}
+paths:
+  /auth/register:
+    post:
+      tags:
+        - auth
+      operationId: AuthController_register
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+  /auth/admin-register:
+    post:
+      tags:
+        - auth
+      operationId: AuthController_adminRegister
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+  /auth/login:
+    post:
+      tags:
+        - auth
+      operationId: AuthController_login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+  /auth/admin-login:
+    post:
+      tags:
+        - auth
+      operationId: AuthController_adminLogin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+  /auth/verification:
+    post:
+      tags:
+        - auth
+      operationId: AuthController_userVerification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerificationDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+  /user/token-info:
+    get:
+      tags:
+        - user
+      operationId: UserController_tokenInfo
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+  /user/profile:
+    get:
+      tags:
+        - user
+      operationId: UserController_getProfile
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+    patch:
+      tags:
+        - user
+      operationId: UserController_updateProfile
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProfileDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+  /user/send-custom-letter:
+    post:
+      tags:
+        - user
+      operationId: UserController_sendCustomLetter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendCustomLetterDto'
+      responses:
+        '200':
+          description: Emails sent successfully
+        '201':
+          description: ''
+        '400':
+          description: Bad Request
+  /user/recover-password-admin:
+    patch:
+      tags:
+        - user
+      operationId: UserController_sendTokenForAdmin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+  /user/recover-password:
+    patch:
+      tags:
+        - user
+      operationId: UserController_sendToken
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PhoneDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+    post:
+      tags:
+        - user
+      operationId: UserController_recoverPassword
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecoverPasswordDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+        '201':
+          description: ''
+        '400':
+          description: Bad Request
+  /user/language/{id}/{language}:
+    patch:
+      tags:
+        - user
+      operationId: UserController_updateLanguage
+      parameters:
+        - name: id
+          in: path
+          description: User ID
+          required: true
+          schema:
+            type: number
+        - name: language
+          in: path
+          description: Language code
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Language updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+  /user/recover-passwords:
+    post:
+      tags:
+        - user
+      operationId: UserController_sendTokens
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecoverPasswordsDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+        '201':
+          description: ''
+        '400':
+          description: Bad Request
+  /user/recover-admin-password:
+    post:
+      tags:
+        - user
+      operationId: UserController_recoverAdminPassword
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecoverPasswordDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+        '201':
+          description: ''
+        '400':
+          description: Bad Request
+  /user/create-password:
+    post:
+      tags:
+        - user
+      operationId: UserController_createAdminPassword
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecoverAdminPasswordDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+        '201':
+          description: ''
+        '400':
+          description: Bad Request
+  /user/delete-user:
+    delete:
+      tags:
+        - user
+      operationId: UserController_deleteUser
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+  /user/delete-system-user/{userId}:
+    delete:
+      tags:
+        - user
+      operationId: UserController_deleteSystemUser
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+  /user/club-license/{clubId}:
+    get:
+      tags:
+        - user
+      operationId: UserController_getClubLicense
+      parameters:
+        - name: clubId
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+  /user/club-license:
+    post:
+      tags:
+        - user
+      operationId: UserController_saveClubLicense
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LicenseNumberDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClubMembershipEntity'
+        '400':
+          description: Bad Request
+  /user/club-profile/{userId}/{clubId}:
+    get:
+      tags:
+        - user
+      operationId: UserController_getClubProfile
+      parameters:
+        - name: userId
+          in: path
+          description: User id
+          required: true
+          schema:
+            type: number
+        - name: clubId
+          in: path
+          description: Club id
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+    delete:
+      tags:
+        - user
+      operationId: UserController_deleteClubProfile
+      parameters:
+        - name: userId
+          in: path
+          description: User id
+          required: true
+          schema:
+            type: number
+        - name: clubId
+          in: path
+          description: Club id
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+    patch:
+      tags:
+        - user
+      operationId: UserController_updateClubProfile
+      parameters:
+        - name: userId
+          in: path
+          description: User id
+          required: true
+          schema:
+            type: number
+        - name: clubId
+          in: path
+          description: Club id
+          required: true
+          schema:
+            type: number
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ClubProfileDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+  /user/match-profile/{phone}/{clubId}:
+    get:
+      tags:
+        - user
+      operationId: UserController_getMachProfile
+      parameters:
+        - name: phone
+          in: path
+          description: User phone number
+          required: true
+          schema:
+            type: string
+        - name: clubId
+          in: path
+          description: Club id
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+  /user/user-files/{userId}:
+    patch:
+      tags:
+        - user
+      operationId: UserController_updateFile
+      parameters:
+        - name: userId
+          in: path
+          description: User ID to attach files to
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: File updated successfully
+        '400':
+          description: Bad Request
+  /user/user-files/{userId}/{fileId}:
+    delete:
+      tags:
+        - user
+      operationId: UserController_deleteFile
+      parameters:
+        - name: key
+          in: query
+          description: Key of the file to delete
+          required: true
+          schema:
+            type: string
+        - name: userId
+          in: path
+          description: ID of the user to which the file belongs
+          required: true
+          schema:
+            type: number
+        - name: fileId
+          in: path
+          description: ID of the file to delete
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: File deleted successfully
+        '400':
+          description: Bad Request
+  /user/notification:
+    get:
+      tags:
+        - user
+      operationId: UserController_getNotification
+      parameters:
+        - name: skipPages
+          in: query
+          description: The number of pages to skip to
+          required: true
+          schema:
+            type: number
+            minimum: 0
+            default: 0
+        - name: pageSize
+          in: query
+          description: The number of items to return
+          required: true
+          schema:
+            type: number
+            minimum: 1
+            default: 10
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+    delete:
+      tags:
+        - user
+      operationId: UserController_deleteNotification
+      parameters:
+        - name: notificationId
+          in: query
+          description: NotificationId
+          required: true
+          schema:
+            type: string
+            default: cee838f8-eb2a-462a-99bd-5f721985b57f
+            example: cee838f8-eb2a-462a-99bd-5f721985b57f
+          examples:
+            default:
+              value: cee838f8-eb2a-462a-99bd-5f721985b57f
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+  /user/fcm-token:
+    patch:
+      tags:
+        - user
+      operationId: UserController_updateFcmToken
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FcmTokenDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+    delete:
+      tags:
+        - user
+      operationId: UserController_deleteFcmToken
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+  /user/list:
+    get:
+      tags:
+        - user
+      operationId: UserController_getUserList
+      parameters:
+        - name: skipPages
+          in: query
+          description: The number of pages to skip to
+          required: true
+          schema:
+            type: number
+            minimum: 0
+            default: 0
+        - name: pageSize
+          in: query
+          description: The number of items to return
+          required: true
+          schema:
+            type: number
+            minimum: 1
+            default: 10
+        - name: clubId
+          in: query
+          description: Club id
+          required: false
+          schema:
+            type: number
+        - name: member
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: groupId
+          in: query
+          required: true
+          schema:
+            type: number
+        - name: eventId
+          in: query
+          description: Event id
+          required: false
+          schema:
+            type: string
+        - name: sort
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/UserSortEnum'
+        - name: order
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/Order'
+        - name: searchValue
+          in: query
+          description: Search value
+          required: false
+          schema:
+            type: string
+            default: User
+            example: User
+          examples:
+            default:
+              value: User
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+  /user/admin-status:
+    post:
+      tags:
+        - user
+      operationId: UserController_updateAdminStatus
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminStatusDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+  /user/send-admin-invitation:
+    post:
+      tags:
+        - user
+      operationId: UserController_sendAdminInvitation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminInvitationDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+        '201':
+          description: ''
+        '400':
+          description: Bad Request
+  /user/club-member:
+    get:
+      tags:
+        - user
+      operationId: UserController_getClubMember
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+    post:
+      tags:
+        - user
+      operationId: UserController_addClubMember
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClubMemberDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserClubProfileEntity'
+        '400':
+          description: Bad Request
+  /user/user-profile:
+    get:
+      tags:
+        - user
+      operationId: UserController_getUserProfile
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+  /user/suspend/{id}:
+    patch:
+      tags:
+        - user
+      operationId: UserController_suspendClub
+      parameters:
+        - name: suspendStatus
+          in: query
+          description: Suspend status
+          required: true
+          schema:
+            type: boolean
+            default: true
+            example: true
+          examples:
+            default:
+              value: true
+        - name: id
+          in: path
+          description: Club user id
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Suspend user
+        '400':
+          description: Bad Request
+  /user/groups/{id}:
+    patch:
+      tags:
+        - user
+      operationId: UserController_updateUsersGroups
+      parameters:
+        - name: id
+          in: path
+          description: User ID
+          required: true
+          schema:
+            type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUsersGroupsDto'
+      responses:
+        '200':
+          description: Users groups updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+  /user/coaches/{id}:
+    patch:
+      tags:
+        - user
+      operationId: UserController_updateCoachesGroups
+      parameters:
+        - name: id
+          in: path
+          description: User ID
+          required: true
+          schema:
+            type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUsersGroupsDto'
+      responses:
+        '200':
+          description: Groups coaches updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+  /user/coaches/{groupId}/{coachId}:
+    delete:
+      tags:
+        - user
+      operationId: UserController_deleteCoach
+      parameters:
+        - name: groupId
+          in: path
+          description: Group ID
+          required: true
+          schema:
+            type: number
+        - name: coachId
+          in: path
+          description: Coach ID
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Coach deleted successfully
+        '400':
+          description: Bad Request
+  /relatives:
+    post:
+      tags:
+        - relatives
+      operationId: RelativesController_addRelatives
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RelativesDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRelativesEntity'
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRelativesEntity'
+        '400':
+          description: Bad Request
+    get:
+      tags:
+        - relatives
+      operationId: RelativesController_getRelatives
+      parameters:
+        - name: byPhone
+          in: query
+          description: Find relative by rhone number
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRelativesEntity'
+        '400':
+          description: Bad Request
+    patch:
+      tags:
+        - relatives
+      operationId: RelativesController_updateRelatives
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UpdateRelativesDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRelativesEntity'
+        '400':
+          description: Bad Request
+    delete:
+      tags:
+        - relatives
+      operationId: RelativesController_deleteRelatives
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteRelativesDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRelativesEntity'
+        '400':
+          description: Bad Request
+  /relatives/profile/{relativeId}:
+    get:
+      tags:
+        - relatives
+      operationId: RelativesController_getRelativeDetails
+      parameters:
+        - name: relativeId
+          in: path
+          description: Relative id
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRelativesEntity'
+        '400':
+          description: Bad Request
+  /relatives/club/{phone}:
+    get:
+      tags:
+        - relatives
+      operationId: RelativesController_getRelativeClubs
+      parameters:
+        - name: phone
+          in: path
+          description: Relative id
+          required: true
+          schema:
+            type: string
+            example: '+905521234567'
+          examples:
+            default:
+              value: '+905521234567'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClubEntity'
+        '400':
+          description: Bad Request
+  /relatives/relative-status:
+    patch:
+      tags:
+        - relatives
+      operationId: RelativesController_updateRelativeStatus
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RelativesStatusDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRelativesEntity'
+        '400':
+          description: Bad Request
+  /relatives/track-relative:
+    post:
+      tags:
+        - relatives
+      operationId: RelativesController_trackRelativeClub
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TrackRelativeClubDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRelativesEntity'
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+    delete:
+      tags:
+        - relatives
+      operationId: RelativesController_unTrackRelativeClub
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TrackRelativeClubDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRelativesEntity'
+        '400':
+          description: Bad Request
+  /clubs:
+    post:
+      tags:
+        - clubs
+      operationId: ClubController_create
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreateClubDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClubEntity'
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClubEntity'
+        '400':
+          description: Bad Request
+    get:
+      tags:
+        - clubs
+      operationId: ClubController_findAll
+      parameters:
+        - name: skipPages
+          in: query
+          description: The number of pages to skip to
+          required: true
+          schema:
+            type: number
+            minimum: 0
+            default: 0
+        - name: pageSize
+          in: query
+          description: The number of items to return
+          required: true
+          schema:
+            type: number
+            minimum: 1
+            default: 10
+        - name: searchValue
+          in: query
+          description: Search value
+          required: false
+          schema:
+            type: string
+            default: User
+            example: User
+          examples:
+            default:
+              value: User
+        - name: sort
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/ClubSortEnum'
+        - name: order
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/Order'
+        - name: name
+          in: query
+          description: name of discipline
+          required: false
+          schema:
+            type: string
+            example: Mathematics
+          examples:
+            default:
+              value: Mathematics
+        - name: priority
+          in: query
+          description: Specify the priority. From 1 to 8. Required to display of an icon when selecting disciplines.
+          required: false
+          schema:
+            $ref: '#/components/schemas/DisciplineIconSlotOrder'
+            example: football
+          examples:
+            default:
+              value: football
+        - name: discipline
+          in: query
+          description: Optional filter for clubs. Can be a string or null.
+          required: false
+          schema:
+            type: string
+            example: Aviation
+          examples:
+            default:
+              value: Aviation
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClubEntity'
+        '400':
+          description: Bad Request
+  /clubs/suspend-status:
+    get:
+      tags:
+        - clubs
+      operationId: ClubController_clubSuspendStatus
+      responses:
+        '200':
+          description: Suspend club
+        '400':
+          description: Bad Request
+  /clubs/all:
+    get:
+      tags:
+        - clubs
+      operationId: ClubController_findAllWithoutPagination
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClubEntity'
+        '400':
+          description: Bad Request
+  /clubs/sponsor:
+    get:
+      tags:
+        - clubs
+      operationId: ClubController_getClubSponsor
+      parameters:
+        - name: id
+          in: query
+          description: Club id
+          required: true
+          schema:
+            type: number
+        - name: skipPages
+          in: query
+          description: The number of pages to skip to
+          required: true
+          schema:
+            type: number
+            minimum: 0
+            default: 0
+        - name: pageSize
+          in: query
+          description: The number of items to return
+          required: true
+          schema:
+            type: number
+            minimum: 1
+            default: 10
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sponsor'
+        '400':
+          description: Bad Request
+  /clubs/location/{latitude}/{longitude}/{radius}:
+    get:
+      tags:
+        - clubs
+      operationId: ClubController_searchByLocation
+      parameters:
+        - name: latitude
+          in: path
+          required: true
+          schema:
+            type: number
+        - name: longitude
+          in: path
+          required: true
+          schema:
+            type: number
+        - name: radius
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClubEntity'
+        '400':
+          description: Bad Request
+  /clubs/memberships:
+    get:
+      tags:
+        - clubs
+      operationId: ClubController_getAllClubsByUserId
+      responses:
+        '200':
+          description: The response body contains an array of objects, each representing a membership
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+    post:
+      tags:
+        - clubs
+      operationId: ClubController_createMembership
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMembershipDto'
+      responses:
+        '200':
+          description: identifier of created membership
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClubMembershipEntity'
+        '400':
+          description: Bad Request
+    delete:
+      tags:
+        - clubs
+      operationId: ClubController_deleteMembership
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteMembershipDto'
+      responses:
+        '200':
+          description: identifier of created membership
+        '400':
+          description: Bad Request
+  /clubs/check-memberships:
+    get:
+      tags:
+        - clubs
+      operationId: ClubController_checkMembershipStatus
+      parameters:
+        - name: userId
+          in: query
+          description: User id
+          required: true
+          schema:
+            type: number
+            default: 1
+        - name: clubId
+          in: query
+          description: Club id
+          required: true
+          schema:
+            type: number
+            default: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClubUserOriginal'
+        '400':
+          description: Bad Request
+  /clubs/memberships/{clubId}:
+    get:
+      tags:
+        - clubs
+      operationId: ClubController_getUserClubDetail
+      parameters:
+        - name: clubId
+          in: path
+          description: User club id
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+  /clubs/{id}:
+    get:
+      tags:
+        - clubs
+      operationId: ClubController_findOne
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClubEntity'
+        '400':
+          description: Bad Request
+    patch:
+      tags:
+        - clubs
+      operationId: ClubController_update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UpdateClubDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClubEntity'
+        '400':
+          description: Bad Request
+    delete:
+      tags:
+        - clubs
+      operationId: ClubController_remove
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Delete club
+        '400':
+          description: Bad Request
+  /clubs/search/{disciplineId}:
+    get:
+      tags:
+        - clubs
+      operationId: ClubController_findAllWithClubs
+      parameters:
+        - name: clubName
+          in: query
+          description: Club name
+          required: false
+          schema:
+            type: string
+            example: Sports Club
+          examples:
+            default:
+              value: Sports Club
+        - name: skipPages
+          in: query
+          description: The number of pages to skip to
+          required: true
+          schema:
+            type: number
+            minimum: 0
+            default: 0
+        - name: pageSize
+          in: query
+          description: The number of items to return
+          required: true
+          schema:
+            type: number
+            minimum: 1
+            default: 10
+        - name: disciplineId
+          in: path
+          description: The discipline ID to filter, set -1 for all discipline
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClubEntity'
+        '400':
+          description: ''
+  /clubs/suspend/{id}:
+    patch:
+      tags:
+        - clubs
+      operationId: ClubController_suspendClub
+      parameters:
+        - name: suspendStatus
+          in: query
+          description: Suspend status
+          required: true
+          schema:
+            type: boolean
+            default: true
+            example: true
+          examples:
+            default:
+              value: true
+        - name: id
+          in: path
+          description: Club id
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Suspend club
+        '400':
+          description: Bad Request
+  /clubs/requests:
+    post:
+      tags:
+        - clubs
+      operationId: ClubController_createRequest
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClubRequestDto'
+      responses:
+        '200':
+          description: Club has been added.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    default: 04da2b89-8ea6-4ad5-bede-eddd8013a003
+                  name:
+                    type: string
+                    default: Fight Club
+                  zipCode:
+                    type: string
+                    default: '12345'
+                  createdAt:
+                    type: string
+                    format: date-time
+                  updatedAt:
+                    type: string
+                    format: date-time
+                  userId:
+                    type: string
+                required:
+                  - id
+                  - name
+                  - zipCode
+                  - createdAt
+                  - updatedAt
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClubRequestEntity'
+        '400':
+          description: Bad Request
+  /clubs/member-list-upload:
+    post:
+      tags:
+        - clubs
+      operationId: ClubController_uploadCsv
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MemberListDto'
+      responses:
+        '200':
+          description: ''
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClubUserOriginal'
+        '400':
+          description: Bad Request
+  /clubs/new-membership:
+    post:
+      tags:
+        - clubs
+      operationId: ClubController_addNewMembership
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NewMembershipDto'
+      responses:
+        '200':
+          description: ''
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClubUserOriginal'
+        '400':
+          description: Bad Request
+  /clubs/clubCode/{clubCode}:
+    get:
+      tags:
+        - clubs
+      operationId: ClubController_getClubByClubCode
+      parameters:
+        - name: clubCode
+          in: path
+          description: The club code
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClubEntity'
+        '400':
+          description: ''
+  /notifications:
+    post:
+      tags:
+        - notifications
+      operationId: NotificationController_sendNotification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendNotificationDto'
+      responses:
+        '200':
+          description: ''
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: boolean
+  /event/driver-list:
+    get:
+      tags:
+        - event
+      operationId: EventController_eventDriverList
+      parameters:
+        - name: eventId
+          in: query
+          description: Event id
+          required: true
+          schema:
+            type: string
+            default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+            example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+          examples:
+            default:
+              value: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventCarEntity'
+        '400':
+          description: Bad Request
+  /event/statistic:
+    get:
+      tags:
+        - event
+      operationId: EventController_getEventStatistic
+      parameters:
+        - name: eventId
+          in: query
+          description: Event id
+          required: true
+          schema:
+            type: string
+            default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+            example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+          examples:
+            default:
+              value: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventCarEntity'
+        '400':
+          description: Bad Request
+  /event/driver:
+    get:
+      tags:
+        - event
+      operationId: EventController_eventDriverInfo
+      parameters:
+        - name: eventCarId
+          in: query
+          description: Event Car id
+          required: true
+          schema:
+            type: string
+            default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+            example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+          examples:
+            default:
+              value: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventCarEntity'
+        '400':
+          description: Bad Request
+    delete:
+      tags:
+        - event
+      operationId: EventController_deleteEventDriver
+      parameters:
+        - name: eventCarId
+          in: query
+          description: Event Car id
+          required: true
+          schema:
+            type: string
+            default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+            example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+          examples:
+            default:
+              value: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventCarEntity'
+        '400':
+          description: Bad Request
+    post:
+      tags:
+        - event
+      operationId: EventController_addEventDriver
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddEventCarDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventCarEntity'
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventCarEntity'
+        '400':
+          description: Bad Request
+  /event/driver-flow:
+    get:
+      tags:
+        - event
+      operationId: EventController_eventDriverFlow
+      parameters:
+        - name: eventId
+          in: query
+          description: Event id
+          required: true
+          schema:
+            type: string
+            default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+            example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+          examples:
+            default:
+              value: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventCarEntity'
+        '400':
+          description: Bad Request
+  /event/car-status:
+    get:
+      tags:
+        - event
+      operationId: EventController_checkEventCarStatus
+      parameters:
+        - name: eventCarId
+          in: query
+          description: Event Car id
+          required: true
+          schema:
+            type: string
+            default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+            example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+          examples:
+            default:
+              value: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: boolean
+        '400':
+          description: Bad Request
+  /event/driver-position:
+    patch:
+      tags:
+        - event
+      operationId: EventController_eventDriverPosition
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DriverPositionDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventCarEntity'
+        '400':
+          description: Bad Request
+  /event/driver/seats-amount:
+    patch:
+      tags:
+        - event
+      operationId: EventController_updateCarSeats
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventCarSeatsDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventCarEntity'
+        '400':
+          description: Bad Request
+  /event/queue:
+    post:
+      tags:
+        - event
+      operationId: EventController_addEventQueue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventOptionsDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventCarEntity'
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventQueueEntity'
+        '400':
+          description: Bad Request
+  /event/book-seats:
+    post:
+      tags:
+        - event
+      operationId: EventController_bookCarSeats
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/BookSeatsDto'
+      responses:
+        '200':
+          description: ''
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventCarParticipantEntity'
+        '400':
+          description: Bad Request
+    delete:
+      tags:
+        - event
+      operationId: EventController_deleteBookCarSeats
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookSeatsDto'
+      responses:
+        '200':
+          description: ''
+        '400':
+          description: Bad Request
+  /event/driver-passengers:
+    patch:
+      tags:
+        - event
+      operationId: EventController_updateBookCarSeats
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateBookSeatsDto'
+      responses:
+        '200':
+          description: ''
+        '400':
+          description: Bad Request
+  /event/relatives:
+    get:
+      tags:
+        - event
+      operationId: EventController_getEventRelatives
+      parameters:
+        - name: eventId
+          in: query
+          description: Event id
+          required: true
+          schema:
+            type: string
+            default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+            example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+          examples:
+            default:
+              value: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventCarEntity'
+        '400':
+          description: Bad Request
+  /event/accept-tracking:
+    patch:
+      tags:
+        - event
+      operationId: EventController_acceptTracking
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationIdDto'
+      responses:
+        '200':
+          description: ''
+        '400':
+          description: ''
+  /event:
+    post:
+      tags:
+        - event
+      operationId: EventController_create
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEventDto'
+      responses:
+        '200':
+          description: ''
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: ''
+    delete:
+      tags:
+        - event
+      operationId: EventController_deleteEvent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteEventDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventCarEntity'
+        '400':
+          description: Bad Request
+    get:
+      tags:
+        - event
+      operationId: EventController_findAll
+      parameters:
+        - name: skipPages
+          in: query
+          description: The number of pages to skip to
+          required: true
+          schema:
+            type: number
+            minimum: 0
+            default: 0
+        - name: pageSize
+          in: query
+          description: The number of items to return
+          required: true
+          schema:
+            type: number
+            minimum: 1
+            default: 10
+        - name: searchValue
+          in: query
+          description: Search value
+          required: false
+          schema:
+            type: string
+            default: User
+            example: User
+          examples:
+            default:
+              value: User
+        - name: eventType
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/EventTypeEnum'
+        - name: clubId
+          in: query
+          description: Club id
+          required: false
+          schema:
+            type: number
+        - name: startDate
+          in: query
+          description: Start date
+          required: false
+          schema:
+            type: string
+            default: '2023-09-24T10:00:00.000Z'
+            example: '2023-09-24T10:00:00.000Z'
+          examples:
+            default:
+              value: '2023-09-24T10:00:00.000Z'
+        - name: endDate
+          in: query
+          description: End date
+          required: false
+          schema:
+            type: string
+            default: '2023-09-24T10:00:00.000Z'
+            example: '2023-09-24T10:00:00.000Z'
+          examples:
+            default:
+              value: '2023-09-24T10:00:00.000Z'
+      responses:
+        '200':
+          description: ''
+        '400':
+          description: ''
+  /event/{eventId}:
+    patch:
+      tags:
+        - event
+      operationId: EventController_updateEvent
+      parameters:
+        - name: eventId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateEventDto'
+      responses:
+        '200':
+          description: ''
+        '400':
+          description: ''
+  /event/event-participants:
+    post:
+      tags:
+        - event
+      operationId: EventController_addEventParticipants
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddEventParticipantDto'
+      responses:
+        '200':
+          description: ''
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: boolean
+        '400':
+          description: ''
+    delete:
+      tags:
+        - event
+      operationId: EventController_deleteEventParticipants
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddEventParticipantDto'
+      responses:
+        '200':
+          description: ''
+        '400':
+          description: ''
+  /event/participants/{eventId}:
+    get:
+      tags:
+        - event
+      operationId: EventController_findEventParticipants
+      parameters:
+        - name: skipPages
+          in: query
+          description: The number of pages to skip to
+          required: true
+          schema:
+            type: number
+            minimum: 0
+            default: 0
+        - name: pageSize
+          in: query
+          description: The number of items to return
+          required: true
+          schema:
+            type: number
+            minimum: 1
+            default: 10
+        - name: eventId
+          in: path
+          description: Event id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+        '400':
+          description: ''
+  /event/point-img:
+    post:
+      tags:
+        - event
+      operationId: EventController_updateProfile
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ImageDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+        '201':
+          description: ''
+        '400':
+          description: Bad Request
+  /event/user:
+    get:
+      tags:
+        - event
+      operationId: EventController_findUserEvents
+      responses:
+        '200':
+          description: ''
+        '400':
+          description: ''
+  /event/recent:
+    get:
+      tags:
+        - event
+      operationId: EventController_findRecent
+      parameters:
+        - name: skipPages
+          in: query
+          description: The number of pages to skip to
+          required: true
+          schema:
+            type: number
+            minimum: 0
+            default: 0
+        - name: pageSize
+          in: query
+          description: The number of items to return
+          required: true
+          schema:
+            type: number
+            minimum: 1
+            default: 10
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventEntity'
+        '400':
+          description: ''
+  /event/upcoming:
+    get:
+      tags:
+        - event
+      operationId: EventController_findUpcoming
+      parameters:
+        - name: skipPages
+          in: query
+          description: The number of pages to skip to
+          required: true
+          schema:
+            type: number
+            minimum: 0
+            default: 0
+        - name: pageSize
+          in: query
+          description: The number of items to return
+          required: true
+          schema:
+            type: number
+            minimum: 1
+            default: 10
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventEntity'
+        '400':
+          description: ''
+  /event/ongoing:
+    get:
+      tags:
+        - event
+      operationId: EventController_findOngoing
+      parameters:
+        - name: skipPages
+          in: query
+          description: The number of pages to skip to
+          required: true
+          schema:
+            type: number
+            minimum: 0
+            default: 0
+        - name: pageSize
+          in: query
+          description: The number of items to return
+          required: true
+          schema:
+            type: number
+            minimum: 1
+            default: 10
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventEntity'
+        '400':
+          description: ''
+  /event/detail/{eventId}:
+    get:
+      tags:
+        - event
+      operationId: EventController_findEventDetail
+      parameters:
+        - name: showAll
+          in: query
+          description: Show all point
+          required: false
+          schema:
+            type: boolean
+        - name: eventId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+        '400':
+          description: ''
+  /event/stop-tracking:
+    post:
+      tags:
+        - event
+      operationId: EventController_stopTracking
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StopTrackingDto'
+      responses:
+        '200':
+          description: ''
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationEntity'
+        '400':
+          description: ''
+  /event/mock/create-stop-tracking/{eventCarId}:
+    post:
+      tags:
+        - event
+      operationId: EventController_createMockStopTracking
+      parameters:
+        - name: eventCarId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+        '201':
+          description: ''
+        '400':
+          description: ''
+  /sponsor:
+    get:
+      tags:
+        - sponsor
+      operationId: SponsorController_getSponsors
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sponsor'
+        '400':
+          description: Bad Request
+    post:
+      tags:
+        - sponsor
+      operationId: SponsorController_addSponsor
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SponsorDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sponsor'
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sponsor'
+        '400':
+          description: Bad Request
+  /sponsor/by-id/{sponsorId}:
+    get:
+      tags:
+        - sponsor
+      operationId: SponsorController_getSponsorsById
+      parameters:
+        - name: sponsorId
+          in: path
+          description: Sponsor id
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sponsor'
+        '400':
+          description: Bad Request
+  /sponsor/{sponsorId}:
+    patch:
+      tags:
+        - sponsor
+      operationId: SponsorController_updateSponsor
+      parameters:
+        - name: sponsorId
+          in: path
+          required: true
+          schema:
+            type: number
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UpdateSponsorDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sponsor'
+        '400':
+          description: Bad Request
+    delete:
+      tags:
+        - sponsor
+      operationId: SponsorController_deleteSponsor
+      parameters:
+        - name: sponsorId
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sponsor'
+        '400':
+          description: Bad Request
+  /sponsor/recommendation:
+    get:
+      tags:
+        - sponsor
+      operationId: SponsorController_getRecommendedSponsors
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sponsor'
+        '400':
+          description: Bad Request
+  /sponsor/club/{clubId}:
+    get:
+      tags:
+        - sponsor
+      operationId: SponsorController_getClubSponsor
+      parameters:
+        - name: clubId
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sponsor'
+        '400':
+          description: Bad Request
+  /sponsor/all:
+    get:
+      tags:
+        - sponsor
+      operationId: SponsorController_getAllSponsors
+      parameters:
+        - name: searchValue
+          in: query
+          description: Search value
+          required: false
+          schema:
+            type: string
+            default: User
+            example: User
+          examples:
+            default:
+              value: User
+        - name: skipPages
+          in: query
+          description: The number of pages to skip to
+          required: true
+          schema:
+            type: number
+            minimum: 0
+            default: 0
+        - name: pageSize
+          in: query
+          description: The number of items to return
+          required: true
+          schema:
+            type: number
+            minimum: 1
+            default: 10
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sponsor'
+        '400':
+          description: Bad Request
+  /sponsor/club:
+    get:
+      tags:
+        - sponsor
+      operationId: SponsorController_getSponsorClub
+      parameters:
+        - name: id
+          in: query
+          description: Sponsor id
+          required: true
+          schema:
+            type: number
+        - name: skipPages
+          in: query
+          description: The number of pages to skip to
+          required: true
+          schema:
+            type: number
+            minimum: 0
+            default: 0
+        - name: pageSize
+          in: query
+          description: The number of items to return
+          required: true
+          schema:
+            type: number
+            minimum: 1
+            default: 10
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClubEntity'
+        '400':
+          description: Bad Request
+  /sponsor/global:
+    get:
+      tags:
+        - sponsor
+      operationId: SponsorController_getGlobalSponsors
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sponsor'
+        '400':
+          description: Bad Request
+  /sponsor/local:
+    get:
+      tags:
+        - sponsor
+      operationId: SponsorController_getLocalSponsors
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sponsor'
+        '400':
+          description: Bad Request
+  /sponsor/club-sponsor:
+    post:
+      tags:
+        - sponsor
+      operationId: SponsorController_addClubSponsor
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ClubSponsorDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClubsSponsorsEntity'
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClubsSponsorsEntity'
+        '400':
+          description: Bad Request
+  /sponsor/unique-images/{sponsorId}:
+    patch:
+      tags:
+        - sponsor
+      operationId: SponsorController_updateFile
+      parameters:
+        - name: sponsorId
+          in: path
+          description: Sponsor ID to attach files to
+          required: true
+          schema:
+            type: number
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UpdateUniqueImagesDto'
+      responses:
+        '200':
+          description: File uploaded successfully and associated with the sponsor.
+        '400':
+          description: Bad Request. Ensure the file and dates are provided.
+  /sponsor/unique-images/{imageId}:
+    delete:
+      tags:
+        - sponsor
+      operationId: SponsorController_deleteImage
+      parameters:
+        - name: imageId
+          in: path
+          description: Unique Image ID to delete
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Image deleted successfully.
+  /rooms:
+    get:
+      tags:
+        - rooms
+      operationId: RoomsController_getAllRooms
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoomsService'
+        '400':
+          description: Bad Request
+    post:
+      tags:
+        - rooms
+      operationId: RoomsController_createRoom
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRoomDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoomsService'
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: boolean
+        '400':
+          description: Bad Request
+  /rooms/{room}:
+    get:
+      tags:
+        - rooms
+      operationId: RoomsController_getRoom
+      parameters:
+        - name: room
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoomsService'
+        '400':
+          description: Bad Request
+  /rooms/location:
+    post:
+      tags:
+        - rooms
+      operationId: RoomsController_createLastLocationInTheRoom
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateLastLocationInTheRoomDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoomsService'
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: boolean
+        '400':
+          description: Bad Request
+  /vehicle:
+    get:
+      tags:
+        - vehicle
+      operationId: VehicleController_getUserCar
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverCarEntity'
+        '400':
+          description: Bad Request
+    post:
+      tags:
+        - vehicle
+      operationId: VehicleController_addUserCar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddDriverCarDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverCarEntity'
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverCarEntity'
+        '400':
+          description: Bad Request
+    patch:
+      tags:
+        - vehicle
+      operationId: VehicleController_updateUserCar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDriverCarDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverCarEntity'
+        '400':
+          description: Bad Request
+  /vehicle/brands:
+    get:
+      tags:
+        - vehicle
+      operationId: VehicleController_brandList
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarsEntity'
+        '400':
+          description: Bad Request
+  /vehicle/models:
+    get:
+      tags:
+        - vehicle
+      operationId: VehicleController_modelList
+      parameters:
+        - name: brand
+          in: query
+          required: true
+          schema:
+            type: string
+            default: BMW
+            example: BMW
+          examples:
+            default:
+              value: BMW
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarsEntity'
+        '400':
+          description: Bad Request
+  /vehicle/licenses:
+    post:
+      tags:
+        - vehicle
+      operationId: VehicleController_addUserLicense
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DriverLicenseDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverLicenseEntity'
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverLicenseEntity'
+        '400':
+          description: Bad Request
+    get:
+      tags:
+        - vehicle
+      operationId: VehicleController_getUserLicense
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverLicenseEntity'
+        '400':
+          description: Bad Request
+  /vehicle/licenses/{licenseId}:
+    delete:
+      tags:
+        - vehicle
+      operationId: VehicleController_deleteUserLicense
+      parameters:
+        - name: licenseId
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverLicenseEntity'
+        '400':
+          description: Bad Request
+  /seeds:
+    get:
+      tags:
+        - Seeds
+      operationId: SeedsController_createUsers
+      responses:
+        '200':
+          description: Api response
+          content:
+            application/json:
+              schema:
+                type: boolean
+  /disciplines:
+    post:
+      tags:
+        - disciplines
+      operationId: DisciplineController_create
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDisciplineDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplineEntity'
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplineEntity'
+        '400':
+          description: Bad Request
+    get:
+      tags:
+        - disciplines
+      operationId: DisciplineController_findAll
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplineEntity'
+        '400':
+          description: ''
+  /disciplines/priority:
+    get:
+      tags:
+        - disciplines
+      operationId: DisciplineController_findAllPriority
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplineEntity'
+        '400':
+          description: ''
+  /disciplines/{id}:
+    get:
+      tags:
+        - disciplines
+      operationId: DisciplineController_findAllWithClubs
+      parameters:
+        - name: clubName
+          in: query
+          description: Club name
+          required: false
+          schema:
+            type: string
+            example: Sports Club
+          examples:
+            default:
+              value: Sports Club
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplineEntity'
+        '400':
+          description: ''
+    patch:
+      tags:
+        - disciplines
+      operationId: DisciplineController_update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDisciplineDto'
+      responses:
+        '200':
+          description: Discipline has updated succesfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplineEntity'
+        '400':
+          description: Discipline with ID 1 not found
+    delete:
+      tags:
+        - disciplines
+      operationId: DisciplineController_remove
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Discipline has deleted succesfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplineEntity'
+        '400':
+          description: Discipline with ID 1 not found
+  /group:
+    get:
+      tags:
+        - group
+      operationId: GroupController_getGroupList
+      parameters:
+        - name: skipPages
+          in: query
+          description: The number of pages to skip to
+          required: true
+          schema:
+            type: number
+            minimum: 0
+            default: 0
+        - name: pageSize
+          in: query
+          description: The number of items to return
+          required: true
+          schema:
+            type: number
+            minimum: 1
+            default: 10
+        - name: sort
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/GroupSortEnum'
+        - name: order
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/Order'
+        - name: searchValue
+          in: query
+          description: Search value
+          required: false
+          schema:
+            type: string
+            default: User
+            example: User
+          examples:
+            default:
+              value: User
+        - name: clubId
+          in: query
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GroupEntity'
+        '400':
+          description: Bad Request
+    post:
+      tags:
+        - group
+      operationId: GroupController_create
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupDto'
+      responses:
+        '201':
+          description: Create a new group
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupEntity'
+        '400':
+          description: Bad Request
+  /group/list:
+    get:
+      tags:
+        - group
+      operationId: GroupController_getAllGroups
+      parameters:
+        - name: clubId
+          in: query
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: List of groups
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GroupEntity'
+        '400':
+          description: Bad Request
+  /group/{id}:
+    get:
+      tags:
+        - group
+      operationId: GroupController_findOne
+      parameters:
+        - name: id
+          in: path
+          description: Group ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Get group by id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupEntity'
+        '400':
+          description: Bad Request
+    patch:
+      tags:
+        - group
+      operationId: GroupController_update
+      parameters:
+        - name: id
+          in: path
+          description: Group ID
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupDto'
+      responses:
+        '200':
+          description: Update a group by id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupEntity'
+        '400':
+          description: Bad Request
+    delete:
+      tags:
+        - group
+      operationId: GroupController_remove
+      parameters:
+        - name: id
+          in: path
+          description: Group ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Delete a group by id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupEntity'
+        '400':
+          description: Bad Request
+  /group/description/{id}:
+    patch:
+      tags:
+        - group
+      operationId: GroupController_updateGroupDescription
+      parameters:
+        - name: id
+          in: path
+          description: Group ID
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupDescriptionDto'
+      responses:
+        '200':
+          description: Update a group description by id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupEntity'
+        '400':
+          description: Bad Request
+components:
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    RegisterDto:
+      type: object
+      properties:
+        phone:
+          type: string
+          description: Phone number
+          example: '+905521234567'
+        password:
+          type: string
+          description: User Password
+          example: Abc12345
+        temporaryPassword:
+          type: string
+          description: Admin temporary password
+          example: Abc12345
+      required:
+        - phone
+        - password
+    User:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        surname:
+          type: string
+        email:
+          type: string
+        address:
+          type: string
+        zip:
+          type: string
+        city:
+          type: string
+        country:
+          type: string
+        phone:
+          type: string
+        mobile:
+          type: string
+        photoUrl:
+          type: string
+        isRelative:
+          type: boolean
+        isDriver:
+          type: boolean
+        isPassenger:
+          type: boolean
+        isVerified:
+          type: boolean
+        verificationCode:
+          type: number
+        platformId:
+          type: string
+        gender:
+          type: string
+          enum:
+            - Male
+            - Female
+            - Other
+        role:
+          type: string
+          enum:
+            - Father
+            - Mother
+            - Child
+            - Son
+            - Daughter
+            - Stepfather
+            - Stepmother
+            - Grandfather
+            - Grandmother
+            - Uncle
+            - Aunt
+            - Brother
+            - Sister
+            - Nephew
+            - Niece
+            - Grandchild
+            - greatGrandparent
+            - greatGrandchild
+            - Stepson
+            - beautifulGirl
+            - Cousin
+            - Other
+        status:
+          type: string
+        haveDriverLicense:
+          type: boolean
+        firebaseToken:
+          type: string
+        profileComplete:
+          type: boolean
+        password:
+          type: string
+        adminPassword:
+          type: string
+        temporaryPassword:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        lastLogin:
+          type: string
+          format: date-time
+        passwordResetToken:
+          type: string
+        fcmToken:
+          type: string
+        isFirstAccess:
+          type: boolean
+        isAdmin:
+          type: boolean
+        language:
+          type: string
+          enum:
+            - fr
+            - en
+            - de
+        deletedAt:
+          type: string
+          format: date-time
+        driverLicenseEntity:
+          type: array
+          items:
+            $ref: '#/components/schemas/DriverLicenseEntity'
+        driverCarEntity:
+          type: array
+          items:
+            $ref: '#/components/schemas/DriverCarEntity'
+        userRelatives:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserRelativesEntity'
+        eventParticipant:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventParticipantEntity'
+        clubRequest:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClubRequestEntity'
+        clubMembership:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClubMembershipEntity'
+        relativeTrackedClub:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelativeTrackedClubEntity'
+        notification:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationEntity'
+        clubAdmin:
+          $ref: '#/components/schemas/ClubEntity'
+        userClubProfile:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserClubProfileEntity'
+        createdGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupEntity'
+        updatedGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupEntity'
+        isUser:
+          type: boolean
+        Car:
+          $ref: '#/components/schemas/EventCarEntity'
+        currentEvent:
+          $ref: '#/components/schemas/EventEntity'
+        eventCarParticipant:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventCarParticipantEntity'
+        returnPoint:
+          $ref: '#/components/schemas/EventPointEntity'
+        finishPoint:
+          $ref: '#/components/schemas/EventPointEntity'
+        clubId:
+          type: number
+        clubAdminValidation:
+          $ref: '#/components/schemas/User'
+        isClubAdmin:
+          type: boolean
+        isUploadDriverLicense:
+          type: boolean
+        driverLicense:
+          $ref: '#/components/schemas/DriverLicenseEntity'
+        clubs:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClubEntity'
+        carBrand:
+          type: string
+        carCountry:
+          type: string
+        carModel:
+          type: string
+        carNumber:
+          type: string
+        carSeats:
+          type: number
+        userRelativesWithUser:
+          type: array
+          items:
+            type: object
+      required:
+        - id
+        - name
+        - surname
+        - email
+        - address
+        - zip
+        - city
+        - country
+        - phone
+        - mobile
+        - photoUrl
+        - isRelative
+        - isDriver
+        - isPassenger
+        - isVerified
+        - verificationCode
+        - platformId
+        - gender
+        - role
+        - status
+        - haveDriverLicense
+        - firebaseToken
+        - profileComplete
+        - password
+        - adminPassword
+        - temporaryPassword
+        - dateOfBirth
+        - createdAt
+        - updatedAt
+        - lastLogin
+        - passwordResetToken
+        - fcmToken
+        - isFirstAccess
+        - isAdmin
+        - language
+        - deletedAt
+        - driverLicenseEntity
+        - driverCarEntity
+        - userRelatives
+        - eventParticipant
+        - clubRequest
+        - clubMembership
+        - relativeTrackedClub
+        - notification
+        - clubAdmin
+        - userClubProfile
+        - createdGroups
+        - updatedGroups
+        - isUser
+        - Car
+        - currentEvent
+        - eventCarParticipant
+        - returnPoint
+        - finishPoint
+        - clubId
+        - clubAdminValidation
+        - isClubAdmin
+        - isUploadDriverLicense
+        - driverLicense
+        - clubs
+        - carBrand
+        - carCountry
+        - carModel
+        - carNumber
+        - carSeats
+    DriverLicenseEntity:
+      type: object
+      properties:
+        id:
+          type: number
+        frontUrl:
+          type: string
+        backUrl:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        user:
+          $ref: '#/components/schemas/User'
+        clubUser:
+          $ref: '#/components/schemas/ClubUserOriginal'
+      required:
+        - id
+        - frontUrl
+        - backUrl
+        - createdAt
+        - updatedAt
+        - user
+        - clubUser
+    ClubUserOriginal:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        surname:
+          type: string
+        email:
+          type: string
+        licenseNumber:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date-time
+        mobile:
+          type: string
+        phone:
+          type: string
+        otherPhone:
+          type: string
+        otherClubPhone:
+          type: string
+        genre:
+          type: string
+        address:
+          type: string
+        zip:
+          type: string
+        city:
+          type: string
+        country:
+          type: string
+        location:
+          type: string
+        platformId:
+          type: string
+        registerDate:
+          type: string
+          format: date-time
+        photoUrl:
+          type: string
+        categoryCode:
+          type: string
+        subCategory:
+          type: string
+        federationClubCode:
+          type: string
+        isDriver:
+          type: boolean
+        isSuspend:
+          type: boolean
+        isPassenger:
+          type: boolean
+        haveDriverLicense:
+          type: boolean
+        gender:
+          type: string
+          enum:
+            - Male
+            - Female
+            - Other
+        carCountry:
+          type: string
+        carBrand:
+          type: string
+        carModel:
+          type: string
+        carNumber:
+          type: string
+        carSeats:
+          type: number
+        clubNumber:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        club:
+          $ref: '#/components/schemas/ClubEntity'
+        userClubProfile:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserClubProfileEntity'
+        status:
+          type: array
+          items:
+            $ref: '#/components/schemas/MemberStatusEntity'
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserFileEntity'
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupEntity'
+        coachingGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupEntity'
+        driverLicenseEntity:
+          type: array
+          items:
+            $ref: '#/components/schemas/DriverLicenseEntity'
+        user:
+          $ref: '#/components/schemas/User'
+        systemUserId:
+          type: number
+        profileComplete:
+          type: boolean
+        lastLogin:
+          type: string
+          format: date-time
+        clubAdmin:
+          $ref: '#/components/schemas/User'
+        isClubAdmin:
+          type: boolean
+        isUploadDriverLicense:
+          type: boolean
+        driverLicense:
+          $ref: '#/components/schemas/DriverLicenseEntity'
+        clubs:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClubEntity'
+      required:
+        - id
+        - name
+        - surname
+        - email
+        - licenseNumber
+        - dateOfBirth
+        - mobile
+        - phone
+        - otherPhone
+        - otherClubPhone
+        - genre
+        - address
+        - zip
+        - city
+        - country
+        - location
+        - platformId
+        - registerDate
+        - photoUrl
+        - categoryCode
+        - subCategory
+        - federationClubCode
+        - isDriver
+        - isSuspend
+        - isPassenger
+        - haveDriverLicense
+        - gender
+        - carCountry
+        - carBrand
+        - carModel
+        - carNumber
+        - carSeats
+        - clubNumber
+        - createdAt
+        - updatedAt
+        - club
+        - userClubProfile
+        - status
+        - files
+        - groups
+        - coachingGroups
+        - driverLicenseEntity
+        - user
+        - systemUserId
+        - profileComplete
+        - lastLogin
+        - clubAdmin
+        - isClubAdmin
+        - isUploadDriverLicense
+        - driverLicense
+        - clubs
+    ClubEntity:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+        license:
+          type: string
+        zipCode:
+          type: string
+        logo:
+          type: string
+        clubPhoto:
+          type: string
+        clubCode:
+          type: string
+        description:
+          type: string
+        country:
+          type: string
+        city:
+          type: string
+        address:
+          type: string
+        email:
+          type: string
+        website:
+          type: string
+        primaryPhone:
+          type: string
+        secondaryPhone:
+          type: string
+        facebook:
+          type: string
+        twitter:
+          type: string
+        instagram:
+          type: string
+        linkedIn:
+          type: string
+        isUploadList:
+          type: boolean
+        isSuspend:
+          type: boolean
+        disciplines:
+          type: array
+          items:
+            $ref: '#/components/schemas/DisciplineEntity'
+        clubUserOriginal:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClubUserOriginal'
+        adminUser:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        clubMembership:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClubMembershipEntity'
+        clubEvent:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventEntity'
+        clubsSponsors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClubsSponsorsEntity'
+        userClubProfile:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserClubProfileEntity'
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupEntity'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        lastLogin:
+          type: string
+          format: date-time
+        sponsorLogo:
+          type: string
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+      required:
+        - id
+        - name
+        - latitude
+        - longitude
+        - license
+        - zipCode
+        - logo
+        - clubPhoto
+        - clubCode
+        - description
+        - country
+        - city
+        - address
+        - email
+        - website
+        - primaryPhone
+        - secondaryPhone
+        - facebook
+        - twitter
+        - instagram
+        - linkedIn
+        - isUploadList
+        - isSuspend
+        - disciplines
+        - clubUserOriginal
+        - adminUser
+        - clubMembership
+        - clubEvent
+        - clubsSponsors
+        - userClubProfile
+        - groups
+        - createdAt
+        - updatedAt
+        - lastLogin
+        - sponsorLogo
+        - members
+    DisciplineEntity:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        priority:
+          type: string
+          enum:
+            - football
+            - tennis
+            - equitation
+            - basket-ball
+            - judo
+            - golf
+            - volley-ball
+            - natation
+        clubs:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClubEntity'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - clubs
+        - createdAt
+        - updatedAt
+    ClubMembershipEntity:
+      type: object
+      properties:
+        id:
+          type: string
+        licenseNumber:
+          type: string
+        getNotification:
+          type: boolean
+        user:
+          $ref: '#/components/schemas/User'
+        club:
+          $ref: '#/components/schemas/ClubEntity'
+        discipline:
+          $ref: '#/components/schemas/DisciplineEntity'
+        relativeTrackedClub:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelativeTrackedClubEntity'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - licenseNumber
+        - getNotification
+        - user
+        - club
+        - discipline
+        - relativeTrackedClub
+        - createdAt
+        - updatedAt
+    RelativeTrackedClubEntity:
+      type: object
+      properties:
+        id:
+          type: number
+        user:
+          $ref: '#/components/schemas/User'
+        relative:
+          $ref: '#/components/schemas/User'
+        clubMembership:
+          $ref: '#/components/schemas/ClubMembershipEntity'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - user
+        - relative
+        - clubMembership
+        - createdAt
+        - updatedAt
+    EventEntity:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        isHided:
+          type: boolean
+        date:
+          type: string
+          format: date-time
+        club:
+          $ref: '#/components/schemas/ClubEntity'
+        eventPoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventPointEntity'
+        eventParticipants:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventParticipantEntity'
+        eventCar:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventCarEntity'
+        eventQueue:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventQueueEntity'
+        eventParticipant:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventParticipantEntity'
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClubUserOriginal'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        isEventDriver:
+          type: boolean
+        isEventPassenger:
+          type: boolean
+        evenCartParticipant:
+          $ref: '#/components/schemas/EventCarParticipantEntity'
+      required:
+        - id
+        - name
+        - isHided
+        - date
+        - club
+        - eventPoints
+        - eventParticipants
+        - eventCar
+        - eventQueue
+        - eventParticipant
+        - participants
+        - createdAt
+        - updatedAt
+        - isEventDriver
+        - isEventPassenger
+        - evenCartParticipant
+    EventPointEntity:
+      type: object
+      properties:
+        id:
+          type: string
+        address:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+        order:
+          type: number
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+            - depart
+            - etape
+            - arrivee
+            - retour
+        tripType:
+          type: string
+          enum:
+            - Going
+            - Returning
+        arriveTime:
+          type: string
+          format: date-time
+        photo:
+          type: string
+        event:
+          $ref: '#/components/schemas/EventEntity'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - address
+        - latitude
+        - longitude
+        - order
+        - description
+        - type
+        - tripType
+        - arriveTime
+        - photo
+        - event
+        - createdAt
+        - updatedAt
+    EventParticipantEntity:
+      type: object
+      properties:
+        id:
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+        event:
+          $ref: '#/components/schemas/EventEntity'
+        eventQueue:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventQueueEntity'
+        eventCarParticipant:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventCarParticipantEntity'
+        eventCar:
+          $ref: '#/components/schemas/EventCarEntity'
+        finishPoint:
+          $ref: '#/components/schemas/EventPointEntity'
+        returnPoint:
+          $ref: '#/components/schemas/EventPointEntity'
+      required:
+        - id
+        - user
+        - event
+        - eventQueue
+        - eventCarParticipant
+        - eventCar
+        - finishPoint
+        - returnPoint
+    EventQueueEntity:
+      type: object
+      properties:
+        id:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        tripType:
+          type: string
+          enum:
+            - Going
+            - Returning
+        eventParticipant:
+          $ref: '#/components/schemas/EventParticipantEntity'
+        event:
+          $ref: '#/components/schemas/EventEntity'
+      required:
+        - id
+        - createdAt
+        - tripType
+        - eventParticipant
+        - event
+    EventCarParticipantEntity:
+      type: object
+      properties:
+        id:
+          type: string
+        tripType:
+          type: string
+          enum:
+            - Going
+            - Returning
+        eventCar:
+          $ref: '#/components/schemas/EventCarEntity'
+        eventParticipant:
+          $ref: '#/components/schemas/EventParticipantEntity'
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - tripType
+        - eventCar
+        - eventParticipant
+        - createdAt
+    EventCarEntity:
+      type: object
+      properties:
+        id:
+          type: string
+        departSeats:
+          type: number
+        returnSeats:
+          type: number
+        isDepart:
+          type: boolean
+        isReturn:
+          type: boolean
+        event:
+          $ref: '#/components/schemas/EventEntity'
+        driverCar:
+          $ref: '#/components/schemas/DriverCarEntity'
+        eventCarParticipant:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventCarParticipantEntity'
+        notification:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationEntity'
+        createdAt:
+          type: string
+          format: date-time
+        finishPoint:
+          $ref: '#/components/schemas/EventPointEntity'
+        returnPoint:
+          $ref: '#/components/schemas/EventPointEntity'
+        departPassengers:
+          type: array
+          items:
+            type: object
+        returnPassengers:
+          type: array
+          items:
+            type: object
+        isEventPassenger:
+          type: boolean
+      required:
+        - id
+        - departSeats
+        - returnSeats
+        - isDepart
+        - isReturn
+        - event
+        - driverCar
+        - eventCarParticipant
+        - notification
+        - createdAt
+        - finishPoint
+        - returnPoint
+        - departPassengers
+        - returnPassengers
+        - isEventPassenger
+    DriverCarEntity:
+      type: object
+      properties:
+        id:
+          type: number
+        country:
+          type: string
+        brand:
+          type: string
+        model:
+          type: string
+        number:
+          type: string
+        seats:
+          type: number
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        user:
+          $ref: '#/components/schemas/User'
+        eventCar:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventCarEntity'
+      required:
+        - id
+        - country
+        - brand
+        - model
+        - number
+        - seats
+        - createdAt
+        - updatedAt
+        - user
+        - eventCar
+    NotificationEntity:
+      type: object
+      properties:
+        id:
+          type: string
+        notificationType:
+          type: string
+          enum:
+            - Text
+            - Relative Invite
+            - Event tracking
+            - Event stop tracking
+        text:
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+        relative:
+          $ref: '#/components/schemas/User'
+        eventCar:
+          $ref: '#/components/schemas/EventCarEntity'
+        createdAt:
+          type: string
+          format: date-time
+        eventCarId:
+          type: string
+      required:
+        - id
+        - notificationType
+        - text
+        - user
+        - relative
+        - eventCar
+        - createdAt
+        - eventCarId
+    ClubsSponsorsEntity:
+      type: object
+      properties:
+        id:
+          type: string
+        club:
+          $ref: '#/components/schemas/ClubEntity'
+        sponsor:
+          $ref: '#/components/schemas/Sponsor'
+        isActive:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - club
+        - sponsor
+        - isActive
+        - createdAt
+        - updatedAt
+    Sponsor:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        photoUrl:
+          type: string
+        description:
+          type: string
+        isGlobal:
+          type: boolean
+        contactPersonGender:
+          type: string
+          enum:
+            - Male
+            - Female
+            - Other
+        website:
+          type: string
+        contactPersonName:
+          type: string
+        contactPersonSurname:
+          type: string
+        contactPersonBirthday:
+          type: string
+          format: date-time
+        contactPersonNationality:
+          type: string
+        contactPersonAddress:
+          type: string
+        contactPersonPhone:
+          type: string
+        contactPersonEmail:
+          type: string
+        contactPersonNameOfBusiness:
+          type: string
+        contactPersonFrenchCompanyNumber:
+          type: string
+        organizationPhoneNumber:
+          type: string
+        organizationSecondPhoneNumber:
+          type: string
+        organizationEmail:
+          type: string
+        entrepreneursNumber:
+          type: string
+        invoiceEmail:
+          type: string
+        identificationNumber:
+          type: string
+        invoicePersonEmail:
+          type: string
+        invoiceCountry:
+          type: string
+        invoiceAddress:
+          type: string
+        invoiceZipCode:
+          type: string
+        invoiceRegion:
+          type: string
+        contactEmail:
+          type: string
+        contactSecondName:
+          type: string
+        contactFirstName:
+          type: string
+        invoiceMobileNumber:
+          type: string
+        uniqueImages:
+          type: array
+          items:
+            $ref: '#/components/schemas/SponsorUniqueImagesEntity'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        clubsSponsors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClubsSponsorsEntity'
+      required:
+        - id
+        - name
+        - photoUrl
+        - description
+        - isGlobal
+        - contactPersonGender
+        - website
+        - contactPersonName
+        - contactPersonSurname
+        - contactPersonBirthday
+        - contactPersonNationality
+        - contactPersonAddress
+        - contactPersonPhone
+        - contactPersonEmail
+        - contactPersonNameOfBusiness
+        - contactPersonFrenchCompanyNumber
+        - organizationPhoneNumber
+        - organizationSecondPhoneNumber
+        - organizationEmail
+        - entrepreneursNumber
+        - invoiceEmail
+        - identificationNumber
+        - invoicePersonEmail
+        - invoiceCountry
+        - invoiceAddress
+        - invoiceZipCode
+        - invoiceRegion
+        - contactEmail
+        - contactSecondName
+        - contactFirstName
+        - invoiceMobileNumber
+        - uniqueImages
+        - createdAt
+        - updatedAt
+        - clubsSponsors
+    SponsorUniqueImagesEntity:
+      type: object
+      properties:
+        id:
+          type: number
+        imageUrl:
+          type: string
+        specialDate:
+          type: string
+          format: date-time
+        endSpecialDate:
+          type: string
+          format: date-time
+        name:
+          type: string
+        description:
+          type: string
+        url:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        sponsor:
+          $ref: '#/components/schemas/Sponsor'
+      required:
+        - id
+        - imageUrl
+        - specialDate
+        - endSpecialDate
+        - name
+        - description
+        - url
+        - createdAt
+        - updatedAt
+        - sponsor
+    UserClubProfileEntity:
+      type: object
+      properties:
+        id:
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+        clubUserOriginal:
+          $ref: '#/components/schemas/ClubUserOriginal'
+        club:
+          $ref: '#/components/schemas/ClubEntity'
+        memberRole:
+          type: string
+          enum:
+            - user
+            - relative
+            - not_user
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - user
+        - clubUserOriginal
+        - club
+        - memberRole
+        - createdAt
+    GroupEntity:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        description:
+          type: string
+        clubUsers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClubUserOriginal'
+        coaches:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClubUserOriginal'
+        club:
+          $ref: '#/components/schemas/ClubEntity'
+        creator:
+          $ref: '#/components/schemas/User'
+        lastUpdatedBy:
+          $ref: '#/components/schemas/User'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - description
+        - clubUsers
+        - coaches
+        - club
+        - creator
+        - lastUpdatedBy
+        - createdAt
+        - updatedAt
+    MemberStatusEntity:
+      type: object
+      properties:
+        id:
+          type: string
+        memberStatus:
+          type: string
+          enum:
+            - Membre
+            - Directeur
+            - Est un Proche
+            - A un Proche
+            - Staff
+            - Bénévole
+            - Licencié
+            - Coach Adjoint
+            - Coach
+            - Entraineur
+            - Entraineur Adjoint
+            - Manager d'équipe
+            - Equipe dirigeante
+            - Président
+            - Trésorier
+            - Secrétaire
+            - Assistant
+            - Médecin
+            - Kiné
+        clubUser:
+          $ref: '#/components/schemas/ClubUserOriginal'
+      required:
+        - id
+        - memberStatus
+        - clubUser
+    UserFileEntity:
+      type: object
+      properties:
+        id:
+          type: number
+        filename:
+          type: string
+        fileUrl:
+          type: string
+        fileType:
+          type: string
+        uploadedAt:
+          type: string
+          format: date-time
+        clubUserOriginal:
+          $ref: '#/components/schemas/ClubUserOriginal'
+      required:
+        - id
+        - filename
+        - fileUrl
+        - fileType
+        - uploadedAt
+        - clubUserOriginal
+    UserRelativesEntity:
+      type: object
+      properties:
+        id:
+          type: number
+        role:
+          type: string
+          enum:
+            - Father
+            - Mother
+            - Child
+            - Son
+            - Daughter
+            - Stepfather
+            - Stepmother
+            - Grandfather
+            - Grandmother
+            - Uncle
+            - Aunt
+            - Brother
+            - Sister
+            - Nephew
+            - Niece
+            - Grandchild
+            - greatGrandparent
+            - greatGrandchild
+            - Stepson
+            - beautifulGirl
+            - Cousin
+            - Other
+        relativeName:
+          type: string
+        relativeSurname:
+          type: string
+        photoUrl:
+          type: string
+        isConfirmed:
+          type: boolean
+        fromUser:
+          $ref: '#/components/schemas/User'
+        toUser:
+          $ref: '#/components/schemas/User'
+        clubs:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClubEntity'
+        toUserId:
+          type: number
+      required:
+        - id
+        - role
+        - relativeName
+        - relativeSurname
+        - photoUrl
+        - isConfirmed
+        - fromUser
+        - toUser
+        - clubs
+        - toUserId
+    ClubRequestEntity:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        zipCode:
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - zipCode
+        - user
+        - createdAt
+        - updatedAt
+    LoginDto:
+      type: object
+      properties:
+        phone:
+          type: string
+          description: Phone number
+          example: '+380639793505'
+        password:
+          type: string
+          description: User Password
+          example: Abc12345
+      required:
+        - phone
+        - password
+    VerificationDto:
+      type: object
+      properties:
+        phone:
+          type: string
+          description: Phone number
+          example: '+905525520012'
+        verificationCode:
+          type: number
+          description: verification Code
+          example: 1234
+      required:
+        - phone
+        - verificationCode
+    ProfileDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name
+          default: User
+        surname:
+          type: string
+          description: Surname
+          default: Surname
+        photoUrl:
+          type: string
+          description: photoUrl
+          default: photoUrl
+        email:
+          type: string
+          description: Email
+          default: user@mail.coolrool
+        address:
+          type: string
+          description: Address
+          default: French Paris
+          example: French Paris
+        dateOfBirth:
+          type: string
+          description: Date of Birth
+          format: date-time
+          example: '2012-12-12T00:00:00Z'
+        isPassenger:
+          type: boolean
+          description: Is Passenger
+        isDriver:
+          type: boolean
+          description: Is Driver
+        profileComplete:
+          type: boolean
+          description: Profile complete
+        gender:
+          $ref: '#/components/schemas/GenderEnum'
+          description: Gender
+        role:
+          $ref: '#/components/schemas/RoleEnum'
+          description: Role
+        language:
+          $ref: '#/components/schemas/LanguageEnum'
+          description: Language
+        removeEmail:
+          type: boolean
+          description: Remove email
+        img:
+          type: string
+          description: User img
+          format: binary
+        isFirstAccess:
+          type: boolean
+          description: Is First Access
+    GenderEnum:
+      type: string
+      enum:
+        - Male
+        - Female
+        - Other
+    RoleEnum:
+      type: string
+      enum:
+        - Father
+        - Mother
+        - Child
+        - Son
+        - Daughter
+        - Stepfather
+        - Stepmother
+        - Grandfather
+        - Grandmother
+        - Uncle
+        - Aunt
+        - Brother
+        - Sister
+        - Nephew
+        - Niece
+        - Grandchild
+        - greatGrandparent
+        - greatGrandchild
+        - Stepson
+        - beautifulGirl
+        - Cousin
+        - Other
+    LanguageEnum:
+      type: string
+      enum:
+        - fr
+        - en
+        - de
+    SendCustomLetterDto:
+      type: object
+      properties:
+        members:
+          type: string
+          description: JSON string of user IDs to whom the email will be sent
+          default: '["example.yahoo.com"]'
+          example: '["example.yahoo.com"]'
+        letterTitle:
+          type: string
+          description: Text of the email to be sent
+          default: Example Tiile!
+          example: Example Tiile!
+        letterText:
+          type: string
+          description: Text of the email to be sent
+          default: Hello, this is a custom email!
+          example: Hello, this is a custom email!
+      required:
+        - members
+        - letterTitle
+        - letterText
+    EmailDto:
+      type: object
+      properties:
+        email:
+          type: string
+          description: The email address of the user, has 3 to 320 characters according to RFC 3696
+          minLength: 3
+          maxLength: 320
+          example: admin@mail.projectname
+      required:
+        - email
+    PhoneDto:
+      type: object
+      properties:
+        phone:
+          type: string
+          description: Phone number
+          example: '+905521234567'
+      required:
+        - phone
+    RecoverPasswordDto:
+      type: object
+      properties:
+        newPassword:
+          type: string
+          description: New password of the user, has 8 to 20 characters
+          minLength: 6
+          maxLength: 20
+          example: Abc12345
+        token:
+          type: string
+          description: Reset token
+          example: 585230a5-0f59-4dff-9330-ac076d43dc25
+      required:
+        - newPassword
+        - token
+    RecoverPasswordsDto:
+      type: object
+      properties:
+        phones:
+          type: string
+          description: Phone number
+          default: '["905521234567"]'
+          example: '["905521234567"]'
+      required:
+        - phones
+    RecoverAdminPasswordDto:
+      type: object
+      properties:
+        newPassword:
+          type: string
+          description: New password of the user, has 8 to 20 characters
+          minLength: 6
+          maxLength: 20
+          example: Abc12345
+        temporaryPassword:
+          type: string
+          description: Temporary Password
+          example: Skd123d
+      required:
+        - newPassword
+        - temporaryPassword
+    LicenseNumberDto:
+      type: object
+      properties:
+        licenseNumber:
+          type: string
+          description: User license number
+          default: 30P4ZW8FO
+          example: 30P4ZW8FO
+        clubId:
+          type: number
+          description: Club id
+          default: 1
+          example: 1
+        getNotification:
+          type: boolean
+          description: UserRelativesEntity
+          default: true
+          example: true
+      required:
+        - clubId
+    ClubProfileDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name
+          default: User
+        surname:
+          type: string
+          description: Surname
+          default: Surname
+        licenseNumber:
+          type: string
+          description: License Number
+          maxLength: 50
+          default: O1KZ13CXK
+          example: O1KZ13CXK
+        address:
+          type: string
+          description: Address
+          default: French Paris
+          example: French Paris
+        dateOfBirth:
+          type: string
+          description: Date of Birth
+          format: date-time
+          example: '2012-12-12T00:00:00Z'
+        country:
+          type: string
+          description: Country
+          maxLength: 50
+          default: France
+          example: France
+        city:
+          type: string
+          description: City
+          maxLength: 50
+          default: Paris
+          example: Paris
+        postalCode:
+          type: string
+          description: Postal code
+          maxLength: 50
+          default: '70001'
+          example: '70001'
+        secondPhone:
+          type: string
+          description: Phone number
+          example: '+905521234567'
+        phone:
+          type: string
+          description: Phone number
+          example: '+905521234567'
+        email:
+          type: string
+          description: Email
+          maxLength: 50
+          default: user@mail.coolrool
+        category:
+          type: string
+          description: Category
+          maxLength: 50
+          default: U1
+          example: U1
+        isPassenger:
+          type: boolean
+          description: Is Passenger
+        isDriver:
+          type: boolean
+          description: Is Driver
+        deleteLicense:
+          type: boolean
+          description: Delete driver license
+        status:
+          type: string
+          description: Status
+          default: Member
+          example: '["Membre"]'
+        groups:
+          type: string
+          description: Groups
+          default: '["1", "2"]'
+          example: '["1", "2"]'
+        carCountry:
+          type: string
+          description: Car country
+          default: France
+          example: France
+        carSeats:
+          type: number
+          description: Car seats amount
+          default: 5
+          example: 5
+        carBrand:
+          type: string
+          description: Car brand
+          default: Audi
+          example: Audi
+        carModel:
+          type: string
+          description: Car model
+          default: A8
+          example: A8
+        carNumber:
+          type: string
+          description: Car number
+          default: AA-123-BB
+          example: AA-124-BB
+        gender:
+          $ref: '#/components/schemas/GenderEnum'
+          description: Gender
+        role:
+          $ref: '#/components/schemas/RoleEnum'
+          description: Role
+        img:
+          type: string
+          description: User img
+          format: binary
+        front:
+          type: string
+          description: Front side
+          format: binary
+        back:
+          type: string
+          description: Back side
+          format: binary
+    FcmTokenDto:
+      type: object
+      properties:
+        fcmToken:
+          type: string
+          description: Fcm Token
+      required:
+        - fcmToken
+    UserSortEnum:
+      type: string
+      enum:
+        - name
+        - surname
+        - lastLogin
+        - categoryCode
+        - isPassenger
+    Order:
+      type: string
+      enum:
+        - ASC
+        - DESC
+    AdminStatusDto:
+      type: object
+      properties:
+        phone:
+          type: string
+          description: Phone number
+          example: '+905521234567'
+        clubId:
+          type: number
+          description: Club ID
+          default: 1
+      required:
+        - phone
+        - clubId
+    AdminInvitationDto:
+      type: object
+      properties:
+        phones:
+          type: string
+          description: Phone number
+          default: '["905521234567"]'
+          example: '["905521234567"]'
+        clubIds:
+          type: string
+          description: Club id
+          default: '["47"]'
+          example: '["47"]'
+      required:
+        - phones
+        - clubIds
+    ClubMemberDto:
+      type: object
+      properties:
+        profileId:
+          type: number
+          description: The user profile ID
+          default: 1
+          example: 1
+        relativeId:
+          type: number
+          description: The relative ID
+          default: 1
+          example: 1
+        clubId:
+          type: number
+          description: The club ID
+          default: 1
+          example: 1
+        isAdd:
+          type: boolean
+          description: Add the club
+          default: true
+        memberRole:
+          $ref: '#/components/schemas/MemberRoleEnum'
+          description: Member Role Enum
+      required:
+        - profileId
+        - isAdd
+        - memberRole
+    MemberRoleEnum:
+      type: string
+      enum:
+        - user
+        - relative
+        - not_user
+    UpdateGroupsDto:
+      type: object
+      properties:
+        groups:
+          type: string
+          description: Groups in JSON string format
+          default: '["1", "2"]'
+          example: '["1", "2"]'
+      required:
+        - groups
+    UpdateUsersGroupsDto:
+      type: object
+      properties:
+        groups:
+          type: string
+          description: Groups in JSON string format
+          default: '["1", "2"]'
+          example: '["1", "2"]'
+        members:
+          type: string
+          description: Members in JSON string format
+          default: '["1", "2"]'
+          example: '["1", "2"]'
+      required:
+        - groups
+        - members
+    RelativesDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name
+          default: User
+        surname:
+          type: string
+          description: Surname
+          default: Surname
+        phone:
+          type: string
+          description: Phone number
+          example: '+905521234567'
+        photoUrl:
+          type: string
+          description: Photo
+        role:
+          $ref: '#/components/schemas/RoleEnum'
+          description: Role
+        img:
+          type: string
+          description: User img
+          format: binary
+        clubs:
+          type: array
+          description: Clubs
+          items:
+            type: string
+      required:
+        - phone
+    UpdateRelativesDto:
+      type: object
+      properties:
+        relativeId:
+          type: number
+          description: Relative id
+          default: 1
+        name:
+          type: string
+          description: Name
+          default: User
+        surname:
+          type: string
+          description: Surname
+          default: Surname
+        role:
+          $ref: '#/components/schemas/RoleEnum'
+          description: Role
+        removePhoto:
+          type: boolean
+          description: Remove relative photo
+        img:
+          type: string
+          description: User img
+          format: binary
+        clubs:
+          type: array
+          description: Clubs
+          items:
+            type: string
+      required:
+        - relativeId
+    DeleteRelativesDto:
+      type: object
+      properties:
+        relativeId:
+          type: number
+          description: Relative id
+          default: 1
+      required:
+        - relativeId
+    RelativesStatusDto:
+      type: object
+      properties:
+        relativeId:
+          type: number
+          description: Relative id
+          default: 1
+        isConfirmed:
+          type: boolean
+          description: Confirm Status
+      required:
+        - relativeId
+        - isConfirmed
+    TrackRelativeClubDto:
+      type: object
+      properties:
+        relativeId:
+          type: number
+          description: Relative id
+          minimum: 1
+          default: 1
+        clubId:
+          type: number
+          description: Club id
+          minimum: 1
+          default: 1
+      required:
+        - relativeId
+    CreateClubDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Club name
+          maxLength: 150
+          example: Sports Club
+        latitude:
+          type: number
+          description: Latitude
+          example: 51.5074
+        longitude:
+          type: number
+          description: Longitude
+          example: -0.1278
+        license:
+          type: string
+          description: Club license
+          maxLength: 150
+          example: ABC123
+        zipCode:
+          type: string
+          description: ZIP code
+          maxLength: 150
+          example: '12345'
+        logo:
+          type: string
+          description: Club logo
+          format: binary
+        clubPhoto:
+          type: string
+          description: Club photo
+          format: binary
+        description:
+          type: string
+          description: Club description
+          maxLength: 1000
+          example: A sports club offering various disciplines.
+        country:
+          type: string
+          description: Club country
+          maxLength: 150
+          example: France
+        city:
+          type: string
+          description: Club city
+          maxLength: 150
+          example: France
+        address:
+          type: string
+          description: Club address
+          example: 123 Club Street
+        email:
+          type: string
+          description: Club email
+          maxLength: 150
+          example: info@sportsclub.com
+        website:
+          type: string
+          description: Sponsor website
+          maxLength: 150
+          default: https://www.sponsor.com
+          example: https://www.sponsor.com
+        primaryPhone:
+          type: string
+          description: Primary phone number
+          maxLength: 150
+          example: +1-555-123-4567
+        secondaryPhone:
+          type: string
+          description: Secondary phone number
+          maxLength: 150
+          example: +1-555-987-6543
+        facebook:
+          type: string
+          description: Club Facebook
+          maxLength: 150
+          example: https://www.facebook.com/zenBitTech/3
+        twitter:
+          type: string
+          description: Club Twitter
+          maxLength: 150
+          example: https://twitter.com
+        instagram:
+          type: string
+          description: Club Instagram
+          maxLength: 150
+          example: https://www.instagram.com/zenbitteam
+        linkedIn:
+          type: string
+          description: Club LinkedIn
+          maxLength: 150
+          example: https://www.linkedin.com/company/zenbit-tech
+        disciplines:
+          type: string
+          description: List of disciplines IDs
+          maxLength: 150
+      required:
+        - name
+        - license
+        - zipCode
+        - country
+        - city
+        - address
+        - email
+        - primaryPhone
+    ClubSortEnum:
+      type: string
+      enum:
+        - name
+        - email
+        - primaryPhone
+        - website
+        - zipCode
+        - address
+        - country
+        - city
+        - lastLogin
+    DisciplineIconSlotOrder:
+      type: string
+      enum:
+        - football
+        - tennis
+        - equitation
+        - basket-ball
+        - judo
+        - golf
+        - volley-ball
+        - natation
+    CreateMembershipDto:
+      type: object
+      properties:
+        clubId:
+          type: number
+          description: Club ID
+        disciplineId:
+          type: number
+          description: Discipline ID
+      required:
+        - clubId
+    DeleteMembershipDto:
+      type: object
+      properties:
+        clubId:
+          type: number
+          description: Club ID
+          example: 1
+        deleteTracking:
+          type: boolean
+          description: Confirm Status
+      required:
+        - clubId
+        - deleteTracking
+    UpdateClubDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Club name
+          maxLength: 150
+          example: Sports Club
+        latitude:
+          type: number
+          description: Latitude
+          example: 51.5074
+        longitude:
+          type: number
+          description: Longitude
+          example: -0.1278
+        license:
+          type: string
+          description: Club license
+          maxLength: 150
+          example: ABC123
+        zipCode:
+          type: string
+          description: ZIP code
+          maxLength: 150
+          example: '12345'
+        logo:
+          type: string
+          description: Club logo
+          format: binary
+        clubPhoto:
+          type: string
+          description: Club photo
+          format: binary
+        description:
+          type: string
+          description: Club description
+          maxLength: 1000
+          example: A sports club offering various disciplines.
+        country:
+          type: string
+          description: Club country
+          maxLength: 150
+          example: France
+        city:
+          type: string
+          description: Club city
+          maxLength: 150
+          example: France
+        address:
+          type: string
+          description: Club address
+          example: 123 Club Street
+        email:
+          type: string
+          description: Club email
+          maxLength: 150
+          example: info@sportsclub.com
+        website:
+          type: string
+          description: Sponsor website
+          maxLength: 150
+          default: https://www.sponsor.com
+          example: https://www.sponsor.com
+        primaryPhone:
+          type: string
+          description: Primary phone number
+          maxLength: 150
+          example: +1-555-123-4567
+        secondaryPhone:
+          type: string
+          description: Secondary phone number
+          maxLength: 150
+          example: +1-555-987-6543
+        facebook:
+          type: string
+          description: Club Facebook
+          maxLength: 150
+          example: https://www.facebook.com/zenBitTech/3
+        twitter:
+          type: string
+          description: Club Twitter
+          maxLength: 150
+          example: https://twitter.com
+        instagram:
+          type: string
+          description: Club Instagram
+          maxLength: 150
+          example: https://www.instagram.com/zenbitteam
+        linkedIn:
+          type: string
+          description: Club LinkedIn
+          maxLength: 150
+          example: https://www.linkedin.com/company/zenbit-tech
+        disciplines:
+          type: string
+          description: List of disciplines IDs
+          maxLength: 150
+    ClubRequestDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the club request
+          maxLength: 255
+          default: Fight Club
+        zipCode:
+          type: string
+          description: The zip code of the club request
+          default: '12345'
+      required:
+        - name
+        - zipCode
+    MemberListDto:
+      type: object
+      properties:
+        clubId:
+          type: number
+          description: Club ID
+          default: 1
+        sendEmail:
+          type: boolean
+          description: Send email
+        sendSms:
+          type: boolean
+          description: Send SMS
+        csv:
+          type: string
+          description: Csv
+          format: binary
+      required:
+        - clubId
+    NewMembershipDto:
+      type: object
+      properties:
+        clubId:
+          type: number
+          description: Club ID
+          minimum: 1
+          default: 1
+          example: 1
+        platformId:
+          type: string
+          description: ID Unique platform
+          default: A123
+          example: A123
+        name:
+          type: string
+          description: Name
+          maxLength: 50
+          default: User
+        surname:
+          type: string
+          description: Surname
+          maxLength: 50
+          default: Surname
+        email:
+          type: string
+          description: Email
+          maxLength: 50
+          default: user@mail.coolrool
+        phone:
+          type: string
+          description: Phone number
+          example: '+380639793505'
+        secondPhone:
+          type: string
+          description: Phone number
+          example: '+380639793505'
+        licenseNumber:
+          type: string
+          description: License Number
+          maxLength: 50
+          default: O1KZ13CXK
+          example: O1KZ13CXK
+        dateOfBirth:
+          type: string
+          description: Date of Birth
+          format: date-time
+          example: '2012-12-12T00:00:00Z'
+        country:
+          type: string
+          description: Country
+          maxLength: 50
+          default: France
+          example: France
+        address:
+          type: string
+          description: Address
+          default: French Paris
+          example: French Paris
+        postalCode:
+          type: string
+          description: Postal code
+          maxLength: 50
+          default: '70001'
+          example: '70001'
+        category:
+          type: string
+          description: Category
+          maxLength: 50
+          default: U1
+          example: U1
+        gender:
+          $ref: '#/components/schemas/GenderEnum'
+          description: Gender
+        isPassenger:
+          type: boolean
+          description: Is Passenger
+        isDriver:
+          type: boolean
+          description: Is Driver
+        sendEmail:
+          type: boolean
+          description: Send email
+        sendSms:
+          type: boolean
+          description: Send SMS
+        status:
+          type: string
+          description: Status
+          default: Member
+          example: '["Membre"]'
+        groups:
+          type: string
+          description: Groups
+          default: '["1", "2"]'
+          example: '["1", "2"]'
+        carCountry:
+          type: string
+          description: Car country
+          default: France
+          example: France
+        carBrand:
+          type: string
+          description: Car brand
+          default: Audi
+          example: Audi
+        carModel:
+          type: string
+          description: Car model
+          default: A8
+          example: A8
+        carNumber:
+          type: string
+          description: Car number
+          default: AA-123-BB
+          example: AA-124-BB
+        carSeats:
+          type: number
+          description: Car seats amount
+          default: 5
+          example: 5
+        img:
+          type: string
+          description: User img
+          format: binary
+      required:
+        - clubId
+        - name
+        - surname
+        - phone
+        - dateOfBirth
+        - country
+        - address
+        - postalCode
+        - category
+        - status
+    SendNotificationDto:
+      type: object
+      properties:
+        token:
+          type: string
+          description: The token of the device to receive the notification
+          default: 1465e1c9-e533-4025-82f1-42d6225b239f
+          example: 1465e1c9-e533-4025-82f1-42d6225b239f
+        data:
+          description: The data of the notification
+          allOf:
+            - $ref: '#/components/schemas/NotificationDataDto'
+      required:
+        - token
+        - data
+    NotificationDataDto:
+      type: object
+      properties:
+        type:
+          type: object
+          enum:
+            - queue
+            - activity
+            - default
+          description: The type of the notification
+        eventId:
+          type: string
+          description: The ID of the event
+        eventCarId:
+          type: string
+          description: The ID of the event car
+      required:
+        - type
+    AddEventCarDto:
+      type: object
+      properties:
+        eventId:
+          type: string
+          description: Event id
+          default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+          example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+      required:
+        - eventId
+    DriverPositionDto:
+      type: object
+      properties:
+        eventCarId:
+          type: string
+          description: Event car id
+          default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+          example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+        lat:
+          type: number
+          description: Latitude
+          default: 36.897048
+          example: 36.897048
+        lon:
+          type: number
+          description: Longitude
+          default: 30.691455
+          example: 30.691455
+      required:
+        - lat
+        - lon
+    EventCarSeatsDto:
+      type: object
+      properties:
+        eventCarId:
+          type: string
+          description: Event Car id
+          default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+          example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+        departSeats:
+          type: number
+          description: Depart Seats
+          minimum: 0
+          default: 3
+          example: 3
+        returnSeats:
+          type: number
+          description: Returning Seats
+          minimum: 0
+          default: 3
+          example: 3
+      required:
+        - eventCarId
+    EventOptionsDto:
+      type: object
+      properties:
+        eventId:
+          type: string
+          description: Event id
+          default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+          example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+      required:
+        - eventId
+    BookSeatsDto:
+      type: object
+      properties:
+        eventCarId:
+          type: string
+          description: Event Car id
+          default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+          example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+        eventParticipantId:
+          type: string
+          description: Event Participant Id
+          default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+          example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+        tripType:
+          $ref: '#/components/schemas/TripType'
+          description: The trip type of the event point
+          example: Going
+      required:
+        - eventCarId
+        - eventParticipantId
+        - tripType
+    TripType:
+      type: string
+      enum:
+        - Going
+        - Returning
+    UpdateBookSeatsDto:
+      type: object
+      properties:
+        eventCarId:
+          type: string
+          description: Event Car id
+          default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+          example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+        isDepart:
+          type: boolean
+          description: Depart Status
+          default: true
+        isReturn:
+          type: boolean
+          description: Return Status
+          default: true
+        departSeats:
+          type: number
+          description: Depart seats amount
+          example: 1
+        returnSeats:
+          type: number
+          description: Depart seats amount
+          example: 1
+        departPassengerIds:
+          type: array
+          items:
+            type: array
+            description: Depart Passenger Ids
+            default:
+              - 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+            items:
+              type: string
+            example:
+              - 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+        returnPassengerIds:
+          type: array
+          items:
+            type: array
+            description: Depart Passenger Ids
+            default:
+              - 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+            items:
+              type: string
+            example:
+              - 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+      required:
+        - eventCarId
+        - departPassengerIds
+        - returnPassengerIds
+    NotificationIdDto:
+      type: object
+      properties:
+        notificationId:
+          type: string
+          description: Notification id
+          default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+          example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+      required:
+        - notificationId
+    CreateEventDto:
+      type: object
+      properties:
+        name:
+          type: string
+          default: The Hero
+          example: Event Name
+        date:
+          type: string
+          default: '2023-04-24T10:00:00.000Z'
+          example: '2023-04-24T10:00:00.000Z'
+        clubId:
+          type: number
+          description: The club ID
+          default: 1
+          example: 1
+        sendEmail:
+          type: boolean
+          description: Send email
+        sendPush:
+          type: boolean
+          description: Send SMS
+        points:
+          type: array
+          description: An array of event points
+          items:
+            $ref: '#/components/schemas/CreateEventPointDto'
+        participants:
+          type: array
+          description: An array of event participants
+          items:
+            type: number
+      required:
+        - name
+        - date
+        - clubId
+        - sendEmail
+        - sendPush
+        - points
+    CreateEventPointDto:
+      type: object
+      properties:
+        address:
+          type: string
+          description: The address of the event point
+          example: 123 Main Street
+        latitude:
+          type: number
+          description: The latitude coordinates of the event point
+          example: 40.748817
+        longitude:
+          type: number
+          description: The longitude coordinates of the event point
+          example: -73.98542
+        order:
+          type: number
+          description: The order of the event point
+          example: 1
+        description:
+          type: string
+          description: The description of the event point
+          example: Lorem ipsum dolor sit amet
+        type:
+          $ref: '#/components/schemas/PointType'
+          description: The type of the event point
+          example: depart
+        tripType:
+          $ref: '#/components/schemas/TripType'
+          description: The trip type of the event point
+          example: Going
+        arriveTime:
+          type: string
+          description: The arrival time of the event point
+          example: '2023-04-27T10:00:00.000Z'
+        photo:
+          type: string
+          description: The URL of the photo of the event point
+          example: https://placeimg.com/640/480/any
+      required:
+        - address
+        - latitude
+        - longitude
+        - order
+        - type
+        - tripType
+        - arriveTime
+    PointType:
+      type: string
+      enum:
+        - depart
+        - etape
+        - arrivee
+        - retour
+    DeleteEventDto:
+      type: object
+      properties:
+        eventId:
+          type: string
+          description: Event id
+          default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+          example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
+        adminPassword:
+          type: string
+          description: Admin password
+          default: Abc12345
+          example: Abc12345
+        sendEmail:
+          type: boolean
+          description: Send email
+        sendPush:
+          type: boolean
+          description: Send SMS
+      required:
+        - eventId
+        - adminPassword
+        - sendEmail
+        - sendPush
+    EventTypeEnum:
+      type: string
+      enum:
+        - upcoming
+        - ongoing
+        - recent
+    UpdateEventDto:
+      type: object
+      properties:
+        name:
+          type: string
+          default: The Hero
+          example: Event Name
+        date:
+          type: string
+          default: '2023-04-24T10:00:00.000Z'
+          example: '2023-04-24T10:00:00.000Z'
+        sendEmail:
+          type: boolean
+          description: Send email
+        sendPush:
+          type: boolean
+          description: Send SMS
+        isUpdate:
+          type: boolean
+          description: Event update
+        points:
+          type: array
+          description: An array of event points
+          items:
+            $ref: '#/components/schemas/CreateEventPointDto'
+        addedParticipants:
+          type: array
+          description: An array of event added participants
+          items:
+            type: number
+        deletedParticipants:
+          type: array
+          description: An array of event deleted participants
+          items:
+            type: number
+      required:
+        - sendEmail
+        - sendPush
+        - isUpdate
+        - points
+    AddEventParticipantDto:
+      type: object
+      properties:
+        eventId:
+          type: string
+          default: 47680b08-87f8-449f-9b8a-5aaa35b4af4c
+          example: The event ID
+        participants:
+          type: array
+          description: An array of event participants
+          items:
+            type: number
+        sendEmail:
+          type: boolean
+          description: Send email
+        sendPush:
+          type: boolean
+          description: Send SMS
+      required:
+        - eventId
+        - participants
+        - sendEmail
+        - sendPush
+    ImageDto:
+      type: object
+      properties:
+        img:
+          type: string
+          description: User img
+          format: binary
+    StopTrackingDto:
+      type: object
+      properties:
+        notificationId:
+          type: string
+      required:
+        - notificationId
+    SponsorDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name
+          maxLength: 150
+          default: User
+          example: Sponsor 3
+        description:
+          type: string
+          description: Description
+          maxLength: 500
+          default: Sponsor description
+          example: Description
+        website:
+          type: string
+          description: Sponsor website
+          maxLength: 150
+          default: https://www.sponsor.com
+          example: https://www.sponsor.com
+        isGlobal:
+          type: boolean
+          description: Description
+        contactPersonGender:
+          $ref: '#/components/schemas/GenderEnum'
+          description: Contact Person Gender
+          example: Male
+        contactPersonName:
+          type: string
+          description: Contact Person Name
+          maxLength: 150
+          default: User
+          example: User
+        contactPersonSurname:
+          type: string
+          description: Contact Person Surname
+          maxLength: 150
+          default: Surname
+          example: Surname
+        contactPersonBirthday:
+          type: string
+          description: Contact Person Birthday
+          maxLength: 150
+          default: '2023-07-23'
+          example: '2023-05-05'
+        contactPersonNationality:
+          type: string
+          description: Contact Person Nationality
+          maxLength: 150
+          default: Nationality
+          example: Nationality
+        contactPersonAddress:
+          type: string
+          description: Contact Person Address
+          default: Address
+          example: Address
+        contactPersonPhone:
+          type: string
+          description: Contact Person Phone
+          default: '+33631234567'
+          example: '+33631234567'
+        contactPersonEmail:
+          type: string
+          description: Contact Person Email
+          maxLength: 150
+          default: example@email.com
+          example: example@email.com
+        contactPersonNameOfBusiness:
+          type: string
+          description: Name of business
+          maxLength: 150
+          default: Business
+          example: Business
+        contactPersonFrenchCompanyNumber:
+          type: string
+          description: French company number
+          maxLength: 150
+          default: French company number
+          example: French company number
+        organizationPhoneNumber:
+          type: string
+          description: Phone number 1 of organization
+          maxLength: 150
+          default: '+33631234567'
+          example: '+33631234567'
+        organizationSecondPhoneNumber:
+          type: string
+          description: Phone number 2 of organization
+          maxLength: 150
+          default: '+33631234568'
+          example: '+33631234568'
+        organizationEmail:
+          type: string
+          description: Email of organization
+          maxLength: 150
+          default: example@email.com
+          example: example@email.com
+        entrepreneursNumber:
+          type: string
+          description: Entrepreneurs number
+          maxLength: 150
+          default: '12345'
+          example: '12345'
+        invoiceEmail:
+          type: string
+          description: Email for invoice
+          maxLength: 150
+          default: example@email.com
+          example: example@email.com
+        invoicePersonEmail:
+          type: string
+          description: Invoice Person Email
+          maxLength: 150
+          default: example@email.com
+          example: example@email.com
+        invoiceCountry:
+          type: string
+          description: Country
+          maxLength: 150
+          default: Country
+          example: Country
+        invoiceAddress:
+          type: string
+          description: Address
+          default: Address
+          example: Address
+        identificationNumber:
+          type: string
+          description: Identification Number
+          maxLength: 150
+          default: A12345
+          example: A144524
+        invoiceZipCode:
+          type: string
+          description: Zip code
+          maxLength: 150
+          default: '12345'
+          example: '12345'
+        invoiceRegion:
+          type: string
+          description: Region
+          maxLength: 150
+          default: Region
+          example: Region
+        contactEmail:
+          type: string
+          description: contactEmail
+          maxLength: 150
+          default: contactEmail
+          example: contactEmail@mail.com
+        contactFirstName:
+          type: string
+          description: contactFirstName
+          maxLength: 150
+          default: contactFirstName
+          example: contactFirstName
+        contactSecondName:
+          type: string
+          description: contactSecondName
+          maxLength: 150
+          default: contactSecondName
+          example: contactSecondName
+        invoiceMobileNumber:
+          type: string
+          description: invoiceMobileNumber
+          maxLength: 150
+          default: invoiceMobileNumber
+          example: invoiceMobileNumber
+        clubs:
+          type: string
+          description: List of clubs IDs
+        img:
+          type: string
+          description: User img
+          format: binary
+      required:
+        - name
+        - contactPersonGender
+        - contactPersonName
+        - contactPersonSurname
+        - contactPersonBirthday
+        - contactPersonAddress
+        - contactPersonPhone
+        - contactPersonEmail
+        - contactPersonNameOfBusiness
+        - contactPersonFrenchCompanyNumber
+        - organizationPhoneNumber
+        - organizationEmail
+        - entrepreneursNumber
+        - invoiceEmail
+        - invoicePersonEmail
+        - invoiceCountry
+        - invoiceAddress
+        - identificationNumber
+        - invoiceZipCode
+        - invoiceRegion
+        - contactEmail
+        - contactFirstName
+        - contactSecondName
+        - invoiceMobileNumber
+    UpdateSponsorDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name
+          maxLength: 150
+          default: User
+          example: Sponsor 3
+        description:
+          type: string
+          description: Description
+          maxLength: 500
+          default: Sponsor description
+          example: Description
+        website:
+          type: string
+          description: Sponsor website
+          maxLength: 150
+          default: https://www.sponsor.com
+          example: https://www.sponsor.com
+        isGlobal:
+          type: boolean
+          description: Description
+        contactPersonGender:
+          $ref: '#/components/schemas/GenderEnum'
+          description: Contact Person Gender
+          example: Male
+        contactPersonName:
+          type: string
+          description: Contact Person Name
+          maxLength: 150
+          default: User
+          example: User
+        contactPersonSurname:
+          type: string
+          description: Contact Person Surname
+          maxLength: 150
+          default: Surname
+          example: Surname
+        contactPersonBirthday:
+          type: string
+          description: Contact Person Birthday
+          maxLength: 150
+          default: '2023-07-23'
+          example: '2023-05-05'
+        contactPersonNationality:
+          type: string
+          description: Contact Person Nationality
+          maxLength: 150
+          default: Nationality
+          example: Nationality
+        contactPersonAddress:
+          type: string
+          description: Contact Person Address
+          default: Address
+          example: Address
+        contactPersonPhone:
+          type: string
+          description: Contact Person Phone
+          default: '+33631234567'
+          example: '+33631234567'
+        contactPersonEmail:
+          type: string
+          description: Contact Person Email
+          maxLength: 150
+          default: example@email.com
+          example: example@email.com
+        contactPersonNameOfBusiness:
+          type: string
+          description: Name of business
+          maxLength: 150
+          default: Business
+          example: Business
+        contactPersonFrenchCompanyNumber:
+          type: string
+          description: French company number
+          maxLength: 150
+          default: French company number
+          example: French company number
+        organizationPhoneNumber:
+          type: string
+          description: Phone number 1 of organization
+          maxLength: 150
+          default: '+33631234567'
+          example: '+33631234567'
+        organizationSecondPhoneNumber:
+          type: string
+          description: Phone number 2 of organization
+          maxLength: 150
+          default: '+33631234568'
+          example: '+33631234568'
+        organizationEmail:
+          type: string
+          description: Email of organization
+          maxLength: 150
+          default: example@email.com
+          example: example@email.com
+        entrepreneursNumber:
+          type: string
+          description: Entrepreneurs number
+          maxLength: 150
+          default: '12345'
+          example: '12345'
+        invoiceEmail:
+          type: string
+          description: Email for invoice
+          maxLength: 150
+          default: example@email.com
+          example: example@email.com
+        invoicePersonEmail:
+          type: string
+          description: Invoice Person Email
+          maxLength: 150
+          default: example@email.com
+          example: example@email.com
+        invoiceCountry:
+          type: string
+          description: Country
+          maxLength: 150
+          default: Country
+          example: Country
+        invoiceAddress:
+          type: string
+          description: Address
+          default: Address
+          example: Address
+        identificationNumber:
+          type: string
+          description: Identification Number
+          maxLength: 150
+          default: A12345
+          example: A144524
+        invoiceZipCode:
+          type: string
+          description: Zip code
+          maxLength: 150
+          default: '12345'
+          example: '12345'
+        invoiceRegion:
+          type: string
+          description: Region
+          maxLength: 150
+          default: Region
+          example: Region
+        addClubs:
+          type: string
+          description: List of added clubs IDs
+        removeClubs:
+          type: string
+          description: List of removed clubs IDs
+        img:
+          type: string
+          description: User img
+          format: binary
+    ClubSponsorDto:
+      type: object
+      properties:
+        clubId:
+          type: number
+          description: Club id
+          default: 1
+          example: 1
+        sponsorId:
+          type: number
+          description: Sponsor id
+          default: 1
+          example: 1
+      required:
+        - clubId
+        - sponsorId
+    UpdateUniqueImagesDto:
+      type: object
+      properties:
+        specialDate:
+          type: string
+          description: Special date start
+          default: Wed Oct 23 2024 00:00:00 GMT+0300
+          example: Wed Oct 23 2024 00:00:00 GMT+0300
+        endSpecialDate:
+          type: string
+          description: Special date end
+          default: Wed Oct 24 2024 00:00:00 GMT+0300
+          example: Wed Oct 24 2024 00:00:00 GMT+0300
+        url:
+          type: string
+          description: URL of the image
+          example: https://example.com/image.jpg
+        name:
+          type: string
+          description: Name of the image
+          example: Sponsor Banner Image
+        description:
+          type: string
+          description: Description of the image
+          example: This is a banner image for the sponsor.
+      required:
+        - specialDate
+        - endSpecialDate
+        - url
+        - name
+    RoomsService:
+      type: object
+    CreateRoomDto:
+      type: object
+      properties:
+        roomName:
+          type: string
+      required:
+        - roomName
+    CreateLastLocationInTheRoomDto:
+      type: object
+      properties:
+        roomName:
+          type: string
+        location:
+          $ref: '#/components/schemas/GeoCoordinateDto'
+      required:
+        - roomName
+        - location
+    GeoCoordinateDto:
+      type: object
+      properties:
+        latitude:
+          type: number
+        longitude:
+          type: number
+      required:
+        - latitude
+        - longitude
+    AddDriverCarDto:
+      type: object
+      properties:
+        country:
+          type: string
+          description: Country
+          default: French
+          example: French
+        brand:
+          type: string
+          description: Car brand
+          default: Audi
+          example: Audi
+        model:
+          type: string
+          description: Car model
+          default: A8
+          example: A8
+        number:
+          type: string
+          description: Car number
+          default: AA-123-BB
+          example: AA-123-BB
+        seats:
+          type: number
+          description: Seats
+          default: 3
+          example: 3
+      required:
+        - country
+        - brand
+        - model
+        - number
+        - seats
+    UpdateDriverCarDto:
+      type: object
+      properties:
+        carId:
+          type: number
+          description: CarId
+          example: 1
+        country:
+          type: string
+          description: Country
+          example: French
+        brand:
+          type: string
+          description: Car brand
+          example: Audi
+        model:
+          type: string
+          description: Car model
+          example: A8
+        number:
+          type: string
+          description: Car number
+          default: AA-123-BB
+          example: AA-123-BB
+        seats:
+          type: number
+          description: Seats
+          example: 1
+      required:
+        - carId
+    CarsEntity:
+      type: object
+      properties:
+        id:
+          type: number
+        brand:
+          type: string
+        model:
+          type: string
+      required:
+        - id
+        - brand
+        - model
+    DriverLicenseDto:
+      type: object
+      properties:
+        front:
+          type: string
+          description: Front side
+          format: binary
+        back:
+          type: string
+          description: Back side
+          format: binary
+      required:
+        - front
+        - back
+    CreateDisciplineDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: name of discipline
+          example: Mathematics
+        priority:
+          $ref: '#/components/schemas/DisciplineIconSlotOrder'
+          description: Specify the priority. From 1 to 8. Required to display of an icon when selecting disciplines.
+          example: football
+      required:
+        - name
+    UpdateDisciplineDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the discipline
+          example: Football
+        priority:
+          $ref: '#/components/schemas/DisciplineIconSlotOrder'
+          description: Specify the priority. From 1 to 8. Required to display of an icon when selecting disciplines.
+          example: football
+    GroupSortEnum:
+      type: string
+      enum:
+        - name
+        - createdAt
+    GroupDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Group name
+          maxLength: 50
+          example: Yellow Belt
+        clubId:
+          type: number
+          description: Club ID
+          example: 1
+      required:
+        - name
+        - clubId
+    GroupDescriptionDto:
+      type: object
+      properties:
+        description:
+          type: string
+          description: Description of the group
+          maxLength: 80
+          example: A group for yellow belt members.
