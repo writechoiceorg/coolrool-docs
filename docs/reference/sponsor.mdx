@@ -1,0 +1,195 @@
+---
+title: Sponsor Management
+---
+The Sponsor management module enables clubs to manage their partnerships and highlight their sponsors. It includes managing both local and national sponsors.
+
+## Prerequisites
+- Authentication configured (see auth.md guide)
+- Access to `/sponsor` endpoints
+- Administrator rights for sponsor management
+
+## Key Features
+
+### 1. Sponsor Management
+```typescript
+interface SponsorDto {
+  id?: number;
+  name: string;
+  description: string;
+  photoUrl: string;
+  websiteUrl?: string;
+  type: 'local' | 'national';
+  startDate: string;
+  endDate: string;
+  status: 'active' | 'inactive';
+  contactInfo: {
+    name: string;
+    email: string;
+    phone: string;
+  };
+}
+
+class SponsorManager {
+  // Create a new sponsor
+  async createSponsor(sponsorData: SponsorDto) {
+    const response = await axios.post('/sponsor', sponsorData);
+    return response.data;
+  }
+
+  // Update an existing sponsor
+  async updateSponsor(sponsorId: number, updates: Partial<SponsorDto>) {
+    const response = await axios.patch(`/sponsor/${sponsorId}`, updates);
+    return response.data;
+  }
+}
+```
+
+### 2. Club-Sponsor Association
+```typescript
+interface ClubSponsorDto {
+  clubId: number;
+  sponsorId: number;
+  startDate: string;
+  endDate: string;
+  contributionAmount?: number;
+  benefits: string[];
+  displayPriority: number;
+}
+
+class ClubSponsorManager {
+  // Link a sponsor to a club
+  async linkSponsorToClub(linkData: ClubSponsorDto) {
+    const response = await axios.post('/sponsor/club-link', linkData);
+    return response.data;
+  }
+}
+```
+
+### 3. Sponsor Asset Management
+```typescript
+interface SponsorAssetDto {
+  sponsorId: number;
+  type: 'logo' | 'banner' | 'video' | 'document';
+  url: string;
+  dimensions?: {
+    width: number;
+    height: number;
+  };
+  format: string;
+  displaySettings?: {
+    position: 'header' | 'sidebar' | 'footer';
+    priority: number;
+  };
+}
+
+class SponsorAssetManager {
+  private readonly ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/svg+xml'];
+  private readonly ALLOWED_VIDEO_TYPES = ['video/mp4', 'video/webm'];
+  private readonly MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+
+  // Upload an asset
+  async uploadAsset(file: File, sponsorId: number, type: SponsorAssetDto['type']) {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('sponsorId', sponsorId.toString());
+    formData.append('type', type);
+
+    const response = await axios.post('/sponsor/assets/upload', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    });
+
+    return response.data;
+  }
+}
+```
+
+### 4. Display and Integration
+```typescript
+class SponsorDisplayManager {
+  // Retrieve sponsors for display
+  async getSponsorsByZone(zone: 'header' | 'sidebar' | 'footer') {
+    const response = await axios.get(`/sponsor/display/${zone}`);
+    return response.data;
+  }
+}
+```
+
+## Error Handling
+```typescript
+enum SponsorErrorCodes {
+  INVALID_DATE_RANGE = 'INVALID_DATE_RANGE',
+  DUPLICATE_SPONSOR = 'DUPLICATE_SPONSOR',
+  ASSET_TOO_LARGE = 'ASSET_TOO_LARGE',
+  INVALID_ASSET_TYPE = 'INVALID_ASSET_TYPE'
+}
+
+const handleSponsorError = (error: any) => {
+  if (error.response) {
+    switch (error.response.data.code) {
+      case SponsorErrorCodes.INVALID_DATE_RANGE:
+        return 'Invalid sponsorship period';
+      case SponsorErrorCodes.DUPLICATE_SPONSOR:
+        return 'This sponsor already exists';
+      default:
+        return 'Unexpected error';
+    }
+  }
+  return 'Verification failed';
+};
+```
+
+## Best Practices
+
+### 1. Caching Sponsor Data
+```typescript
+class SponsorCache {
+  private cache: Map<string, { data: any; timestamp: number; ttl: number }> = new Map();
+
+  async getSponsorData(sponsorId: number, ttl: number = 3600000) { // 1 hour
+    const cacheKey = `sponsor_${sponsorId}`;
+    const cached = this.cache.get(cacheKey);
+
+    if (cached && Date.now() - cached.timestamp < cached.ttl) {
+      return cached.data;
+    }
+
+    const response = await axios.get(`/sponsor/${sponsorId}`);
+    this.cache.set(cacheKey, { data: response.data, timestamp: Date.now(), ttl });
+    return response.data;
+  }
+}
+```
+
+## Integration Tests
+```typescript
+describe('Sponsor Management', () => {
+  let sponsorManager: SponsorManager;
+  let sponsorId: number;
+
+  beforeAll(async () => {
+    sponsorManager = new SponsorManager();
+  });
+
+  it('should create a new sponsor', async () => {
+    const sponsorData: SponsorDto = {
+      name: 'Test Sponsor',
+      description: 'Sponsor description',
+      photoUrl: 'https://example.com/logo.png',
+      type: 'local',
+      startDate: new Date().toISOString(),
+      endDate: new Date(Date.now() + 31536000000).toISOString(), // +1 year
+      status: 'active',
+      contactInfo: {
+        name: 'Contact Name',
+        email: 'contact@example.com',
+        phone: '+123456789'
+      }
+    };
+
+    const response = await sponsorManager.createSponsor(sponsorData);
+    expect(response).toHaveProperty('id');
+    sponsorId = response.id;
+  });
+});
+```
+

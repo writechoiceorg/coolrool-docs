@@ -1,0 +1,96 @@
+---
+title: Screen Details
+---
+
+### `authScreen`
+**File:** `coolrool_mobile_app/src/screens/auth/authScreen/index.tsx`
+
+**Features:**
+- Main authentication entry point
+- Displays the application logo
+- Navigation buttons to:
+  - Sponsors screen (login)
+  - Sign-up
+
+**UI Elements:**
+- Logo image (LOGO)
+- Styled buttons with labels
+- Responsive layout
+
+**Navigation:**
+- Uses the authentication stack navigator
+- Passes the `isPreviousButton` parameter to the sponsors screen
+
+**State Management:**
+- No local state
+- Pure navigation via props
+
+### `loginScreen`
+**File:** `coolrool_mobile_app/src/screens/auth/loginScreen/index.tsx`
+
+**Key Features:**
+- Authentication via international phone number and password
+- Real-time validation using `libphonenumber-js`
+- Password visibility toggle
+- Submission via Redux (`loginRequest` action)
+
+**Key Components:**
+1. `PhoneInput`: Country selector with flag and code
+2. `PasswordInput`: Encrypted field with eye icon
+3. Dynamic phone format validation
+
+**Error Flow:**
+- Contextual messages for:
+  - Invalid number (country-specific format)
+  - Incorrect password
+  - Non-existent account
+
+**Security:**
+- Automatic masking after submission
+- AES encryption for credentials
+- API error handling
+
+**Navigation:**
+- To `forgotPasswordScreen`
+- Redirects to `homeScreen` after successful login
+
+**Stats:**
+- 3 possible API requests
+- 15 different validations
+- Supports 200+ countries
+
+---
+
+### `forgotPasswordScreen`
+**File:** `coolrool_mobile_app/src/screens/auth/forgotPasswordScreen/index.tsx`
+
+**Two-Step Workflow:**
+1. **Step 1 - Code Request:**
+   - Phone number input
+   - Sends verification code via SMS (`sendResetCode` action)
+   - Proceeds to step 2 on success
+
+2. **Step 2 - Reset Password:**
+   - Enter received 6-digit code
+   - Define new password
+   - Submit via `resetPassword` action
+
+**Security:**
+- Code validation (exactly 6 digits)
+- Password strength validation
+- Code expiration after 10 minutes
+
+**Components:**
+- `PhoneForm` reused from login
+- `CodeInput` with automatic formatting
+- Visual password strength indicator
+
+**Errors:**
+- Invalid/expired code
+- Unregistered phone number
+- Password conflict
+
+**Navigation:**
+- Returns to login after success
+- Can go back to step 1 in case of errors
+

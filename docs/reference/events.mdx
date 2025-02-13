@@ -1,0 +1,164 @@
+---
+title: Event and Carpooling Management
+---
+The Event and Carpooling management module is at the core of COOLROOL. It allows the creation and management of sports events with an integrated carpooling system.
+
+## Prerequisites
+- Authentication configured (see auth.md guide)
+- Clubs module configured (see clubs.md guide)
+- Access to `/event` endpoints
+- Push notification setup (recommended)
+
+## Key Features
+
+### 1. Creating Events
+```typescript
+interface EventPoint {
+  address: string;
+  latitude: number;
+  longitude: number;
+  time: string;      // ISO Format
+  type: 'pickup' | 'destination';
+}
+
+interface CreateEventDto {
+  name: string;
+  description: string;
+  clubId: number;
+  startDate: string;    // ISO Format
+  endDate: string;      // ISO Format
+  maxParticipants: number;
+  points: EventPoint[];
+  groupIds?: number[];  // Relevant groups
+}
+
+// Event Management Service
+class EventService {
+  async createEvent(eventData: CreateEventDto) {
+    try {
+      const response = await axios.post('/event', eventData);
+      return response.data;
+    } catch (error) {
+      throw this.handleEventError(error);
+    }
+  }
+
+  // Example Usage
+  static async createMatchEvent(clubId: number, matchData: any) {
+    const event = await this.createEvent({
+      name: `Match vs ${matchData.opponent}`,
+      description: `Championship match against ${matchData.opponent}`,
+      clubId,
+      startDate: matchData.date,
+      endDate: matchData.endDate,
+      maxParticipants: 30,
+      points: [
+        {
+          address: 'Club House',
+          latitude: matchData.clubLocation.lat,
+          longitude: matchData.clubLocation.lng,
+          time: matchData.meetingTime,
+          type: 'pickup'
+        },
+        {
+          address: matchData.venue,
+          latitude: matchData.venueLocation.lat,
+          longitude: matchData.venueLocation.lng,
+          time: matchData.startTime,
+          type: 'destination'
+        }
+      ]
+    });
+    return event;
+  }
+}
+```
+
+### 2. Participant Management
+```typescript
+interface ParticipantDto {
+  eventId: string;
+  userId: number;
+  role: 'player' | 'coach' | 'staff' | 'supporter';
+  needsRide: boolean;
+}
+
+class ParticipantManager {
+  // Add participant
+  async addParticipant(data: ParticipantDto) {
+    const response = await axios.post(`/event/participants/${data.eventId}`, data);
+    return response.data;
+  }
+
+  // Get participant list
+  async getParticipants(eventId: string) {
+    const response = await axios.get(`/event/participants/${eventId}`);
+    return response.data;
+  }
+}
+```
+
+### 3. Carpooling Management
+```typescript
+interface CarSeatsDto {
+  eventId: string;
+  seatsAvailable: number;
+  carId?: number;
+}
+
+interface BookingRequest {
+  eventId: string;
+  driverId: number;
+  passengerIds: number[];
+  pickupPointId: string;
+}
+
+class CarpoolManager {
+  // Offer ride
+  async offerRide(data: CarSeatsDto) {
+    const response = await axios.patch('/event/driver/seats-amount', data);
+    return response.data;
+  }
+
+  // Book seats
+  async bookSeats(request: BookingRequest) {
+    const response = await axios.post('/event/book-seats', request);
+    return response.data;
+  }
+}
+```
+
+### 4. Real-Time Tracking
+```typescript
+interface TrackingUpdate {
+  eventId: string;
+  driverId: number;
+  latitude: number;
+  longitude: number;
+  timestamp: string;
+}
+
+class RealTimeTracking {
+  private socket: WebSocket;
+
+  constructor(eventId: string) {
+    this.socket = new WebSocket(`wss://api.coolrool.com/tracking/${eventId}`);
+  }
+
+  sendPosition(position: GeolocationPosition) {
+    const update: TrackingUpdate = {
+      eventId: this.eventId,
+      driverId: getCurrentUserId(),
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude,
+      timestamp: new Date().toISOString()
+    };
+    this.socket.send(JSON.stringify(update));
+  }
+
+  stop() {
+    this.socket.close();
+  }
+}
+```
+

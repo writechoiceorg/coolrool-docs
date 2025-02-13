@@ -1,0 +1,262 @@
+---
+title: Club Management
+---
+
+The Club management module allows handling sports organizations, their members, and their groups.
+
+## Prerequisites
+- Authentication configured
+- Access to `/clubs` endpoints
+- Administrator rights for certain operations
+
+## Key Features
+
+### 1. Creating a Club
+```typescript
+interface CreateClubDto {
+  name: string;
+  description: string;
+  latitude: number;
+  longitude: number;
+  address: string;
+  city: string;
+  zipCode: string;
+  country: string;
+  disciplineId: number;
+}
+
+// Example of creation
+const createClub = async (clubData: CreateClubDto) => {
+  const response = await axios.post('/clubs', clubData);
+  return response.data;
+};
+
+// Usage
+const newClub = await createClub({
+  name: 'Example Sports Club',
+  description: 'Amateur football club',
+  latitude: 48.8566,
+  longitude: 2.3522,
+  address: '123 Example Street',
+  city: 'Paris',
+  zipCode: '75001',
+  country: 'France',
+  disciplineId: 1 // Football ID
+});
+```
+
+### 2. Geolocation Search
+```typescript
+interface LocationSearch {
+  latitude: number;
+  longitude: number;
+  radius: number; // in kilometers
+}
+
+const searchClubsByLocation = async ({ latitude, longitude, radius }: LocationSearch) => {
+  const response = await axios.get(`/clubs/location/${latitude}/${longitude}/${radius}`);
+  return response.data;
+};
+
+// Example usage with browser geolocation
+navigator.geolocation.getCurrentPosition(async (position) => {
+  const clubs = await searchClubsByLocation({
+    latitude: position.coords.latitude,
+    longitude: position.coords.longitude,
+    radius: 10 // 10km
+  });
+  console.log('Nearby Clubs:', clubs);
+});
+```
+
+### 3. Membership Management
+```typescript
+// Membership request
+interface ClubRequest {
+  clubId: number;
+  message?: string;
+}
+
+const requestMembership = async (request: ClubRequest) => {
+  const response = await axios.post('/clubs/requests', request);
+  return response.data;
+};
+
+// Checking membership status
+const checkMembership = async (clubId: number) => {
+  const response = await axios.get(`/clubs/check-memberships?clubId=${clubId}`);
+  return response.data;
+};
+
+// List of user’s clubs
+const getUserClubs = async () => {
+  const response = await axios.get('/clubs/memberships');
+  return response.data;
+};
+```
+
+### 4. Group Management
+```typescript
+interface GroupDto {
+  name: string;
+  description: string;
+  clubId: number;
+}
+
+// Creating a group
+const createGroup = async (groupData: GroupDto) => {
+  const response = await axios.post('/group', groupData);
+  return response.data;
+};
+
+// Updating group description
+const updateGroupDescription = async (groupId: number, description: string) => {
+  const response = await axios.patch(`/group/description/${groupId}`, { description });
+  return response.data;
+};
+
+// Listing groups of a club
+const getClubGroups = async (clubId: number) => {
+  const response = await axios.get(`/group/list?clubId=${clubId}`);
+  return response.data;
+};
+```
+
+## Error Handling
+
+### Specific Error Codes
+```typescript
+enum ClubErrorCodes {
+  CLUB_NOT_FOUND = 'CLUB_NOT_FOUND',
+  DUPLICATE_MEMBERSHIP = 'DUPLICATE_MEMBERSHIP',
+  INVALID_LOCATION = 'INVALID_LOCATION',
+  UNAUTHORIZED_ACCESS = 'UNAUTHORIZED_ACCESS'
+}
+
+// Error handler
+const handleClubError = (error: any) => {
+  if (error.response) {
+    switch (error.response.data.code) {
+      case ClubErrorCodes.CLUB_NOT_FOUND:
+        return 'Club not found';
+      case ClubErrorCodes.DUPLICATE_MEMBERSHIP:
+        return 'You are already a member of this club';
+      case ClubErrorCodes.INVALID_LOCATION:
+        return 'Invalid geographic coordinates';
+      case ClubErrorCodes.UNAUTHORIZED_ACCESS:
+        return 'Unauthorized access';
+      default:
+        return 'Unexpected error';
+    }
+  }
+  return 'Connection error';
+};
+```
+
+## Best Practices
+
+### 1. Data Caching
+```typescript
+interface CacheConfig {
+  ttl: number; // Time to live in seconds
+  key: string;
+}
+
+class ClubCache {
+  private cache: Map<string, { data: any; timestamp: number }> = new Map();
+
+  async getClubData(clubId: number, config: CacheConfig) {
+    const cacheKey = `${config.key}_${clubId}`;
+    const cached = this.cache.get(cacheKey);
+
+    if (cached && Date.now() - cached.timestamp < config.ttl * 1000) {
+      return cached.data;
+    }
+
+    const response = await axios.get(`/clubs/${clubId}`);
+    this.cache.set(cacheKey, {
+      data: response.data,
+      timestamp: Date.now()
+    });
+
+    return response.data;
+  }
+
+  clearCache() {
+    this.cache.clear();
+  }
+}
+
+// Usage
+const clubCache = new ClubCache();
+const getClubInfo = async (clubId: number) => {
+  return clubCache.getClubData(clubId, { ttl: 300, key: 'club_info' });
+};
+```
+
+### 2. Data Validation
+```typescript
+const validateClubData = (data: CreateClubDto): string[] => {
+  const errors: string[] = [];
+
+  if (!data.name || data.name.length < 3) {
+    errors.push('Club name must be at least 3 characters');
+  }
+
+  if (!data.description || data.description.length < 10) {
+    errors.push('Description must be at least 10 characters');
+  }
+
+  if (data.latitude < -90 || data.latitude > 90) {
+    errors.push('Invalid latitude');
+  }
+
+  if (data.longitude < -180 || data.longitude > 180) {
+    errors.push('Invalid longitude');
+  }
+
+  return errors;
+};
+```
+
+## Troubleshooting
+
+### 1. Geolocation Issues
+```typescript
+const handleGeolocationError = (error: GeolocationPositionError) => {
+  switch (error.code) {
+    case error.PERMISSION_DENIED:
+      return 'User denied geolocation';
+    case error.POSITION_UNAVAILABLE:
+      return 'Position unavailable';
+    case error.TIMEOUT:
+      return 'Request timeout';
+    default:
+      return 'Unknown error';
+  }
+};
+```
+
+### 2. Handling Timeouts
+```typescript
+const TIMEOUT_MS = 5000;
+
+const fetchClubWithTimeout = async (clubId: number) => {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), TIMEOUT_MS);
+
+  try {
+    const response = await axios.get(`/clubs/${clubId}`, {
+      signal: controller.signal
+    });
+    clearTimeout(timeout);
+    return response.data;
+  } catch (error) {
+    if (error.name === 'AbortError') {
+      throw new Error('Request timed out');
+    }
+    throw error;
+  }
+};
+```
+

@@ -1,0 +1,253 @@
+---
+title: Authentication
+---
+
+The COOLROOL authentication system uses JWT (JSON Web Tokens) with a separate management system for standard users and administrators.
+
+## Prerequisites
+- Basic understanding of JWT
+- HTTP client (axios, fetch, etc.)
+- Secure storage capability for tokens (localStorage, SecureStorage, Keychain)
+
+## Authentication Flow
+
+### 1. User Registration
+```typescript
+// Registration DTO structure
+interface RegisterDto {
+  phone: string;      // Format: +33612345678
+  name: string;
+  surname: string;
+  email: string;
+  password: string;   // Min 8 characters
+  birthDate: string;  // Format: YYYY-MM-DD
+}
+
+// Example request
+const response = await axios.post('/auth/register', {
+  phone: '+33612345678',
+  name: 'John',
+  surname: 'Doe',
+  email: 'john.doe@example.com',
+  password: 'SecurePass123!',
+  birthDate: '1990-01-01'
+});
+
+// Expected response
+interface User {
+  id: number;
+  name: string;
+  surname: string;
+  email: string;
+  phone: string;
+  birthDate: string;
+  isVerified: boolean;
+  // ... other fields
+}
+```
+
+### 2. Account Verification
+```typescript
+interface VerificationDto {
+  phone: string;
+  code: string;  // Code received via SMS
+}
+
+const response = await axios.post('/auth/verification', {
+  phone: '+33612345678',
+  code: '123456'
+});
+```
+
+### 3. Login
+```typescript
+interface LoginDto {
+  phone: string;
+  password: string;
+}
+
+const response = await axios.post('/auth/login', {
+  phone: '+33612345678',
+  password: 'SecurePass123!'
+});
+
+// Response: JWT Token
+interface LoginResponse {
+  access_token: string;
+  // Store this token securely
+}
+```
+
+### 4. Using the Token
+```typescript
+// Axios configuration with interceptor
+axios.interceptors.request.use(config => {
+  const token = getStoredToken(); // Your token retrieval function
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+```
+
+## Error Handling
+
+### Specific Error Codes
+- `400`: Invalid data
+- `401`: Not authenticated
+- `403`: Not authorized
+- `404`: User not found
+- `409`: Conflict (e.g., phone number already in use)
+
+### Example Handling
+```typescript
+try {
+  await login(credentials);
+} catch (error) {
+  switch (error.response?.status) {
+    case 400:
+      console.error('Invalid data', error.response.data);
+      break;
+    case 401:
+      console.error('Incorrect credentials');
+      break;
+    case 409:
+      console.error('Phone number already in use');
+      break;
+    default:
+      console.error('Unexpected error', error);
+  }
+}
+```
+
+## Best Practices
+
+### Security
+1. Secure Token Storage
+   ```typescript
+   // For web
+   const storeToken = (token: string) => {
+     sessionStorage.setItem('auth_token', token); // Prefer sessionStorage over localStorage
+   };
+   
+   // For React Native
+   import * as SecureStore from 'expo-secure-store';
+   const storeToken = async (token: string) => {
+     await SecureStore.setItemAsync('auth_token', token);
+   };
+   ```
+
+2. Automatic Token Refresh
+   ```typescript
+   axios.interceptors.response.use(
+     response => response,
+     async error => {
+       if (error.response?.status === 401) {
+         try {
+           const newToken = await refreshToken();
+           error.config.headers.Authorization = `Bearer ${newToken}`;
+           return axios.request(error.config);
+         } catch (refreshError) {
+           // Logout if refresh fails
+           logout();
+           return Promise.reject(refreshError);
+         }
+       }
+       return Promise.reject(error);
+     }
+   );
+   ```
+
+### Validation
+```typescript
+// Client-side validation of registration data
+const validateRegistration = (data: RegisterDto): string[] => {
+  const errors: string[] = [];
+  
+  if (!/^\+[0-9]{11,}$/.test(data.phone)) {
+    errors.push('Invalid phone format');
+  }
+  
+  if (data.password.length < 8) {
+    errors.push('Password too short');
+  }
+  
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+    errors.push('Invalid email');
+  }
+  
+  return errors;
+};
+```
+
+## Integration Tests
+
+### Basic Test with Jest
+```typescript
+describe('Authentication Flow', () => {
+  it('should register and login successfully', async () => {
+    // 1. Register
+    const registerResponse = await axios.post('/auth/register', {
+      phone: '+33612345678',
+      name: 'Test',
+      surname: 'User',
+      email: 'test@example.com',
+      password: 'TestPass123!',
+      birthDate: '1990-01-01'
+    });
+    expect(registerResponse.status).toBe(201);
+    
+    // 2. Verify (simulated for tests)
+    const verifyResponse = await axios.post('/auth/verification', {
+      phone: '+33612345678',
+      code: '123456' // Test code
+    });
+    expect(verifyResponse.status).toBe(200);
+    
+    // 3. Login
+    const loginResponse = await axios.post('/auth/login', {
+      phone: '+33612345678',
+      password: 'TestPass123!'
+    });
+    expect(loginResponse.status).toBe(200);
+    expect(loginResponse.data).toHaveProperty('access_token');
+  });
+});
+```
+
+## Troubleshooting
+
+### Common Issues
+
+**1. Expired Token:**
+```typescript
+// Checking token expiration
+const isTokenExpired = (token: string): boolean => {
+  try {
+    const decoded = jwt_decode(token);
+    return decoded.exp * 1000 < Date.now();
+  } catch {
+    return true;
+  }
+};
+```
+
+**2. CORS Errors:**
+```typescript
+// Client-side configuration
+axios.defaults.withCredentials = true;
+
+// Required headers
+axios.defaults.headers.common['Accept'] = 'application/json';
+axios.defaults.headers.common['Content-Type'] = 'application/json';
+```
+
+**3. Validation Issues:**
+```typescript
+// Phone number normalization
+const normalizePhone = (phone: string): string => {
+  // Removes all non-numeric characters except +
+  return phone.replace(/[^\d+]/g, '');
+};
+```
+
