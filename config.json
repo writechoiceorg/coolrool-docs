@@ -20,7 +20,7 @@
     "logoSize": "large"
   },
   "apiFiles": [
-    "endpoints.yaml"
+    "endpoints.json"
   ],
   "homepage": "/overview/what-is-coolrool",
   "changelog": false,
@@ -143,6 +143,7 @@
             "reference/endpoints/group-controller-update-group-description",
             "reference/endpoints/group-controller-update",
             "reference/endpoints/notification-controller-send-notification",
+            "reference/endpoints/parameters-sponsor-unique-images--id-",
             "reference/endpoints/relatives-controller-add-relatives",
             "reference/endpoints/relatives-controller-delete-relatives",
             "reference/endpoints/relatives-controller-get-relative-clubs",
