@@ -1,0 +1,241 @@
+---
+title: Notifications and Real-Time Updates
+---
+
+The COOLROOL notification system keeps users informed of important events through push notifications, in-app notifications, and real-time updates.
+
+## Prerequisites
+- Authentication configured (see auth.md guide)
+- Firebase setup for push notifications
+- WebSocket support for real-time updates
+- Access to [`/user/notification` endpoints](/reference/endpoints/user-controller-get-notification)
+
+## Notification Types
+
+### 1. Push Notifications
+```typescript
+interface PushNotificationConfig {
+  firebaseConfig: {
+    apiKey: string;
+    authDomain: string;
+    projectId: string;
+    messagingSenderId: string;
+    appId: string;
+  };
+  vapidKey: string;
+}
+
+class PushNotificationManager {
+  private messaging: firebase.messaging.Messaging;
+
+  constructor(config: PushNotificationConfig) {
+    firebase.initializeApp(config.firebaseConfig);
+    this.messaging = firebase.messaging();
+    this.messaging.usePublicVapidKey(config.vapidKey);
+  }
+
+  async requestPermission() {
+    try {
+      await Notification.requestPermission();
+      const token = await this.messaging.getToken();
+      await this.registerToken(token);
+      return token;
+    } catch (error) {
+      console.error('Permission request error:', error);
+      throw error;
+    }
+  }
+
+  private async registerToken(token: string) {
+    await axios.post('/user/notification/token', { token });
+  }
+
+  async setupMessageHandler() {
+    this.messaging.onMessage((payload) => {
+      this.handleNotification(payload);
+    });
+  }
+
+  private handleNotification(payload: any) {
+    new Notification(payload.notification.title, {
+      body: payload.notification.body,
+      icon: payload.notification.icon,
+      data: payload.data
+    });
+  }
+}
+```
+
+### 2. In-App Notifications
+```typescript
+interface NotificationEntity {
+  id: string;
+  title: string;
+  message: string;
+  type: 'event' | 'club' | 'carpool' | 'system';
+  status: 'unread' | 'read';
+  data: any;
+  createdAt: string;
+}
+
+class InAppNotificationManager {
+  private socket: WebSocket;
+  private notifications: NotificationEntity[] = [];
+
+  constructor() {
+    this.socket = new WebSocket('wss://api.coolrool.com/notifications');
+    this.setupSocketListeners();
+  }
+
+  async fetchNotifications() {
+    const response = await axios.get('/user/notification');
+    this.notifications = response.data;
+    return this.notifications;
+  }
+
+  async markAsRead(notificationId: string) {
+    await axios.patch(`/user/notification/${notificationId}`, {
+      status: 'read'
+    });
+  }
+
+  private setupSocketListeners() {
+    this.socket.onmessage = (event) => {
+      const notification = JSON.parse(event.data);
+      this.handleNewNotification(notification);
+    };
+  }
+
+  private handleNewNotification(notification: NotificationEntity) {
+    this.notifications.unshift(notification);
+    this.emit('newNotification', notification);
+  }
+
+  private listeners: Map<string, Function[]> = new Map();
+
+  on(event: string, callback: Function) {
+    if (!this.listeners.has(event)) {
+      this.listeners.set(event, []);
+    }
+    this.listeners.get(event)?.push(callback);
+  }
+
+  private emit(event: string, data: any) {
+    this.listeners.get(event)?.forEach(callback => callback(data));
+  }
+}
+```
+
+### 3. Real-Time Updates
+```typescript
+interface RealtimeConfig {
+  reconnectInterval: number;
+  maxReconnectAttempts: number;
+}
+
+class RealtimeManager {
+  private socket: WebSocket | null = null;
+  private reconnectAttempts = 0;
+  private rooms: Set<string> = new Set();
+
+  constructor(private config: RealtimeConfig) {}
+
+  connect() {
+    this.socket = new WebSocket('wss://api.coolrool.com/realtime');
+    this.setupSocketListeners();
+  }
+
+  private setupSocketListeners() {
+    if (!this.socket) return;
+
+    this.socket.onopen = () => {
+      this.reconnectAttempts = 0;
+      this.rejoinRooms();
+    };
+
+    this.socket.onclose = () => {
+      this.handleDisconnect();
+    };
+  }
+
+  private handleDisconnect() {
+    if (this.reconnectAttempts < this.config.maxReconnectAttempts) {
+      setTimeout(() => {
+        this.reconnectAttempts++;
+        this.connect();
+      }, this.config.reconnectInterval);
+    }
+  }
+
+  async joinRoom(roomId: string) {
+    if (!this.socket) return;
+    this.rooms.add(roomId);
+    this.socket.send(JSON.stringify({ type: 'join', room: roomId }));
+  }
+}
+```
+
+## Best Practices
+
+### 1. Battery Management
+```typescript
+class BatteryAwareManager {
+  private updateInterval: number = 10000;
+
+  async adjustUpdateFrequency() {
+    if ('getBattery' in navigator) {
+      const battery = await (navigator as any).getBattery();
+      if (battery.charging) {
+        this.updateInterval = 5000;
+      } else if (battery.level < 0.2) {
+        this.updateInterval = 30000;
+      }
+    }
+    return this.updateInterval;
+  }
+}
+```
+
+### 2. Bandwidth Management
+```typescript
+class BandwidthManager {
+  private connection: any;
+
+  constructor() {
+    this.connection = navigator.connection ||
+                     (navigator as any).mozConnection ||
+                     (navigator as any).webkitConnection;
+    if (this.connection) {
+      this.connection.addEventListener('change', () => {
+        this.handleConnectionChange();
+      });
+    }
+  }
+
+  private handleConnectionChange() {
+    const type = this.connection.effectiveType;
+    switch (type) {
+      case '4g':
+        this.setHighQuality();
+        break;
+      case '3g':
+        this.setMediumQuality();
+        break;
+      default:
+        this.setLowQuality();
+        break;
+    }
+  }
+
+  private setHighQuality() {
+    this.updateInterval = 5000;
+    this.enableRealTimeUpdates = true;
+  }
+
+  private setLowQuality() {
+    this.updateInterval = 30000;
+    this.enableRealTimeUpdates = false;
+  }
+}
+```
+
