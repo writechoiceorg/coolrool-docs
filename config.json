@@ -22,7 +22,7 @@
   "apiFiles": [
     "endpoints.yml"
   ],
-  "homepage": "/overview/what-is-coolrool",
+  "homepage": "/guides/what-is-coolrool",
   "changelog": false,
   "navbar": [
     {
