@@ -22,7 +22,7 @@
   "apiFiles": [
     "endpoints.yml"
   ],
-  "homepage": "/guides/what-is-coolrool",
+  "homepage": "homepage.html",
   "changelog": false,
   "navbar": [
     {
@@ -51,10 +51,10 @@
       "sidebarRef": "guides",
       "categories": [
         {
-          "categoryName": "Getting Started",
+          "categoryName": "Overview",
           "pages": [
             "guides/what-is-coolrool",
-            "guides/benefits",
+            "guides/getting-started",
             "guides/technical-overview",
             {
               "groupName": "Integration Options",
