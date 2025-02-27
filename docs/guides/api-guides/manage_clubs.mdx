@@ -1,0 +1,177 @@
+---
+title: Manage Clubs
+---
+
+Clubs are the foundational units through which you manage your sports organization—be it a soccer club, a swimming team, or a martial arts school. Each club can have many members: athletes, parents, coaches, and volunteers. Properly setting up clubs and managing memberships lays the groundwork for effective coordination of carpooling, events, and internal communication.
+
+This guide demonstrates how to create new clubs, import members, and modify membership records. You’ll also learn about suspending or reactivating a club as needed.
+
+## Typical Workflow
+
+```
+1. Create a New Club  ->  2. List or Search Clubs  ->  3. Import Members  ->  4. Manage Membership  ->  5. Suspend or Reactivate a Club
+```
+
+### 1. Create a New Club
+Before you can add members or manage rosters, you need a club record in COOLROOL using the [`POST /clubs`](/reference/endpoints/clubs/create-club) endpoint. Once created, each club can be enriched with details like logo, social media links, and contact information.
+
+<Tabs>
+<TabItem value="Example request">
+```bash
+curl --request POST \
+  --url https://api.coolrool.com/clubs \
+  --header 'Authorization: Bearer <ADMIN_TOKEN>' \
+  --form 'name=Thunder FC' \
+  --form 'zipCode=12345' \
+  --form 'country=France' \
+  --form 'city=Paris' \
+  --form 'address=123 Stadium Road' \
+  --form 'email=info@thunderfc.com' \
+  --form 'primaryPhone=+33-555-123456'
+```
+</TabItem>
+<TabItem value="Example response">  
+
+```json
+{
+  "id": 1001,
+  "name": "Thunder FC",
+  "country": "France",
+  "city": "Paris",
+  "address": "123 Stadium Road",
+  "createdAt": "2025-01-15T10:00:00.000Z",
+  ...
+}
+```
+</TabItem>
+</Tabs>
+
+
+### 2. List or Search Existing Clubs
+After creating a club, you or other admins may want to check all available clubs or search for specific ones. COOLROOL offers both paginated and unpaginated listing methods, depending on whether you need quick lookups or structured pagination for large sets of clubs. You can use the `GET /clubs` endpoint to list all clubs or search for specific ones.
+
+<Tabs>
+<TabItem value="Paginated, cURL">
+```bash
+curl --request GET \
+  --url "https://api.coolrool.com/clubs?skipPages=0&pageSize=10&searchValue=Thunder" \
+  --header 'Authorization: Bearer <TOKEN>'
+```
+</TabItem>
+<TabItem value="Unpaginated, cURL">
+```bash
+curl --request GET \
+  --url "https://api.coolrool.com/clubs/all" \
+  --header 'Authorization: Bearer <TOKEN>'
+```
+</TabItem>
+<TabItem value="Example response">
+```json
+[
+  {
+    "id": 1001,
+    "name": "Thunder FC",
+    "city": "Paris",
+    ...
+  },
+  {
+    "id": 1002,
+    "name": "Lightning Swim Club",
+    "city": "Marseille",
+    ...
+  }
+]
+```
+</TabItem>
+</Tabs>
+
+
+### 3. Import Members in Bulk
+When your club has multiple members—like entire teams or entire families—it’s time-consuming to add each one individually, you can use the `POST /clubs/member-list-upload` endpoint to import them in bulk. By preparing a CSV file of names, phones, and emails, you can swiftly onboard everyone at once.
+
+<Tabs>
+<TabItem value="Example request">
+```bash
+curl --request POST \
+  --url https://api.coolrool.com/clubs/member-list-upload \
+  --header 'Authorization: Bearer <ADMIN_TOKEN>' \
+  --form 'clubId=1001' \
+  --form 'sendEmail=true' \
+  --form 'sendSms=true' \
+  --form 'csv=@/path/to/members.csv'
+```
+</TabItem>
+<TabItem value="Example response">
+```json
+[
+  {
+    "name": "Alice Smith",
+    "phone": "+33612345678",
+    "status": "Imported"
+  },
+  {
+    "name": "Bob Doe",
+    "phone": "+33698765432",
+    "status": "Imported"
+  }
+]
+```
+</TabItem>
+</Tabs>
+
+Each imported member receives an SMS prompting them to download COOLROOL, which auto-links them to your club.
+
+### 4. Manage Individual Membership
+Beyond bulk operations, you may need to add a single new member or check someone’s membership details using the `POST /clubs/new-membership` endpoint. Perhaps a new coach joins mid-season, or a user decides they need to leave the club. 
+
+<Tabs>
+<TabItem value="Example request">
+```bash
+curl --request POST \
+  --url https://api.coolrool.com/clubs/new-membership \
+  --header 'Authorization: Bearer <ADMIN_TOKEN>' \
+  --form 'clubId=1001' \
+  --form 'name=Charlie Davis' \
+  --form 'phone=+33611122233' \
+  --form 'email=charlie@domain.com'
+  --form 'isPassenger=true'
+  --form 'isDriver=false'
+```
+</TabItem>
+<TabItem value="Example response">
+```json
+{
+  "id": "abc-123-uuid",
+  "name": "Charlie Davis",
+  "phone": "+33611122233",
+  "clubId": 1001,
+  "createdAt": "2025-02-01T09:00:00.000Z",
+  ...
+}
+```
+</TabItem>
+</Tabs>
+
+#### Checking or Deleting Membership
+- **GET /clubs/memberships**: Retrieve membership info.
+- **DELETE /clubs/memberships**: Remove membership from a club (requires specifying relevant IDs).
+
+
+### 5. Suspend or Reactivate a Club
+Occasionally, a club may need to be put on hold—for instance, during off-season or financial disputes. By suspending a club, you effectively block new events and memberships until reactivated. This step is **admin-only** to ensure the feature isn’t misused.
+
+<Tabs>
+<TabItem value="Example request">
+```bash
+curl --request PATCH \
+  --url "https://api.coolrool.com/clubs/suspend/1001?suspendStatus=true" \
+  --header 'Authorization: Bearer <ADMIN_TOKEN>'
+```
+</TabItem>
+<TabItem value="Example response">
+```
+200 OK
+"Suspend club"
+```
+</TabItem>
+</Tabs>
