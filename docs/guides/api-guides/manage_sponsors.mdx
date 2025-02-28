@@ -9,7 +9,7 @@ Many sports clubs rely on sponsorships and advertisements to help cover costs an
 <Image src="media/manage-sponsors-flow.svg" alt="Manage Sponsors Flow" />
 
 ## 1. **Create a New Sponsor**
-A sponsor might be a national sports brand, a local restaurant, or any organization supporting your club. COOLROOL stores sponsor details (name, logo, contact info) so you can later attach them to clubs or events. Use the `POST /sponsor` endpoint to create a new sponsor record.
+A sponsor might be a national sports brand, a local restaurant, or any organization supporting your club. COOLROOL stores sponsor details (name, logo, contact info) so you can later attach them to clubs or events. Use the [`POST /sponsor`](/reference/endpoints/sponsor-controller-add-sponsor) endpoint to create a new sponsor record.
 
 <Tabs>
 <TabItem value="Request">
@@ -48,7 +48,7 @@ Sponsors marked `isGlobal` can appear in any club, while `isLocal` sponsors migh
 ---
 
 ## 2. **Add Unique Images or Banners**
-Many sponsors want rotating banners or seasonal ads. You can store these images and schedule them for display in the app at certain dates using the `PATCH /sponsor/unique-images/{id}` endpoint.
+Many sponsors want rotating banners or seasonal ads. You can store these images and schedule them for display in the app at certain dates using the [`PATCH /sponsor/unique-images/{id}`](/reference/endpoints/sponsor-controller-update-file) endpoint.
 
 <Tabs>
 <TabItem value="Request">
@@ -85,7 +85,7 @@ curl --request PATCH \
 ---
 
 ## 3. **Attach a Sponsor to a Club**
-If `SuperSports` is sponsoring `Thunder FC` specifically, you can link them so the club’s members see relevant ads in their app using the `POST /sponsor/club-sponsor` endpoint. 
+If `SuperSports` is sponsoring `Thunder FC` specifically, you can link them so the club’s members see relevant ads in their app using the [`POST /sponsor/club-sponsor`](/reference/endpoints/sponsor-controller-add-club-sponsor) endpoint. 
 
 <Tabs>
 <TabItem value="Request">
@@ -122,8 +122,8 @@ At this point, members of `Thunder FC` may see `SuperSports` ads or banners in t
 ## 4. **Displaying Ads in the App**
 Once a sponsor is linked, COOLROOL automatically shows sponsor branding in relevant sections—like the event booking flow, the club dashboard, or a user’s news feed. You don’t need to code display logic unless you’re customizing the front-end. You can use the following endpoints to fetch sponsor data:
 
-- `GET /sponsor/club/{clubId}` to fetch all sponsors for a particular club.  
-- `GET /sponsor/recommendation`, `GET /sponsor/global`, or `GET /sponsor/local` for more targeted sponsor groupings.
+- [`GET /sponsor/club/{clubId}`](/reference/endpoints/sponsor-controller-get-club-sponsor) to fetch all sponsors for a particular club.  
+- [`GET /sponsor/recommendation`](/reference/endpoints/sponsor-controller-get-recommended-sponsors), [`GET /sponsor/global`](/reference/endpoints/sponsor-controller-get-global-sponsors), or [`GET /sponsor/local`](/reference/endpoints/sponsor-controller-get-local-sponsors) for more targeted sponsor groupings.
 
 The following example shows how to fetch all sponsors for a particular club:
 <Tabs>
@@ -154,8 +154,8 @@ curl --request GET \
 ## 5. **Manage or Remove a Sponsor**
 If a sponsor contract expires or they no longer wish to appear, you can update or delete their record using the following endpoints:
 
-- `PATCH /sponsor/{sponsorId}` – Update sponsor details (e.g., name, contact info, or add/remove clubs).  
-- `DELETE /sponsor/{sponsorId}` – Remove the sponsor from COOLROOL entirely.
+- [`PATCH /sponsor/{sponsorId}`](/reference/endpoints/sponsor-controller-update-sponsor) – Update sponsor details (e.g., name, contact info, or add/remove clubs).  
+- [`DELETE /sponsor/{sponsorId}`](/reference/endpoints/sponsor-controller-delete-sponsor) – Remove the sponsor from COOLROOL entirely.
 
 The following example shows how to delete a sponsor:
 

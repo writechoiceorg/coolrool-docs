@@ -9,7 +9,7 @@ In COOLROOL, events are the central hub for scheduling and coordinating club act
 <Image src="/media/create-events-api-flow.svg"/>
 
 ## 1. Create an Event
-Before you can manage carpools, you need an create event using the `POST /event` endpoint. An event may include details such as date, time, location, and the club ID it’s associated with. You can also decide if you want to send out immediate notifications to potential attendees.
+Before you can manage carpools, you need an event. Create an event using the [`POST /event`](/reference/endpoints/event-controller-create) endpoint. An event may include details such as date, time, location, and the club ID it’s associated with. You can also decide if you want to send out immediate notifications to potential attendees.
 
 <Tabs>
   <TabItem value="Request">
@@ -55,7 +55,7 @@ curl --request POST \
 Once created, any user associated with this club can potentially see and participate in the event, depending on role or invitation settings.
 
 ## 2. Add Participants
-If you didn’t specify participants in the create step, or want to add more people later, you can use specialized endpoints to attach members to an event using the `POST /event/event-participants` endpoint. 
+If you didn’t specify participants in the create step, or want to add more people later, you can use specialized endpoints to attach members to an event using the [`POST /event/event-participants`](/reference/endpoints/event-controller-add-event-participants) endpoint. 
 
 <Tabs>
   <TabItem value="Request">
@@ -147,7 +147,7 @@ At this point, those participants are marked as riding with the specified driver
 Plans change: seats might be reduced, new drivers join, or participants may switch cars. COOLROOL provides endpoints to handle updates—like reassigning seats or placing participants on a waiting list when cars are full.
 
 #### Updating Seat Assignments
-You can update the number of seats available or shuffle who sits in each trip using the `PATCH /event/driver-passengers` endpoint. The request body is structured as follows:
+You can update the number of seats available or shuffle who sits in each trip using the [`PATCH /event/driver-passengers`](/reference/endpoints/event-controller-update-book-car-seats) endpoint. The request body is structured as follows:
 
 ```json
 {
@@ -164,7 +164,7 @@ You can update the number of seats available or shuffle who sits in each trip us
 This can change how many seats are available or shuffle who sits in each trip.
 
 ### Waiting List (Queue)
-If no seats are available, participants can queue up until a driver adds more seats or new drivers volunteer. You can use the `POST /event/queue` endpoint to add a participant to the waiting list. The request body is structured as follows:
+If no seats are available, participants can queue up until a driver adds more seats or new drivers volunteer. You can use the [`POST /event/queue`](/reference/endpoints/event-controller-add-event-queue) endpoint to add a participant to the waiting list. The request body is structured as follows:
 
 ```json
 {
@@ -181,16 +181,8 @@ If no seats are available, participants can queue up until a driver adds more se
 ## 6. Track & Review
 After the event is set with drivers and seat bookings, you can gather **driver lists**, **statistics**, or even real-time driver location. This helps coaches or admins see who’s traveling, if seats are missing, or if a participant never booked a seat.
 
-- **GET /event/driver-list**: List all drivers for an event, their seats, and assigned passengers.  
-- **GET /event/statistic**: Summaries like how many seats are open or how many participants have confirmed.  
-- **PATCH /event/driver-position**: Update a driver’s real-time location (optional advanced feature).  
+- [`GET /event/driver-list`](/reference/endpoints/event-controller-event-driver-list): List all drivers for an event, their seats, and assigned passengers.  
+- [`GET /event/statistic`](/reference/endpoints/event-controller-get-event-statistic): Summaries like how many seats are open or how many participants have confirmed.  
+- [`PATCH /event/driver-position`](/reference/endpoints/event-controller-event-driver-position): Update a driver’s real-time location (optional advanced feature).  
 
 These calls enable continuous monitoring of rides until everyone arrives safely.
-
-## Error Handling & Edge Cases
-
-- **400 Bad Request**: Missing or invalid data (e.g., booking seats for a user not in the event).  
-- **409 Conflict**: Trying to book seats when the car is already full.  
-- **401 Unauthorized**: Only authenticated users with valid tokens can create or join events.  
-- **404 Not Found**: The event or driver car ID doesn’t exist.  
-- **Waitlist**: If all seats are taken, participants can either remain unassigned or go into a queue.

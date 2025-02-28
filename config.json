@@ -93,7 +93,8 @@
             "guides/api-guides/register_users",
             "guides/api-guides/manage_clubs",
             "guides/api-guides/create_events",
-            "guides/api-guides/manage_family"
+            "guides/api-guides/manage_family",
+            "guides/api-guides/manage_sponsors"
           ]
         }
       ]

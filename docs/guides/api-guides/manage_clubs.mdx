@@ -8,12 +8,10 @@ This guide demonstrates how to create new clubs, import members, and modify memb
 
 ## Typical Workflow
 
-```
-1. Create a New Club  ->  2. List or Search Clubs  ->  3. Import Members  ->  4. Manage Membership  ->  5. Suspend or Reactivate a Club
-```
+<Image src="media/flow-manage-clubs.svg" alt="Manage Clubs Flow"/>
 
 ### 1. Create a New Club
-Before you can add members or manage rosters, you need a club record in COOLROOL using the [`POST /clubs`](/reference/endpoints/clubs/create-club) endpoint. Once created, each club can be enriched with details like logo, social media links, and contact information.
+Before you can add members or manage rosters, you need a club record in COOLROOL using the [`POST /clubs`](/reference/endpoints/club-controller-create) endpoint. Once created, each club can be enriched with details like logo, social media links, and contact information.
 
 <Tabs>
 <TabItem value="Example request">
@@ -48,7 +46,7 @@ curl --request POST \
 
 
 ### 2. List or Search Existing Clubs
-After creating a club, you or other admins may want to check all available clubs or search for specific ones. COOLROOL offers both paginated and unpaginated listing methods, depending on whether you need quick lookups or structured pagination for large sets of clubs. You can use the `GET /clubs` endpoint to list all clubs or search for specific ones.
+After creating a club, you or other admins may want to check all available clubs or search for specific ones. COOLROOL offers both paginated and unpaginated listing methods, depending on whether you need quick lookups or structured pagination for large sets of clubs. You can use the [`GET /clubs`](/reference/endpoints/club-controller-find-all) endpoint to list all clubs or search for specific ones.
 
 <Tabs>
 <TabItem value="Paginated, cURL">
@@ -87,7 +85,7 @@ curl --request GET \
 
 
 ### 3. Import Members in Bulk
-When your club has multiple members—like entire teams or entire families—it’s time-consuming to add each one individually, you can use the `POST /clubs/member-list-upload` endpoint to import them in bulk. By preparing a CSV file of names, phones, and emails, you can swiftly onboard everyone at once.
+When your club has multiple members—like entire teams or entire families—it’s time-consuming to add each one individually, you can use the [`POST /clubs/member-list-upload`](/reference/endpoints/club-controller-upload-csv) endpoint to import them in bulk. By preparing a CSV file of names, phones, and emails, you can swiftly onboard everyone at once.
 
 <Tabs>
 <TabItem value="Example request">
@@ -122,7 +120,7 @@ curl --request POST \
 Each imported member receives an SMS prompting them to download COOLROOL, which auto-links them to your club.
 
 ### 4. Manage Individual Membership
-Beyond bulk operations, you may need to add a single new member or check someone’s membership details using the `POST /clubs/new-membership` endpoint. Perhaps a new coach joins mid-season, or a user decides they need to leave the club. 
+Beyond bulk operations, you may need to add a single new member or check someone’s membership details using the [`POST /clubs/new-membership`](/reference/endpoints/club-controller-add-new-membership) endpoint. Perhaps a new coach joins mid-season, or a user decides they need to leave the club. 
 
 <Tabs>
 <TabItem value="Example request">
@@ -153,8 +151,8 @@ curl --request POST \
 </Tabs>
 
 #### Checking or Deleting Membership
-- **GET /clubs/memberships**: Retrieve membership info.
-- **DELETE /clubs/memberships**: Remove membership from a club (requires specifying relevant IDs).
+- [`GET /clubs/memberships`](/reference/endpoints/club-controller-check-membership-status): Retrieve membership info.
+- [`DELETE /clubs/memberships`](/reference/endpoints/club-controller-delete-membership): Remove membership from a club (requires specifying relevant IDs).
 
 
 ### 5. Suspend or Reactivate a Club

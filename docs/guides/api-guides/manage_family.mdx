@@ -43,7 +43,7 @@ curl --request POST \
 ---
 
 ## 2. **Associating a Relative with a Club**
-If your child joins a soccer or dance club, you want them to appear on that club’s roster so they can be invited to events and carpools. This can happen automatically if you included `clubs=["1001"]` when you created them. Otherwise, you can explicitly link them to a new club later. To do this, you can use the `POST /relatives/track-relative` endpoint.
+If your child joins a soccer or dance club, you want them to appear on that club’s roster so they can be invited to events and carpools. This can happen automatically if you included `clubs=["1001"]` when you created them. Otherwise, you can explicitly link them to a new club later. To do this, you can use the [`POST /relatives/track-relative`](/reference/endpoints/relatives-controller-add-relatives) endpoint.
 
 <Tabs>
 <TabItem value="Request">
@@ -77,7 +77,7 @@ curl --request POST \
 Whether you want to see a list of all your children’s accounts or need to correct an email/phone number, COOLROOL offers endpoints to retrieve and modify relative info.
 
 ### List All Relatives
-The following example shows how to list all relatives for a user using the `GET /relatives` endpoint.
+The following example shows how to list all relatives for a user using the [`GET /relatives`](/reference/endpoints/relatives-controller-get-relatives) endpoint.
 
 <Tabs>
 <TabItem value="Request">
@@ -110,7 +110,7 @@ curl --request GET \
 </Tabs>
 
 ### Update Relative
-The following example shows how to update a relative’s details using the `PATCH /relatives` endpoint.
+The following example shows how to update a relative’s details using the [`PATCH /relatives`](/reference/endpoints/relatives-controller-update-relatives) endpoint.
 
 <Tabs>
 <TabItem value="Request">
@@ -142,7 +142,7 @@ curl --request PATCH \
 ---
 
 ## 4. **Deleting or Unlinking a Relative**
-If a child no longer participates in a club or you need to remove a relative’s data entirely, COOLROOL supports both partial (unlink) and complete (delete) removal. In order to delete a relative, you can use the `DELETE /relatives` endpoint.
+If a child no longer participates in a club or you need to remove a relative’s data entirely, COOLROOL supports both partial (unlink) and complete (delete) removal. In order to delete a relative, you can use the [`DELETE /relatives`](/reference/endpoints/relatives-controller-delete-relatives) endpoint.
 
 <Tabs>
 <TabItem value="Request">
