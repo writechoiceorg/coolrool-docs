@@ -59,42 +59,12 @@ To integrate using COOLROOL’s API, organizations should meet the following req
 - **API Credentials and Authentication Setup**: Secure communication with COOLROOL's backend services.
 - **Infrastructure for API Calls**: Cloud-based or on-premise hosting to handle API interactions.
 
-## Implementation Process
-
-### 1. API Access & Authentication
-To begin, obtain API credentials and set up authentication:
-- **Register and Generate API Keys**: Credentials are provided through the COOLROOL Developer Portal.
-- **JWT Authentication**: Secure API access with token-based authentication.
-- **Role-Based Access Control (RBAC)**: Assign user roles such as admin, coach, or member.
-
-### 2. API Integration Steps
-COOLROOL’s API provides endpoints to integrate core functionalities efficiently:
-
-#### **User Management & Authentication**
-- `POST /auth/register` – Register a new user.
-- `POST /auth/login` – Authenticate users.
-- `POST /auth/admin-login` – Secure authentication for administrators.
-- `POST /auth/verification` – Verify user accounts.
-
-#### **Club & Membership Management**
-- `POST /clubs` – Create a new club.
-- `GET /clubs` – Retrieve a list of clubs with pagination.
-- `GET /clubs/memberships` – Fetch user memberships.
-- `GET /clubs/location/{lat}/{long}/{radius}` – Find clubs near a specified location.
-- `POST /clubs/requests` – Submit membership requests.
-
-#### **Event & Carpooling Management**
-- `POST /event` – Create a new event.
-- `GET /event/participants` – List event participants.
-- `GET /event/driver` – Retrieve driver details.
-- `GET /event/statistics` – Access event analytics.
-- `POST /event/book-seats` – Reserve carpooling seats.
-
-### 3. Customization & Optimization
+## Customization & Optimization
 API-based integration provides room for customization to enhance user experience:
 - **Branding & UI Customization**: Design interfaces to match organizational branding.
 - **Business Logic Configuration**: Implement custom rules for event participation, ride-sharing, and membership policies.
 - **Performance Optimization**: Cache frequent API requests for enhanced speed.
 - **Data Analytics & Reporting**: Extract insights on user behavior, event participation, and sustainability impact.
 
+## Flows
 
