@@ -60,7 +60,7 @@
           "pages": [
             "guides/overview/what-is-coolrool",
             {
-              "groupName": "Club Dashboard",
+              "groupName": "Dashboards",
               "subpages": [
                 "guides/overview/dashboards/accessing-the-dashboards",
                 "guides/overview/dashboards/managing-members",
