@@ -58,22 +58,22 @@
         {
           "categoryName": "Overview",
           "pages": [
-            "guides/what-is-coolrool",
+            "guides/overview/what-is-coolrool",
             {
               "groupName": "Club Dashboard",
               "subpages": [
-                "guides/dashboard/accessing-the-dashboard",
-                "guides/dashboard/managing-members",
-                "guides/dashboard/creating-events"
+                "guides/overview/dashboards/accessing-the-dashboards",
+                "guides/overview/dashboards/managing-members",
+                "guides/overview/dashboards/creating-events"
               ]
             },
             {
               "groupName": "How the App Works",
               "subpages": [
-                "guides/how-the-app-works/onboarding",
-                "guides/how-the-app-works/account-creation",
-                "guides/how-the-app-works/clubs",
-                "guides/how-the-app-works/events"
+                "guides/overview/how-the-app-works/onboarding",
+                "guides/overview/how-the-app-works/account-creation",
+                "guides/overview/how-the-app-works/clubs",
+                "guides/overview/how-the-app-works/events"
               ]
             }
           ]
@@ -81,20 +81,20 @@
         {
           "categoryName": "Technical Guides",
           "pages": [
-            "guides/technical-overview",
+            "guides/technical-guides/technical-overview",
             {
               "groupName": "Integration Options",
-              "page": "guides/integration-options/index",
+              "page": "guides/technical-guides/integration-options/index",
               "subpages": [
-                "guides/integration-options/api-integration",
-                "guides/integration-options/source-code-integration"
+                "guides/technical-guides/integration-options/api-integration",
+                "guides/technical-guides/integration-options/source-code-integration"
               ]
             },
-            "guides/api-guides/register_users",
-            "guides/api-guides/manage_clubs",
-            "guides/api-guides/create_events",
-            "guides/api-guides/manage_family",
-            "guides/api-guides/manage_sponsors"
+            "guides/technical-guides/register_users",
+            "guides/technical-guides/manage_clubs",
+            "guides/technical-guides/create_events",
+            "guides/technical-guides/manage_family",
+            "guides/technical-guides/manage_sponsors"
           ]
         }
       ]
