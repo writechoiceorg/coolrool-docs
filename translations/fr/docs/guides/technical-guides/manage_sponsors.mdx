@@ -1,22 +1,22 @@
 ---
-title: Manage Sponsors & Advertisements
+title: Gérer les sponsors et les publicités
 ---
 
-Many sports clubs rely on sponsorships and advertisements to help cover costs and foster partnerships. With COOLROOL, you can manage sponsor records, link them to clubs, and display targeted advertisements or banners in the app. This guide shows how to add sponsors, attach them to clubs, and handle unique images or promotional messages.
+De nombreux clubs sportifs comptent sur des commandites et des publicités pour couvrir les coûts et favoriser les partenariats. Avec COOLROOL, vous pouvez gérer les dossiers des sponsors, les lier aux clubs et afficher les publicités ou bannières ciblées dans l'application. Ce guide montre comment ajouter des sponsors, les joindre à des clubs et gérer des images ou des messages promotionnels uniques.
 
-## Typical Workflow
+## Flux de travail typique
 
 <Image src="media/manage-sponsors-flow.svg" alt="Manage Sponsors Flow" />
 
-## 1. **Create a New Sponsor**
+## 1. **Créer un nouveau Sponsor**
 
-A sponsor might be a national sports brand, a local restaurant, or any organization supporting your club. COOLROOL stores sponsor details (name, logo, contact info) so you can later attach them to clubs or events. Use the [`POST /sponsor`](/reference/endpoints/sponsor-controller-add-sponsor) endpoint to create a new sponsor record.
+Un sponsor peut être une marque de sport nationale, un restaurant local ou toute organisation qui soutient votre club. COOLROOL est le sponsor des magasins (nom, logo, coordonnées) afin que vous puissiez les joindre plus tard aux clubs ou événements. Utilisez le point de terminaison [`POST /sponsor`](/reference/endpoints/sponsor-controller-add-sponsor) pour créer un nouvel enregistrement parrain.
 
 <Tabs>
 <TabItem value="Request">
 ```bash
 curl --request POST \
-  --url https://api.coolrool.com/sponsor \
+  --url https://api.coolrool. om/sponsor \
   --header 'Authorization: Bearer <ADMIN_TOKEN>' \
   --form 'name=SuperSports' \
   --form 'description=Leading sports equipment brand' \
@@ -24,8 +24,8 @@ curl --request POST \
   --form 'contactPersonName=John' \
   --form 'contactPersonSurname=Doe' \
   --form 'contactPersonPhone=+330000000' \
-  --form 'website=https://www.supersports.com' \
-  --form 'img=@/path/to/sponsor-logo.png'
+  --form 'website=https://www. upersports.com' \
+  --form 'img=@/path/to/sponsor-logo. ng'
 ```
 </TabItem>
 <TabItem value="Response">
@@ -33,51 +33,51 @@ curl --request POST \
 {
   "id": 3001,
   "name": "SuperSports",
-  "photoUrl": "https://cdn.coolrool.com/sponsor-logo-3001.png",
-  "description": "Leading sports equipment brand",
-  "isGlobal": true,
-  "contactPersonName": "John",
-  "contactPersonSurname": "Doe",
-  ...
+  "photoUrl": "https://cdn. oolrool.com/sponsor-logo-3001. ng",
+  "description": "Marque d'équipement de sport",
+  "isGlobal": vrai,
+  "contactNomNom": "John",
+  "contactSurname": "Doe",
+...
 }
 ```
 </TabItem>
 </Tabs>
 
-Sponsors marked `isGlobal` can appear in any club, while `isLocal` sponsors might only be relevant to specific regions.
+Les sponsors marqués `isGlobal` peuvent apparaître dans n'importe quel club, tandis que les sponsors `isLocal` ne peuvent être pertinents que pour des régions spécifiques.
 
 ---
 
-## 2. **Add Unique Images or Banners**
+## 2. **Ajouter des images ou des bannières uniques**
 
-Many sponsors want rotating banners or seasonal ads. You can store these images and schedule them for display in the app at certain dates using the [`PATCH /sponsor/unique-images/{id}`](/reference/endpoints/sponsor-controller-update-file) endpoint.
+De nombreux sponsors veulent des bannières tournantes ou des annonces saisonnières. Vous pouvez stocker ces images et les planifier pour qu'elles soient affichées dans l'application à certaines dates en utilisant le point de terminaison [`PATCH /sponsor/unique-images/{id}`](/reference/endpoints/sponsor-controller-update-file).
 
 <Tabs>
 <TabItem value="Request">
 ```bash
 curl --request PATCH \
-  --url "https://api.coolrool.com/sponsor/unique-images/3001" \
+  --url "https://api.coolrool. om/sponsor/unique-images/3001" \
   --header 'Authorization: Bearer <ADMIN_TOKEN>' \
   --form 'specialDate=2025-12-01T00:00:00Z' \
   --form 'endSpecialDate=2025-12-31T23:59:59Z' \
-  --form 'url=https://cdn.coolrool.com/holiday-sale.jpg' \
-  --form 'name=Holiday Sale Banner' \
-  --form 'description=20% off all equipment'
+  --form 'url=https://cdn. oolrool.com/soldes/vacances. pg' \
+  --form 'name=Bannière de vente de vacances' \
+  --form 'description=20% de tout l'équipement'
 ```
 </TabItem>
 <TabItem value="Response">
 ```json
 {
   "id": 5002,
-  "imageUrl": "https://cdn.coolrool.com/holiday-sale.jpg",
+  "imageUrl": "https://cdn. oolrool.com/soldes/vacances. pg",
   "specialDate": "2025-12-01T00:00:00Z",
-  "endSpecialDate": "2025-12-31T23:59:59Z",
-  "name": "Holiday Sale Banner",
-  "description": "20% off all equipment",
+  "endSpecialDate": "2025-12-31T23:59Z",
+  "nom": "bannière de soldes",
+  "description": "20% de réduction sur tout l'équipement",
   "sponsor": {
     "id": 3001,
-    "name": "SuperSports",
-    ...
+    "nom": "SuperSports",
+...
   }
 }
 ```
@@ -86,15 +86,15 @@ curl --request PATCH \
 
 ---
 
-## 3. **Attach a Sponsor to a Club**
+## 3. **Attacher un sponsor à un Club**
 
-If `SuperSports` is sponsoring `Thunder FC` specifically, you can link them so the club’s members see relevant ads in their app using the [`POST /sponsor/club-sponsor`](/reference/endpoints/sponsor-controller-add-club-sponsor) endpoint. 
+Si `SuperSports` sponsorise spécifiquement `Thunder FC` vous pouvez les lier pour que les membres du club voient les publicités pertinentes dans leur application en utilisant le point de terminaison [`POST /sponsor/club-sponsor`](/reference/endpoints/sponsor-controller-add-club-sponsor). 
 
 <Tabs>
 <TabItem value="Request">
 ```bash
 curl --request POST \
-  --url https://api.coolrool.com/sponsor/club-sponsor \
+  --url https://api.coolrool. om/sponsor/club-sponsor \
   --header 'Authorization: Bearer <ADMIN_TOKEN>' \
   --form 'clubId=1001' \
   --form 'sponsorId=3001'
@@ -103,39 +103,39 @@ curl --request POST \
 <TabItem value="Response">
 ```json
 {
-  "id": "club-sponsor-link-uuid",
+  "id": "club-sponsor-link-uid",
   "club": {
     "id": 1001,
     "name": "Thunder FC"
   },
   "sponsor": {
     "id": 3001,
-    "name": "SuperSports"
+    "nom": "Supersports"
   },
-  "isActive": true
+  "isActive": vrai
 }
 ```
 </TabItem>
 </Tabs>
 
-At this point, members of `Thunder FC` may see `SuperSports` ads or banners in their COOLROOL interface.
+À ce stade, les membres de `Thunder FC` peuvent voir des publicités ou des bannières `SuperSports` dans leur interface COOLROOL.
 
 ---
 
-## 4. **Displaying Ads in the App**
+## 4. **Affichage des publicités dans l'application**
 
-Once a sponsor is linked, COOLROOL automatically shows sponsor branding in relevant sections—like the event booking flow, the club dashboard, or a user’s news feed. You don’t need to code display logic unless you’re customizing the front-end. You can use the following endpoints to fetch sponsor data:
+Une fois que le sponsor est lié, COOLROOL affiche automatiquement le marquage des sponsors dans les sections pertinentes, comme le flux de réservation d’événements, le tableau de bord du club ou le fil d’actualité de l’utilisateur. Vous n’avez pas besoin de coder la logique d’affichage à moins que vous ne personnalisiez le front-end. Vous pouvez utiliser les points de terminaison suivants pour récupérer les données du sponsor :
 
-- [`GET /sponsor/club/{clubId}`](/reference/endpoints/sponsor-controller-get-club-sponsor) to fetch all sponsors for a particular club.  
-- [`GET /sponsor/recommendation`](/reference/endpoints/sponsor-controller-get-recommended-sponsors), [`GET /sponsor/global`](/reference/endpoints/sponsor-controller-get-global-sponsors), or [`GET /sponsor/local`](/reference/endpoints/sponsor-controller-get-local-sponsors) for more targeted sponsor groupings.
+- [`GET /sponsor/club/{clubId}`](/reference/endpoints/sponsor-controller-get-club-sponsor) pour récupérer tous les sponsors d'un club particulier.  
+- [`GET /sponsor/recommendation`](/reference/endpoints/sponsor-controller-get-recommended-sponsors), [`GET /sponsor/global`](/reference/endpoints/sponsor-controller-get-global-sponsors), ou [`GET /sponsor/local`](/reference/endpoints/sponsor-controller-get-local-sponsors) pour les groupes de sponsors plus ciblés.
 
-The following example shows how to fetch all sponsors for a particular club:
+L'exemple suivant montre comment récupérer tous les sponsors pour un club particulier :
 
 <Tabs>
 <TabItem value="Request">
 ```bash
 curl --request GET \
-  --url https://api.coolrool.com/sponsor/recommendation \
+  --url https://api.coolrool. om/sponsor/recommendation \
   --header 'Authorization: Bearer <USER_TOKEN>'
 ```
 </TabItem>
@@ -145,9 +145,9 @@ curl --request GET \
   {
     "id": 3001,
     "name": "SuperSports",
-    "photoUrl": "https://cdn.coolrool.com/sponsor-logo-3001.png",
-    "description": "Leading sports equipment brand",
-    ...
+    "photoUrl": "https://cdn. oolrool.com/sponsor-logo-3001.png",
+    "description": "Marque d'équipement sportif",
+...
   }
 ]
 ```
@@ -156,20 +156,20 @@ curl --request GET \
 
 ---
 
-## 5. **Manage or Remove a Sponsor**
+## 5. **Gérer ou supprimer un Sponsor**
 
-If a sponsor contract expires or they no longer wish to appear, you can update or delete their record using the following endpoints:
+Si un contrat de sponsor expire ou ne souhaite plus apparaître, vous pouvez mettre à jour ou supprimer son enregistrement en utilisant les points de terminaison suivants :
 
-- [`PATCH /sponsor/{sponsorId}`](/reference/endpoints/sponsor-controller-update-sponsor) – Update sponsor details (e.g., name, contact info, or add/remove clubs).  
-- [`DELETE /sponsor/{sponsorId}`](/reference/endpoints/sponsor-controller-delete-sponsor) – Remove the sponsor from COOLROOL entirely.
+- [`PATCH /sponsor/{sponsorId}`](/reference/endpoints/sponsor-controller-update-sponsor) – Mettre à jour les coordonnées du sponsor (par exemple, nom, coordonnées ou ajouter/supprimer des clubs).  
+- [`DELETE /sponsor/{sponsorId}`](/reference/endpoints/sponsor-controller-delete-sponsor) - Retirer complètement le sponsor de COOLROOL.
 
-The following example shows how to delete a sponsor:
+L'exemple suivant montre comment supprimer un sponsor :
 
 <Tabs>
 <TabItem value="Request">
 ```bash
 curl --request DELETE \
-  --url "https://api.coolrool.com/sponsor/3001" \
+  --url "https://api.coolrool. om/sponsor/3001" \
   --header 'Authorization: Bearer <ADMIN_TOKEN>'
 ```
 </TabItem>  
@@ -177,10 +177,10 @@ curl --request DELETE \
 ```json
 {
   "id": 3001,
-  "deleted": true
+  "supprimé": vrai
 }
 ```
 </TabItem>
 </Tabs>
 
-Clubs previously linked to this sponsor will no longer display their ads.
+Les clubs précédemment liés à ce sponsor n'afficheront plus leurs annonces.
