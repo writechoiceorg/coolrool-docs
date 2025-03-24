@@ -1,0 +1,72 @@
+---
+title: Register and Verify Users
+---
+
+In COOLROOL, authentication ensures that each user—be they a club administrator, a coach, a parent, or an athlete—has secure and appropriate access to their data. This guide walks you through the core authentication flows:
+
+1. **Register or Admin-Register**: The user provides a `phone` and `password` (and possibly other details). An SMS code may be sent to confirm ownership of the phone.  
+2. **Verification**: The user inputs the code. If it matches, their account is marked \`verified.  
+3. **Login**: Once verified, you can call [`POST /auth/login`](/reference/endpoints/auth-controller-login) or [`POST /auth/admin-login`](/reference/endpoints/auth-controller-admin-login) to receive a JWT token. This token is used in Authorization headers for all subsequent calls to protected endpoints.
+
+By following these steps, clubs can safely onboard new users, and those users can confidently access protected endpoints (like managing events or club details).
+
+## Typical Workflow
+
+<Image src="/media/register-users-api-flow.svg"/>
+
+### 1. Register a New User
+
+The registration process begins with creating a new user account using the [`POST /auth/register`](/reference/endpoints/auth-controller-register) endpoint. This step collects essential user information and initiates the account creation process by providing the `phone` and `password`. The following example shows how to register a new user:
+
+```bash
+curl --request POST \
+  --url https://api.coolrool.com/auth/register \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "phone": "+905521234567",
+    "password": "Abc12345"
+  }'
+```
+
+### 2. Verify Phone Number
+
+The verification process involves sending a 4- or 6-digit SMS code to the user's phone number. This code is then verified using the [`POST /auth/verification`](/reference/endpoints/auth-controller-user-verification) endpoint. The following example shows how to verify a phone number:
+
+```bash
+curl --request POST \
+  --url https://api.coolrool.com/auth/verification \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "phone": "+905521234567",
+    "verificationCode": 1234
+  }'
+```
+
+### 3. Login
+
+Once the phone number is verified, you can login using the [`POST /auth/login`](/reference/endpoints/auth/login) endpoint. The following example shows how to login a user:
+
+```bash
+curl --request POST \
+  --url https://api.coolrool.com/auth/login \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "phone": "+905521234567",
+    "password": "Abc12345"
+  }'
+```
+
+The returned `token` (JWT) must be included in the **Authorization** header for further requests:
+
+```
+Authorization: Bearer eyJhbGciOiJIU...
+```
+
+### 4. Admin Registration & Login
+
+**Admin** workflows mirror user flows but use:
+
+- [`POST /auth/admin-register`](/reference/endpoints/auth-controller-admin-register)  
+- [`POST /auth/admin-login`](/reference/endpoints/auth-controller-admin-login)  
+
+The request body is nearly the same, but the new account will have additional privileges. Keep any admin tokens secure and limit usage to appropriate features like club suspension or user management.
