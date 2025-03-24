@@ -1,0 +1,176 @@
+---
+title: Gérer la famille et les parents
+---
+
+De nombreux clubs sportifs ont des membres mineurs ou ont besoin de l'aide d'un tuteur pour créer leur compte — pensez aux parents qui inscrivent leurs enfants ou des frères et sœurs plus âgés qui gèrent des trajets pour les plus jeunes. COOLROOL soutient le lien entre parents afin que les parents, tuteurs ou autres membres de la famille puissent gérer ces profils à partir d'un seul compte. Ce guide montrera comment ajouter, visualiser et mettre à jour ces relations, ce qui facilitera la coordination des carpools et de la logistique des événements.
+
+## Flux de travail typique
+
+<Image src="media/manage-relatives-flow.svg" alt="Manage Relatives Flow" />
+
+## 1. **Ajouter un nouveau parent**
+
+Si un utilisateur veut créer un enfant ou une personne dans sa famille qui ne peut pas gérer son propre compte d'application, ils ajouteront un parent dans leur profil. Cela fonctionne également si vous êtes un gardien adulte qui enregistre un membre de la famille âgé pour une activité sportive. Pour cela, vous pouvez utiliser le point de terminaison `POST /relatives`.
+
+<Tabs>
+<TabItem value="Request">
+```bash
+curl --request POST \
+  --url https://api.coolrool. om/parents \
+  --header 'Authorization: Bearer <USER_TOKEN>' \
+  --form 'name=Timmy' \
+  --form 'nom=Smith' \
+  --form 'phone=+905521234567' \
+  --form 'role=enfant' \
+  --form 'clubs=["1001"]' \
+  --form 'img=@/path/to/child-photo. Pg'
+```
+</TabItem>
+<TabItem value="Response">
+```json
+{
+  "id": 2001,
+  "role": "enfant",
+  "relativeName": "Timmy",
+  "relativeSurname": "Smith",
+  "téléphone": "+905521234567",
+  "isConfirmed": false,
+...
+}
+```
+</TabItem>
+</Tabs>
+
+---
+
+## 2. **Associer un parent à un Club**
+
+Si votre enfant rejoint un club de football ou de danse, vous voulez qu'ils apparaissent sur la liste de ce club afin qu'ils puissent être invités à des événements et des covoiturages. Cela peut se produire automatiquement si vous avez inclus `clubs=["1001"]` lorsque vous les avez créés. Sinon, vous pourrez les lier explicitement à un nouveau club plus tard. Pour cela, vous pouvez utiliser le point de terminaison [`POST /relatives/track-relative`](/reference/endpoints/relatives-controller-add-relatives).
+
+<Tabs>
+<TabItem value="Request">
+```bash
+curl --request POST \
+  --url https://api.coolrool. om/relatives/track-relative \
+  --header 'Authorization: Bearer <USER_TOKEN>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "relativeId": 2001,
+    "clubId": 1001
+  }'
+
+</TabItem>
+<TabItem value="Response">
+```json
+{
+  "id": "relative-club-link-uuid",
+  "utilisateur": ". .",
+  "relative": "...",
+  "clubMembership": "...",
+...
+}
+```
+</TabItem>
+</Tabs>
+
+---
+
+## 2. **Voir ou mettre à jour les détails relatifs**
+
+Si vous voulez voir une liste de tous les comptes de vos enfants ou si vous avez besoin de corriger un e-mail/numéro de téléphone, COOLROOL offre des terminaux pour récupérer et modifier des informations relatives.
+
+### Liste de tous les parents
+
+L'exemple suivant montre comment lister tous les parents d'un utilisateur en utilisant le point de terminaison [`GET /relatives`](/reference/endpoints/relatives-controller-get-relatives).
+
+<Tabs>
+<TabItem value="Request">
+```bash
+curl --request GET \
+  --url "https://api.coolrool. om/parents ? yPhone=false" \
+  --header 'Authorization: Bearer <USER_TOKEN>'
+```
+</TabItem>
+<TabItem value="Response">
+```json
+[
+  {
+    "id": 2001,
+    "rôle": "Enfant",
+    "Nom relatif": "Timmy",
+    "isConfirmed": false,
+    "clubs": [ "1001" ]
+  },
+  {
+    "id": 2002,
+    "rôle": "Mère",
+    "Nom relatif": "Sarah",
+    "isConfirmed": true,
+...
+  }
+]
+```
+</TabItem>
+</Tabs>
+
+### Mise à jour relative
+
+L'exemple suivant montre comment mettre à jour les détails d'un parent en utilisant le point de terminaison [`PATCH /relatives`](/reference/endpoints/relatives-controller-update-relatives).
+
+<Tabs>
+<TabItem value="Request">
+```bash
+curl --request PATCH \
+  --url https://api.coolrool. om/parents \
+  --header 'Authorization: Bearer <USER_TOKEN>' \
+  --form 'relativeId=2001' \
+  --form 'name=Timothy' \
+  --form 'surname=Smith' \
+  --form 'role=Child' \
+  --form 'removePhoto=false' \
+  --form 'img=@/path/to/new-child-photo. pg'
+```
+</TabItem>
+<TabItem value="Response">
+```json
+{
+  "id": 2001,
+  "rôle": "Enfant",
+  "Nom relatif": "Timothy",
+  "Nom relatif": "Smith",
+...
+}
+```
+</TabItem>
+</Tabs>
+
+---
+
+## 4. **Suppression ou dissociation d'un Relatif**
+
+Si un enfant ne participe plus à un club ou si vous devez supprimer complètement les données d'un proche, COOLROOL prend en charge la suppression partielle (unlink) et complète (delete). Afin de supprimer un parent, vous pouvez utiliser le point de terminaison [`DELETE /relatives`](/reference/endpoints/relatives-controller-delete-relatives).
+
+<Tabs>
+<TabItem value="Request">
+```bash
+curl --request DELETE \
+  --url https://api.coolrool. om/parents \
+  --header 'Authorization: Bearer <USER_TOKEN>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "relativeId": 2001
+  }'
+```
+</TabItem>  
+<TabItem value="Response">
+```json
+{
+  "id": 2001,
+  "relativeName": "Timothy",
+  "supprimé": true
+}
+```
+</TabItem>
+</Tabs>
+
+Le parent est maintenant supprimé du compte de l'utilisateur. Si vous voulez seulement les supprimer d'un club spécifique mais les garder dans votre liste familiale, vous devriez utiliser `/relatives/track-relative` avec un appel DELETE.

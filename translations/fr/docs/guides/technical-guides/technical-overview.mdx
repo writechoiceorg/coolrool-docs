@@ -1,0 +1,110 @@
+---
+title: Aperçu technique
+---
+
+COOLROOL est construit sur des standards modernes de développement de logiciels, garantissant évolutivité, performance et maintenabilité.
+
+## Avantages techniques
+
+<CardList cols={5}>
+  <Card
+    title="Modular Architecture"
+    icon="cube"
+    iconType="regular"
+    iconSize="32px"
+  />
+  <Card
+    title="Comprehensive API"
+    icon="book"
+    iconType="regular"
+    iconSize="32px"
+  />
+  <Card
+    title="Optimized Performance"
+    icon="rocket"
+    iconType="regular"
+    iconSize="32px"
+  />
+  <Card
+    title="Multi-Platform Compatibility"
+    icon="devices"
+    iconType="regular"
+    iconSize="32px"
+  />
+  <Card
+    title="Maintainable Codebase"
+    icon="code"
+    iconType="regular"
+    iconSize="32px"
+  />
+</CardList>
+
+## Architecture
+
+COOLROOL suit une architecture moderne basée sur les microservices, conçue pour gérer une grande évolutivité et une grande maintenance. Le système est divisé en différents services frontend et backend, chacun optimisé pour ses besoins spécifiques tout en maintenant une intégration transparente.
+
+### Backend
+
+- Architecture modulaire utilisant NestJS avec une API RESTful (OpenAPI 3.0)
+- Authentification basée sur JWT avec des routes séparées pour les utilisateurs et les administrateurs (/auth/login, /auth/admin-login)
+- Contrôle d'accès basé sur les rôles (RBAC) pour améliorer la sécurité et la gestion des autorisations
+- Services en temps réel pour le suivi des trajets avec les fonctionnalités de géolocalisation
+- Points de terminaison API complets pour gérer les clubs, les événements, les véhicules et les commandites
+
+### Frontend
+
+- Application web basée sur React pour le panneau d'administration
+- Applications mobiles React Native pour les utilisateurs finaux
+- Interface utilisateur intuitive (UI) avec gestion des notifications push
+- Support multilingue pour l'accessibilité globale
+- Gestion et synchronisation des données hors ligne
+
+## Pile de Technologie
+
+COOLROOL met à profit une technologie moderne et éprouvée pour assurer fiabilité et efficacité.
+
+### Backend
+
+- NestJS en tant que framework principal
+- Base de données PostgreSQL avec support ORM complet
+- Système de messagerie en temps réel pour suivre les mises à jour des trajets
+- Services de géolocalisation avec recherche de proximité
+- Système de notification push pour les mises à jour d'événements et de courses
+
+### Frontend
+
+- React pour la plateforme web
+- React Native pour les applications mobiles
+- Gestion moderne des états pour une expérience utilisateur transparente
+- Composants de l'interface utilisateur réutilisables pour un design cohérent
+- Intégration avec les services de mapping
+
+### Infrastructure
+
+- Architecture native du nuage pour l'évolutivité et la résilience
+- Conteneur Docker pour un déploiement efficace
+- pipeline automatisé pour l'intégration et la livraison continues
+- Surveillance avancée et journalisation pour assurer la fiabilité du système
+
+## Fonctionnalités avancées
+
+COOLROOL offre un ensemble complet de fonctionnalités avancées conçues pour améliorer l'expérience utilisateur et rationaliser les opérations des clubs. Ces fonctionnalités couvrent tout, de la gestion de club au covoiturage intelligent, assurant une plateforme robuste et riche en fonctionnalités pour tous les utilisateurs.
+
+### Gestion complète des clubs
+
+- Structure hiérarchique des membres avec des rôles (Admins, Coaches, Membres)
+- Gestion d'équipe et de groupe avec des descriptions personnalisables
+- Planification de l'événement avec les points de départ / d'arrivée et suivi des participants
+
+### Système de covoiturage intelligent
+
+- Gestion des véhicules avec disponibilité dynamique des sièges
+- Système de réservation de places assises avec validation
+- Suivi des trajets en temps réel avec les waypoints
+- Statistiques détaillées sur le covoiturage des événements
+
+### Sécurité et conformité
+
+- Protection des données conforme au RGPD
+- Système de vérification des chauffeurs pour une garantie de sécurité
+- Protocoles de sécurité des données stricts pour protéger les informations de l'utilisateur

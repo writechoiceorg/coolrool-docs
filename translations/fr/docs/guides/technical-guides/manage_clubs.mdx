@@ -1,0 +1,181 @@
+---
+title: Gérer les Clubs
+---
+
+Les clubs sont les unités fondatrices à travers lesquelles vous gérez votre organisation sportive – qu’il s’agisse d’un club de football, d’une équipe de natation ou d’une école d’arts martiaux. Chaque club peut compter de nombreux membres : athlètes, parents, entraîneurs et bénévoles. La mise en place correcte de clubs et la gestion des effectifs posent les bases d'une coordination efficace des covoiturages, des événements et de la communication interne.
+
+Ce guide montre comment créer de nouveaux clubs, importer des membres et modifier les dossiers d'adhésion. Vous apprendrez également à suspendre ou réactiver un club au besoin.
+
+## Flux de travail typique
+
+<Image src="media/flow-manage-clubs.svg" alt="Manage Clubs Flow"/>
+
+### 1. Créer un nouveau Club
+
+Avant de pouvoir ajouter des membres ou gérer des rôles, vous avez besoin d'un enregistrement de club dans COOLROOL en utilisant le point de terminaison [`POST /clubs`](/reference/endpoints/club-controller-create). Une fois créé, chaque club peut être enrichi de détails tels que le logo, les liens vers les réseaux sociaux et les informations de contact.
+
+<Tabs>
+<TabItem value="Example request">
+```bash
+curl --request POST \
+  --url https://api.coolrool. om/clubs \
+  --header 'Authorization: Bearer <ADMIN_TOKEN>' \
+  --form 'name=Thunder FC' \
+  --form 'zipCode=12345' \
+  --form 'country=France' \
+  --form 'city=Paris' \
+  --form 'address=123 Stadium Road' \
+  --form 'email=info@thunderfc. om' \
+  --form 'primaryPhone=+33-555-123456'
+```
+</TabItem>
+<TabItem value="Example response">
+
+```json
+{
+  "id": 1001,
+  "name": "Thunder FC",
+  "country": "France",
+  "city": "Paris",
+  "address": "123 Stadium Road",
+  "createdAt": "2025-01-15T10:00:00. 00Z",
+  ...
+}
+```
+
+</TabItem>
+</Tabs>
+
+### 2. Lister ou rechercher des clubs existants
+
+Après avoir créé un club, vous ou d'autres administrateurs pouvez vérifier tous les clubs disponibles ou rechercher des clubs spécifiques. COOLROOL propose des méthodes de listing paginées et non paginées, selon que vous avez besoin de recherches rapides ou de pagination structurée pour de grands ensembles de clubs. Vous pouvez utiliser le point de terminaison [`GET /clubs`](/reference/endpoints/club-controller-find-all) pour lister tous les clubs ou rechercher des clubs spécifiques.
+
+<Tabs>
+<TabItem value="Paginated, cURL">
+```bash
+curl --request GET \
+  --url "https://api.coolrool. om/clubs? kipPages=0&pageSize=10&searchValue=Thunder" \
+  --header 'Authorization: Bearer <TOKEN>'
+
+
+</TabItem>
+<TabItem value="Unpaginated, cURL">
+```bash
+curl --request GET \
+  --url "https://api. oolrool. om/clubs/all" \
+  --header 'Authorization: Bearer <TOKEN>'
+
+</TabItem>
+<TabItem value="Example response">
+```json
+[
+  {
+    "id": 1001,
+    "name": "Thunder FC",
+    "city": "Paris",
+...
+  },
+  {
+    "id": 1002,
+    "name": "Lightning Swim Club",
+    "city": "Marseille",
+...
+  }
+]
+```
+</TabItem>
+</Tabs>
+
+### 3. Importer des membres en vrac
+
+Lorsque votre club compte plusieurs membres – comme des équipes entières ou des familles entières – il faut du temps pour les ajouter individuellement, vous pouvez utiliser le point de terminaison [`POST /clubs/member-list-upload`](/reference/endpoints/club-controller-upload-csv) pour les importer en vrac. En préparant un fichier CSV de noms, de téléphones et d'e-mails, vous pouvez rapidement embarquer tout le monde à la fois.
+
+<Tabs>
+<TabItem value="Example request">
+```bash
+curl --request POST \
+  --url https://api.coolrool. om/clubs/member-list-upload \
+  --header 'Authorization: Bearer <ADMIN_TOKEN>' \
+  --form 'clubId=1001' \
+  --form 'sendEmail=true' \
+  --form 'sendSms=true' \
+  --form 'csv=@/path/to/members. sv'
+```
+</TabItem>
+<TabItem value="Example response">
+```json
+[
+  {
+    "name": "Alice Smith",
+    "téléphone": "+33612345678",
+    "statut": "Importé"
+  },
+  {
+    "name": "Bob Doe",
+    "phone": "+33698765432",
+    "statut": "Importé"
+  }
+]
+```
+</TabItem>
+</Tabs>
+
+Chaque membre importé reçoit un SMS lui demandant de télécharger COOLROOL, qui le relie automatiquement à votre club.
+
+### 4. Gérer les adhésions individuelles
+
+Au-delà des opérations en vrac, vous devrez peut-être ajouter un seul nouveau membre ou vérifier les détails de l'adhésion de quelqu'un en utilisant le point de terminaison [`POST /clubs/new-membership`](/reference/endpoints/club-controller-add-new-membership). Peut-être un nouvel entraîneur se joindra-t-il en milieu de saison, ou un utilisateur décide de quitter le club. 
+
+<Tabs>
+<TabItem value="Example request">
+```bash
+curl --request POST \
+  --url https://api.coolrool. om/clubs/new-membership \
+  --header 'Authorization: Bearer <ADMIN_TOKEN>' \
+  --form 'clubId=1001' \
+  --form 'name=Charlie Davis' \
+  --form 'phone=+33611122233' \
+  --form 'email=charlie@domain. om'
+  --form 'isPassenger=true'
+  --form 'isDriver=false'
+
+</TabItem>
+<TabItem value="Example response">
+```json
+{
+  "id": "abc-123-uuid",
+  "nom": "Charlie Davis",
+  "téléphone": "+33611122233",
+  "clubId": 1001,
+  "créé": "2025-02-01T09:00:00. 00Z",
+...
+}
+```
+</TabItem>
+</Tabs>
+
+#### Vérification ou suppression de l'adhésion
+
+- [`GET /clubs/memberships`](/reference/endpoints/club-controller-check-membership-status): Récupérer les infos d'adhésion.
+- [`DELETE /clubs/memberships`](/reference/endpoints/club-controller-delete-membership): Retirer l'adhésion d'un club (nécessite de spécifier les identifiants pertinents).
+
+### 5. Suspendre ou réactiver un Club
+
+De temps à autre, un club peut devoir être mis en attente, par exemple en dehors de la saison ou en cas de litige financier. En suspendant un club, vous bloquez efficacement de nouveaux événements et adhésions jusqu’à ce qu’ils soient réactivés. Cette étape est **réservée à l'administrateur** pour s'assurer que la fonctionnalité n'est pas mal utilisée.
+
+<Tabs>
+<TabItem value="Example request">
+```bash
+curl --request PATCH \
+  --url "https://api.coolrool. om/clubs/suspend/1001? uspendStatus=true" \
+  --header 'Authorization: Bearer <ADMIN_TOKEN>'
+```
+</TabItem>
+<TabItem value="Example response">
+
+ ```
+200 OK
+"Suspend club"
+
+</TabItem>
+</Tabs>

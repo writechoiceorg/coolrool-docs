@@ -1,0 +1,194 @@
+---
+title: Créer des événements
+---
+
+À COOLROOL, les événements sont le centre central de la planification et de la coordination des activités du club. Qu’il s’agisse d’un jeu, d’une pratique ou d’une compétition, la création d’un événement vous permet d’inviter les participants, de gérer les chauffeurs et d’organiser les carottes en un seul endroit. Ce guide traverse **la création d'un événement**, **l'ajout de participants**, **l'assignation de chauffeurs**, et **la réservation de sièges**, en veillant à ce que tout le monde ait une course vers et depuis chaque activité.
+
+## Flux de travail typique
+
+<Image src="/media/create-events-api-flow.svg"/>
+
+## 1. Créer un événement
+
+Avant de pouvoir gérer les covoiturages, vous avez besoin d'un événement. Créer un événement en utilisant le point de terminaison [`POST /event`](/reference/endpoints/event-controller-create). Un événement peut inclure des détails tels que la date, l'heure, le lieu et l'identifiant du club auquel il est associé. Vous pouvez également décider si vous souhaitez envoyer des notifications immédiates aux participants potentiels.
+
+<Tabs>
+  <TabItem value="Request">
+```bash
+curl --request POST \
+  --url https://api.coolrool. om/event \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Bearer <ADMIN_TOKEN>' \
+  --data '{
+    "name": "Friendly Match vs. Rivals",
+    "date": "2025-05-15T14:00:00. 00Z",
+    "clubId": 1001,
+    "sendEmail": true,
+    "sendPush": true,
+    "points": [
+      {
+        "address": "123 Stadium Road, Paris",
+        "latitude": 48. 566,
+        "longitude": 2. 522,
+        "type": "depart",
+        "tripType": "Going",
+        "arriveTime": "2025-05-15T13:30:00. 00Z"
+      }
+    ],
+    "participants": [42, 56, 78]
+  }'
+```
+  </TabItem>
+<TabItem value="Response">
+```json
+{
+  "id": "abc-123-event",
+  "name": "Match amical vs. Rivals",
+  "date": "2025-05-15T14:00:00.000Z",
+  "clubId": 1001,
+  "createdAt": "2025-04-01T09:00:00:00.000Z",
+...
+}
+```
+</TabItem>
+</Tabs>
+
+Une fois créé, tout utilisateur associé à ce club peut potentiellement voir et participer à l'événement, selon les paramètres du rôle ou de l'invitation.
+
+## 2. Ajouter des participants
+
+Si vous n'avez pas précisé les participants à l'étape de création, ou si vous voulez ajouter plus de personnes plus tard, vous pouvez utiliser des points de terminaison spécialisés pour attacher des membres à un événement en utilisant le point de terminaison [`POST /event/event-participants`](/reference/endpoints/event-controller-add-event-participants). 
+
+<Tabs>
+  <TabItem value="Request">
+```bash
+curl --request POST \
+  --url https://api.coolrool. om/event/event-participants \
+  --header 'Authorization: Bearer <ADMIN_TOKEN>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "eventId": "abc-123-event",
+    "participants": [101, 102, 103],
+    "sendEmail": vrai,
+    "sendPush": false
+  }'
+```
+  </TabItem>
+  <TabItem value="Response">
+```json
+{
+  "message": "Participants ajoutés",
+  "addedCount": 3
+}
+```
+</TabItem>
+</Tabs>
+
+Alternativement, certaines configurations vous permettent de spécifier les participants lors de la création de l'événement, donc cette étape peut être facultative en fonction de votre flux de travail.
+
+## 3. Ajouter des chauffeurs à l'événement
+
+Une fois l'événement défini, vous avez besoin de **chauffeurs** pour transporter les participants. COOLROOL traite chaque conducteur comme une entité automobile distincte liée à l’événement, indiquant les sièges disponibles et la direction de voyage (aller, retour, ou les deux).
+
+```json
+{
+  "eventId": "abc-123-event"
+}
+```
+
+Utiliser cet appel, COOLROOL convertira l'utilisateur authentifié (ou l'utilisateur spécifié) en un objet pilote pour cet événement — en supposant que l'utilisateur dispose de données de conducteur valides (comme une marque de voiture et le nombre de sièges) sur son profil.
+
+<Callout type="info" title="Alternative Approach">
+Certains clubs permettent à chaque volontaire de conduire depuis l'application mobile. Cela déclenche le même point de terminaison mais du côté **user** et non d'un administrateur. Le concept est le même : un conducteur est immatriculé dans le cadre d'un événement avec une capacité de voiture associée.
+</Callout>
+
+## 4. Places réservées par les passagers
+
+Les participants qui ne conduisent pas peuvent choisir une voiture de conducteur et réserver des sièges. COOLROOL gère la disponibilité des sièges de sorte que pas plus de passagers que la capacité de la voiture.
+
+<Tabs>
+  <TabItem value="Request">
+```json
+[
+  {
+    "eventCarId": "driver-car-uuid-1",
+    "eventParticipantId": "participant-uuid-101",
+    "tripType": "Going"
+  },
+  {
+    "eventCarId": "driver-car-uuid-1",
+    "Id d'événement": "participant-uuid-102",
+    "tripType": "Going"
+  }
+]
+```
+  </TabItem>
+  <TabItem value="Response"><TabItem value="Response">
+```json
+[
+  {
+    "id": "seatbooking-001",
+    "tripType": "Going",
+    "eventCar": "driver-car-uuid-1",
+    "eventParticipant": "participant-uuid-101"
+  },
+  {
+    "id": "seatbooking-002",
+    "tripType": "Going",
+    "eventCar": "driver-car-uuid-1",
+    "participant à l'événement": "participant-uuid-102"
+  }
+]
+```
+</TabItem>
+</Tabs>
+
+À ce stade, les participants sont marqués comme étant à cheval avec le conducteur spécifié pour le voyage « En route ».
+
+## 5. Gérer les mises à jour de Carpool
+
+Changement de plan : les sièges peuvent être réduits, les nouveaux conducteurs se joignent ou les participants peuvent changer de voiture. COOLROOL fournit des points de terminaison pour gérer les mises à jour — comme la réaffectation des sièges ou la place des participants sur une liste d'attente lorsque les voitures sont pleines.
+
+#### Mise à jour des assignations de sièges
+
+Vous pouvez mettre à jour le nombre de places disponibles ou mélanger les places assises à chaque course en utilisant le point de terminaison [`PATCH /event/driver-passengers`](/reference/endpoints/event-controller-update-book-car-seats). Le corps de la requête est structuré comme suit :
+
+```json
+{
+  "eventCarId": "driver-car-uuid-1",
+  "isDepart": true,
+  "isReturn": true,
+  "departSeats": 2,
+  "returnSeats": 2,
+  "departPassengerIds": ["participant-uuid-101"],
+  "returnPassengerIds": ["participant-uuid-102"]
+}
+```
+
+Cela peut changer le nombre de sièges disponibles ou mélanger qui est assis dans chaque voyage.
+
+### Liste d'attente (file d'attente)
+
+Si aucun siège n'est disponible, les participants peuvent faire la file d'attente jusqu'à ce qu'un conducteur ajoute plus de sièges ou de bénévoles pour les nouveaux conducteurs. Vous pouvez utiliser le point de terminaison [`POST /event/queue`](/reference/endpoints/event-controller-add-event-queue) pour ajouter un participant à la liste d'attente. Le corps de la requête est structuré comme suit :
+
+```json
+{
+  "eventId": "abc-123-event",
+  "tripType": "Going",
+  "eventParticipant": "participant-uuid-999"
+}
+```
+
+<Callout type="info">
+Si aucun siège n'est disponible, les participants peuvent faire la file d'attente jusqu'à ce qu'un conducteur ajoute plus de sièges ou de bénévoles pour les nouveaux conducteurs.
+</Callout>
+
+## 6. Piste & Revue
+
+Une fois l'événement réglé avec les chauffeurs et les réservations de sièges, vous pouvez rassembler des **listes de chauffeurs**, des **statistiques**, ou même la localisation des chauffeurs en temps réel. Cela aide les entraîneurs ou les administrateurs à savoir qui voyage, si des sièges sont manquants ou si un participant n’a jamais réservé de siège.
+
+- [`GET /event/driver-list`](/reference/endpoints/event-controller-event-driver-list): Liste tous les chauffeurs pour un événement, leurs sièges et les passagers assignés.  
+- [`GET /event/statistic`](/reference/endpoints/event-controller-get-event-statistic): Résumés comme le nombre de places ouvertes ou le nombre de participants confirmés.  
+- [`PATCH /event/driver-position`](/reference/endpoints/event-controller-event-driver-position): Mettre à jour la position en temps réel d'un pilote (option avancée).  
+
+Ces appels permettent une surveillance continue des trajets jusqu'à ce que tout le monde arrive en toute sécurité.

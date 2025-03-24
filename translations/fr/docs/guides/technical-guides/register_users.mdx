@@ -1,0 +1,72 @@
+---
+title: S'inscrire et vérifier les utilisateurs
+---
+
+Dans COOLROOL, l’authentification assure à chaque utilisateur – qu’il s’agisse d’un administrateur de club, d’un entraîneur, d’un parent ou d’un athlète – un accès sécurisé et approprié à ses données. Ce guide vous guide à travers les flux d'authentification du cœur :
+
+1. **Register or Admin-Register**: L'utilisateur fournit un `phone` et un `password` (et éventuellement d'autres détails). Un code SMS peut être envoyé pour confirmer la propriété du téléphone.  
+2. **Vérification** : L'utilisateur saisit le code. Si cela correspond, leur compte est marqué \`vérifié.  
+3. **Connexion** : une fois vérifié, vous pouvez appeler [`POST /auth/login`](/reference/endpoints/auth-controller-login) ou [`POST /auth/admin-login`](/reference/endpoints/auth-controller-admin-login) pour recevoir un jeton JWT. Ce jeton est utilisé dans les en-têtes d'autorisation pour tous les appels subséquents vers des terminaux protégés.
+
+En suivant ces étapes, les clubs peuvent embarquer en toute sécurité de nouveaux utilisateurs, et ces utilisateurs peuvent accéder en toute confiance à des terminaux protégés (comme la gestion des événements ou les détails du club).
+
+## Flux de travail typique
+
+<Image src="/media/register-users-api-flow.svg"/>
+
+### 1. Créer un nouvel utilisateur
+
+Le processus d'enregistrement commence par la création d'un nouveau compte utilisateur en utilisant le point de terminaison [`POST /auth/register`](/reference/endpoints/auth-controller-register). Cette étape collecte les informations utilisateur essentielles et initie le processus de création de compte en fournissant le `téléphone` et le `mot de passe`. L'exemple suivant montre comment enregistrer un nouvel utilisateur :
+
+```bash
+curl --request POST \
+  --url https://api.coolrool.com/auth/register \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "phone": "+905521234567",
+    "password": "Abc12345"
+}'
+```
+
+### 2. Vérifier le numéro de téléphone
+
+Le processus de vérification consiste à envoyer un code SMS à 4 ou 6 chiffres au numéro de téléphone de l'utilisateur. Ce code est ensuite vérifié en utilisant le point de terminaison [`POST /auth/verification`](/reference/endpoints/auth-controller-user-verification). L'exemple suivant montre comment vérifier un numéro de téléphone:
+
+```bash
+curl --request POST \
+  --url https://api.coolrool.com/auth/verification \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "phone": "+905521234567",
+    "verificationCode": 1234
+}'
+```
+
+### 3. Se connecter
+
+Une fois le numéro de téléphone vérifié, vous pouvez vous connecter en utilisant le point de terminaison [`POST /auth/login`](/reference/endpoints/auth/login). L'exemple suivant montre comment se connecter à un utilisateur:
+
+```bash
+curl --request POST \
+  --url https://api.coolrool.com/auth/login \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "phone": "+905521234567",
+    "password": "Abc12345"
+}'
+```
+
+Le `token` (JWT) retourné doit être inclus dans l'en-tête **Authorization** pour les requêtes suivantes :
+
+```
+Autorisation : Bearer eyJhbGciOiJIU...
+```
+
+### 4. Enregistrement et connexion de l'administrateur
+
+**Admin** workflows miroir flux utilisateur mais utilisez:
+
+- [`POST /auth/admin-register`](/reference/endpoints/auth-controller-admin-register)  
+- [`POST /auth/admin-login`](/reference/endpoints/auth-controller-admin-login)  
+
+Le corps de la requête est presque le même, mais le nouveau compte aura des privilèges supplémentaires. Gardez tous les jetons d'administration sécurisés et limitez l'utilisation aux fonctionnalités appropriées telles que la suspension de club ou la gestion des utilisateurs.
