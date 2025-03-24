@@ -56,7 +56,7 @@ Après avoir créé un club, vous ou d'autres administrateurs pouvez vérifier t
 curl --request GET \
   --url "https://api.coolrool. om/clubs? kipPages=0&pageSize=10&searchValue=Thunder" \
   --header 'Authorization: Bearer <TOKEN>'
-
+```
 
 </TabItem>
 <TabItem value="Unpaginated, cURL">
@@ -64,7 +64,7 @@ curl --request GET \
 curl --request GET \
   --url "https://api. oolrool. om/clubs/all" \
   --header 'Authorization: Bearer <TOKEN>'
-
+```
 </TabItem>
 <TabItem value="Example response">
 ```json
@@ -138,7 +138,7 @@ curl --request POST \
   --form 'email=charlie@domain. om'
   --form 'isPassenger=true'
   --form 'isDriver=false'
-
+```
 </TabItem>
 <TabItem value="Example response">
 ```json
@@ -176,6 +176,6 @@ curl --request PATCH \
  ```
 200 OK
 "Suspend club"
-
+```
 </TabItem>
 </Tabs>
