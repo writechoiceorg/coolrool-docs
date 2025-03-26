@@ -9,7 +9,8 @@
         "Overview": "Vue d'ensemble",
         "Dashboards": "Tableaux de bord",
         "How the App Works": "Comment fonctionne l'application",
-        "Technical Guides": "Guides techniques"
+        "Technical Guides": "Guides techniques",
+        "Integration Options": "Options d'intégration"
       },
       "apiReference": {
         "Endpoints": "Endpoints",
