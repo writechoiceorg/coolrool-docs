@@ -1,0 +1,31 @@
+{
+  "fr": {
+    "navbar": {
+      "Guides": "Guides",
+      "API Reference": "Référence de l'API"
+    },
+    "sidebars": {
+      "guides": {
+        "Overview": "Vue d'ensemble",
+        "Dashboards": "Tableaux de bord",
+        "How the App Works": "Comment fonctionne l'application",
+        "Technical Guides": "Guides techniques"
+      },
+      "apiReference": {
+        "Endpoints": "Points de terminaison",
+        "Authentication": "Authentification",
+        "Clubs": "Clubs",
+        "Disciplines": "Disciplines",
+        "Events": "Événements",
+        "Groups": "Groupes",
+        "Notifications": "Notifications",
+        "Relatives": "Membres de la famille",
+        "Rooms": "Salles",
+        "Seeds": "Graines",
+        "Sponsors": "Sponsors",
+        "Users": "Utilisateurs",
+        "Vehicles": "Véhicules"
+      }
+    }
+  }
+}
