@@ -22,6 +22,11 @@
   "apiFiles": [
     "endpoints.yml"
   ],
+  "translatedApiFiles": {
+    "fr": [
+      "fr/endpoints.yml"
+    ]
+  },
   "homepage": "homepage.html",
   "changelog": false,
   "navbar": [

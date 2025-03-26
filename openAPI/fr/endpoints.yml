@@ -26,7 +26,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/User2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - auth
       x-stoplight:
@@ -55,7 +55,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/User2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - auth
       x-stoplight:
@@ -84,7 +84,7 @@ paths:
               schema:
                 type: object
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - auth
       x-stoplight:
@@ -113,7 +113,7 @@ paths:
               schema:
                 type: object
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - auth
       x-stoplight:
@@ -142,7 +142,7 @@ paths:
               schema:
                 type: object
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - auth
       x-stoplight:
@@ -159,7 +159,7 @@ paths:
               schema:
                 type: string
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -176,7 +176,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/User2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -198,7 +198,7 @@ paths:
               schema:
                 type: string
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -219,7 +219,7 @@ paths:
         '201':
           description: ''
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -242,7 +242,7 @@ paths:
               schema:
                 type: object
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -265,7 +265,7 @@ paths:
               schema:
                 type: object
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -289,7 +289,7 @@ paths:
         '201':
           description: ''
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -301,13 +301,13 @@ paths:
         - name: id
           required: true
           in: path
-          description: User ID
+          description: ID de l'utilisateur
           schema:
             type: number
         - name: language
           required: true
           in: path
-          description: Language code
+          description: Code de langue
           schema:
             type: string
       responses:
@@ -318,7 +318,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/User2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -343,7 +343,7 @@ paths:
         '201':
           description: ''
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -368,7 +368,7 @@ paths:
         '201':
           description: ''
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -393,7 +393,7 @@ paths:
         '201':
           description: ''
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -410,7 +410,7 @@ paths:
               schema:
                 type: string
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -432,7 +432,7 @@ paths:
               schema:
                 type: string
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -454,7 +454,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/User2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -483,7 +483,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ClubMembershipEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -495,13 +495,13 @@ paths:
         - name: userId
           required: true
           in: path
-          description: User id
+          description: ID de l'utilisateur
           schema:
             type: number
         - name: clubId
           required: true
           in: path
-          description: Club id
+          description: ID du club
           schema:
             type: number
       responses:
@@ -512,7 +512,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/User2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -523,13 +523,13 @@ paths:
         - name: userId
           required: true
           in: path
-          description: User id
+          description: ID de l'utilisateur
           schema:
             type: number
         - name: clubId
           required: true
           in: path
-          description: Club id
+          description: ID du club
           schema:
             type: number
       responses:
@@ -540,7 +540,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/User2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -551,13 +551,13 @@ paths:
         - name: userId
           required: true
           in: path
-          description: User id
+          description: ID de l'utilisateur
           schema:
             type: number
         - name: clubId
           required: true
           in: path
-          description: Club id
+          description: ID du club
           schema:
             type: number
       requestBody:
@@ -574,7 +574,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/User2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -586,13 +586,13 @@ paths:
         - name: phone
           required: true
           in: path
-          description: User phone number
+          description: Numéro de téléphone de l'utilisateur
           schema:
             type: string
         - name: clubId
           required: true
           in: path
-          description: Club id
+          description: ID du club
           schema:
             type: number
       responses:
@@ -603,7 +603,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/User2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -615,14 +615,14 @@ paths:
         - name: userId
           required: true
           in: path
-          description: User ID to attach files to
+          description: ID de l'utilisateur auquel joindre des fichiers
           schema:
             type: number
       responses:
         '200':
-          description: File updated successfully
+          description: "Fichier mis à jour avec succès"
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -634,26 +634,26 @@ paths:
         - name: userId
           required: true
           in: path
-          description: ID of the user to which the file belongs
+          description: "ID de l'utilisateur auquel appartient le fichier"
           schema:
             type: number
         - name: fileId
           required: true
           in: path
-          description: ID of the file to delete
+          description: "ID du fichier à supprimer"
           schema:
             type: number
         - name: key
           required: true
           in: query
-          description: Key of the file to delete
+          description: "Clé du fichier à supprimer"
           schema:
             type: string
       responses:
         '200':
-          description: File deleted successfully
+          description: "Fichier supprimé avec succès"
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -665,7 +665,7 @@ paths:
         - name: skipPages
           required: true
           in: query
-          description: The number of pages to skip to
+          description: "Le nombre de pages à ignorer"
           schema:
             minimum: 0
             default: 0
@@ -673,7 +673,7 @@ paths:
         - name: pageSize
           required: true
           in: query
-          description: The number of items to return
+          description: "Le nombre d'éléments à renvoyer"
           schema:
             minimum: 1
             default: 10
@@ -686,7 +686,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/User2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -697,7 +697,7 @@ paths:
         - name: notificationId
           required: true
           in: query
-          description: NotificationId
+          description: "ID de la notification"
           example: cee838f8-eb2a-462a-99bd-5f721985b57f
           schema:
             default: cee838f8-eb2a-462a-99bd-5f721985b57f
@@ -710,7 +710,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/User2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -733,7 +733,7 @@ paths:
               schema:
                 type: string
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -749,7 +749,7 @@ paths:
               schema:
                 type: string
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -761,7 +761,7 @@ paths:
         - name: skipPages
           required: true
           in: query
-          description: The number of pages to skip to
+          description: "Le nombre de pages à ignorer"
           schema:
             minimum: 0
             default: 0
@@ -769,7 +769,7 @@ paths:
         - name: pageSize
           required: true
           in: query
-          description: The number of items to return
+          description: "Le nombre d'éléments à renvoyer"
           schema:
             minimum: 1
             default: 10
@@ -777,7 +777,7 @@ paths:
         - name: clubId
           required: false
           in: query
-          description: Club id
+          description: "ID du club"
           schema:
             type: number
         - name: member
@@ -793,7 +793,7 @@ paths:
         - name: eventId
           required: false
           in: query
-          description: Event id
+          description: "ID de l'événement"
           schema:
             type: string
         - name: sort
@@ -809,7 +809,7 @@ paths:
         - name: searchValue
           required: false
           in: query
-          description: Search value
+          description: "Valeur de recherche"
           example: User
           schema:
             default: User
@@ -822,7 +822,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/User2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -851,7 +851,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/User2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -876,7 +876,7 @@ paths:
         '201':
           description: ''
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -893,7 +893,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/User2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -921,7 +921,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/UserClubProfileEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -938,7 +938,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/User2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -950,22 +950,22 @@ paths:
         - name: id
           required: true
           in: path
-          description: Club user id
+          description: "ID de l'utilisateur du club"
           schema:
             type: number
         - name: suspendStatus
           required: true
           in: query
-          description: Suspend status
+          description: "Statut de suspension"
           example: true
           schema:
             default: true
             type: boolean
       responses:
         '200':
-          description: Suspend user
+          description: "Suspendre l'utilisateur"
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -977,7 +977,7 @@ paths:
         - name: id
           required: true
           in: path
-          description: User ID
+          description: "ID de l'utilisateur"
           schema:
             type: number
       requestBody:
@@ -994,7 +994,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/User2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -1011,13 +1011,13 @@ paths:
               $ref: '#/components/schemas/UpdateUsersGroupsDto'
       responses:
         '200':
-          description: Users groups updated successfully
+          description: "Groupes d'utilisateurs mis à jour avec succès"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/User2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -1029,7 +1029,7 @@ paths:
         - name: id
           required: true
           in: path
-          description: User ID
+          description: "ID de l'utilisateur"
           schema:
             type: number
       requestBody:
@@ -1040,13 +1040,13 @@ paths:
               $ref: '#/components/schemas/UpdateUsersGroupsDto'
       responses:
         '200':
-          description: Groups coaches updated successfully
+          description: "Les entraîneurs des groupes ont été mis à jour avec succès"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/User2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -1058,20 +1058,20 @@ paths:
         - name: groupId
           required: true
           in: path
-          description: Group ID
+          description: "ID du groupe"
           schema:
             type: number
         - name: coachId
           required: true
           in: path
-          description: Coach ID
+          description: "ID de l'entraîneur"
           schema:
             type: number
       responses:
         '200':
-          description: Coach deleted successfully
+          description: "Entraîneur supprimé avec succès"
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - user
       x-stoplight:
@@ -1100,7 +1100,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/UserRelativesEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - relatives
       x-stoplight:
@@ -1111,7 +1111,7 @@ paths:
         - name: byPhone
           required: false
           in: query
-          description: Find relative by phone number
+          description: "Trouver un membre de la famille par numéro de téléphone"
           schema:
             type: boolean
       responses:
@@ -1122,7 +1122,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/UserRelativesEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - relatives
       x-stoplight:
@@ -1144,7 +1144,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/UserRelativesEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - relatives
       x-stoplight:
@@ -1166,7 +1166,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/UserRelativesEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - relatives
       x-stoplight:
@@ -1178,7 +1178,7 @@ paths:
         - name: relativeId
           required: true
           in: path
-          description: Relative id
+          description: "ID du membre de la famille"
           schema:
             type: number
       responses:
@@ -1189,7 +1189,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/UserRelativesEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - relatives
       x-stoplight:
@@ -1201,7 +1201,7 @@ paths:
         - name: phone
           required: true
           in: path
-          description: Relative phone number
+          description: "Téléphone du membre de la famille"
           example: '+905521234567'
           schema:
             type: string
@@ -1213,7 +1213,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ClubEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - relatives
       x-stoplight:
@@ -1236,7 +1236,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/UserRelativesEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - relatives
       x-stoplight:
@@ -1265,7 +1265,7 @@ paths:
               schema:
                 type: object
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - relatives
       x-stoplight:
@@ -1287,7 +1287,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/UserRelativesEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - relatives
       x-stoplight:
@@ -1316,7 +1316,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ClubEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - clubs
       x-stoplight:
@@ -1327,7 +1327,7 @@ paths:
         - name: skipPages
           required: true
           in: query
-          description: The number of pages to skip to
+          description: "Le nombre de pages à ignorer"
           schema:
             minimum: 0
             default: 0
@@ -1335,7 +1335,7 @@ paths:
         - name: pageSize
           required: true
           in: query
-          description: The number of items to return
+          description: "Le nombre d'éléments à renvoyer"
           schema:
             minimum: 1
             default: 10
@@ -1343,7 +1343,7 @@ paths:
         - name: searchValue
           required: false
           in: query
-          description: Search value
+          description: "Valeur de recherche"
           example: User
           schema:
             default: User
@@ -1361,21 +1361,21 @@ paths:
         - name: name
           required: false
           in: query
-          description: Name of discipline
+          description: "Nom de la discipline"
           example: Mathematics
           schema:
             type: string
         - name: priority
           required: false
           in: query
-          description: Specify the priority. From 1 to 8. Required to display of an icon when selecting disciplines.
+          description: "Spécifie la priorité. De 1 à 8. Requis pour l'affichage d'une icône lors de la sélection des disciplines."
           example: 1
           schema:
             $ref: '#/components/schemas/DisciplineIconSlotOrder'
         - name: discipline
           required: false
           in: query
-          description: Optional filter for clubs. Can be a string or null.
+          description: "Filtre facultatif pour les clubs. Peut être une chaîne de caractères ou null."
           example: Aviation
           schema:
             type: string
@@ -1387,7 +1387,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ClubEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - clubs
       x-stoplight:
@@ -1398,9 +1398,9 @@ paths:
       parameters: []
       responses:
         '200':
-          description: Suspend club
+          description: "Suspendre le club"
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - clubs
       x-stoplight:
@@ -1417,7 +1417,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ClubEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - clubs
       x-stoplight:
@@ -1429,13 +1429,13 @@ paths:
         - name: id
           required: true
           in: query
-          description: Club id
+          description: "ID du club"
           schema:
             type: number
         - name: skipPages
           required: true
           in: query
-          description: The number of pages to skip to
+          description: "Le nombre de pages à ignorer"
           schema:
             minimum: 0
             default: 0
@@ -1443,7 +1443,7 @@ paths:
         - name: pageSize
           required: true
           in: query
-          description: The number of items to return
+          description: "Le nombre d'éléments à renvoyer"
           schema:
             minimum: 1
             default: 10
@@ -1456,7 +1456,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Sponsor2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - clubs
       x-stoplight:
@@ -1488,7 +1488,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ClubEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - clubs
       x-stoplight:
@@ -1499,14 +1499,14 @@ paths:
       parameters: []
       responses:
         '200':
-          description: The response body contains an array of objects, each representing a membership
+          description: "Le corps de la réponse contient un tableau d'objets, représentant chacun une adhésion"
           content:
             application/json:
               schema:
                 type: string
               examples: {}
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - clubs
       x-stoplight:
@@ -1522,7 +1522,7 @@ paths:
               $ref: '#/components/schemas/CreateMembershipDto'
       responses:
         '200':
-          description: identifier of created membership
+          description: "Identifiant de l'adhésion créée"
         '201':
           description: ''
           content:
@@ -1530,7 +1530,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ClubMembershipEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - clubs
       x-stoplight:
@@ -1546,9 +1546,9 @@ paths:
               $ref: '#/components/schemas/DeleteMembershipDto'
       responses:
         '200':
-          description: identifier of created membership
+          description: "Identifiant de l'adhésion créée"
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - clubs
       x-stoplight:
@@ -1560,14 +1560,14 @@ paths:
         - name: userId
           required: true
           in: query
-          description: User id
+          description: "ID de l'utilisateur"
           schema:
             default: 1
             type: number
         - name: clubId
           required: true
           in: query
-          description: Club id
+          description: "ID du club"
           schema:
             default: 1
             type: number
@@ -1579,7 +1579,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ClubUserOriginal2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - clubs
       x-stoplight:
@@ -1591,7 +1591,7 @@ paths:
         - name: clubId
           required: true
           in: path
-          description: User club id
+          description: "ID du club de l'utilisateur"
           schema:
             type: number
       responses:
@@ -1602,7 +1602,7 @@ paths:
               schema:
                 type: string
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - clubs
       x-stoplight:
@@ -1624,7 +1624,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ClubEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - clubs
       x-stoplight:
@@ -1651,7 +1651,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ClubEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - clubs
       x-stoplight:
@@ -1666,9 +1666,9 @@ paths:
             type: number
       responses:
         '200':
-          description: Delete club
+          description: "Supprimer le club"
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - clubs
       x-stoplight:
@@ -1680,20 +1680,20 @@ paths:
         - name: disciplineId
           required: true
           in: path
-          description: The discipline ID to filter, set -1 for all discipline
+          description: "L'ID de la discipline à filtrer, définissez -1 pour toutes les disciplines"
           schema:
             type: number
         - name: clubName
           required: false
           in: query
-          description: Club name
+          description: "Nom du club"
           example: Sports Club
           schema:
             type: string
         - name: skipPages
           required: true
           in: query
-          description: The number of pages to skip to
+          description: "Le nombre de pages à ignorer"
           schema:
             minimum: 0
             default: 0
@@ -1701,7 +1701,7 @@ paths:
         - name: pageSize
           required: true
           in: query
-          description: The number of items to return
+          description: "Le nombre d'éléments à renvoyer"
           schema:
             minimum: 1
             default: 10
@@ -1726,22 +1726,22 @@ paths:
         - name: id
           required: true
           in: path
-          description: Club id
+          description: "ID du club"
           schema:
             type: number
         - name: suspendStatus
           required: true
           in: query
-          description: Suspend status
+          description: "Statut de suspension"
           example: true
           schema:
             default: true
             type: boolean
       responses:
         '200':
-          description: Suspend club
+          description: "Suspendre le club"
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - clubs
       x-stoplight:
@@ -1758,7 +1758,7 @@ paths:
               $ref: '#/components/schemas/ClubRequestDto'
       responses:
         '200':
-          description: Club has been added.
+          description: "Le club a été ajouté."
           content:
             application/json:
               schema:
@@ -1791,7 +1791,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ClubRequestEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - clubs
       x-stoplight:
@@ -1818,7 +1818,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/ClubUserOriginal2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - clubs
       x-stoplight:
@@ -1843,7 +1843,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ClubUserOriginal2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - clubs
       x-stoplight:
@@ -1855,7 +1855,7 @@ paths:
         - name: clubCode
           required: true
           in: path
-          description: The club code
+          description: "Le code du club"
           schema:
             type: string
       responses:
@@ -1901,7 +1901,7 @@ paths:
         - name: eventId
           required: true
           in: query
-          description: Event id
+          description: "ID de l'événement"
           example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
           schema:
             default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
@@ -1914,7 +1914,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/EventCarEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - event
       x-stoplight:
@@ -1926,7 +1926,7 @@ paths:
         - name: eventId
           required: true
           in: query
-          description: Event id
+          description: "ID de l'événement"
           example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
           schema:
             default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
@@ -1939,7 +1939,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/EventCarEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - event
       x-stoplight:
@@ -1951,7 +1951,7 @@ paths:
         - name: eventCarId
           required: true
           in: query
-          description: Event Car id
+          description: "ID de la voiture de l'événement"
           example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
           schema:
             default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
@@ -1964,7 +1964,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/EventCarEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - event
       x-stoplight:
@@ -1975,7 +1975,7 @@ paths:
         - name: eventCarId
           required: true
           in: query
-          description: Event Car id
+          description: "ID de la voiture de l'événement"
           example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
           schema:
             default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
@@ -1988,7 +1988,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/EventCarEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - event
       x-stoplight:
@@ -2016,7 +2016,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/EventCarEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - event
       x-stoplight:
@@ -2028,7 +2028,7 @@ paths:
         - name: eventId
           required: true
           in: query
-          description: Event id
+          description: "ID de l'événement"
           example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
           schema:
             default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
@@ -2041,7 +2041,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/EventCarEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - event
       x-stoplight:
@@ -2053,7 +2053,7 @@ paths:
         - name: eventCarId
           required: true
           in: query
-          description: Event Car id
+          description: "ID de la voiture de l'événement"
           example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
           schema:
             default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
@@ -2066,7 +2066,7 @@ paths:
               schema:
                 type: boolean
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - event
       x-stoplight:
@@ -2089,7 +2089,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/EventCarEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - event
       x-stoplight:
@@ -2112,7 +2112,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/EventCarEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - event
       x-stoplight:
@@ -2141,7 +2141,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/EventQueueEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - event
       x-stoplight:
@@ -2170,7 +2170,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/EventCarParticipantEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - event
       x-stoplight:
@@ -2188,7 +2188,7 @@ paths:
         '200':
           description: ''
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - event
       x-stoplight:
@@ -2207,7 +2207,7 @@ paths:
         '200':
           description: ''
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - event
       x-stoplight:
@@ -2219,7 +2219,7 @@ paths:
         - name: eventId
           required: true
           in: query
-          description: Event id
+          description: "ID de l'événement"
           example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
           schema:
             default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
@@ -2232,7 +2232,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/EventCarEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - event
       x-stoplight:
@@ -2298,7 +2298,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/EventCarEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - event
       x-stoplight:
@@ -2309,7 +2309,7 @@ paths:
         - name: skipPages
           required: true
           in: query
-          description: The number of pages to skip to
+          description: "Le nombre de pages à ignorer"
           schema:
             minimum: 0
             default: 0
@@ -2317,7 +2317,7 @@ paths:
         - name: pageSize
           required: true
           in: query
-          description: The number of items to return
+          description: "Le nombre d'éléments à renvoyer"
           schema:
             minimum: 1
             default: 10
@@ -2325,7 +2325,7 @@ paths:
         - name: searchValue
           required: false
           in: query
-          description: Search value
+          description: "Valeur de recherche"
           example: User
           schema:
             default: User
@@ -2338,13 +2338,13 @@ paths:
         - name: clubId
           required: false
           in: query
-          description: Club id
+          description: "ID du club"
           schema:
             type: number
         - name: startDate
           required: false
           in: query
-          description: Start date
+          description: "Date de début"
           example: '2023-09-24T10:00:00.000Z'
           schema:
             default: '2023-09-24T10:00:00.000Z'
@@ -2352,7 +2352,7 @@ paths:
         - name: endDate
           required: false
           in: query
-          description: End date
+          description: "Date de fin"
           example: '2023-09-24T10:00:00.000Z'
           schema:
             default: '2023-09-24T10:00:00.000Z'
@@ -2440,13 +2440,13 @@ paths:
         - name: eventId
           required: true
           in: path
-          description: Event id
+          description: "ID de l'événement"
           schema:
             type: string
         - name: skipPages
           required: true
           in: query
-          description: The number of pages to skip to
+          description: "Le nombre de pages à ignorer"
           schema:
             minimum: 0
             default: 0
@@ -2454,7 +2454,7 @@ paths:
         - name: pageSize
           required: true
           in: query
-          description: The number of items to return
+          description: "Le nombre d'éléments à renvoyer"
           schema:
             minimum: 1
             default: 10
@@ -2488,7 +2488,7 @@ paths:
         '201':
           description: ''
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - event
       x-stoplight:
@@ -2513,7 +2513,7 @@ paths:
         - name: skipPages
           required: true
           in: query
-          description: The number of pages to skip to
+          description: "Le nombre de pages à ignorer"
           schema:
             minimum: 0
             default: 0
@@ -2521,7 +2521,7 @@ paths:
         - name: pageSize
           required: true
           in: query
-          description: The number of items to return
+          description: "Le nombre d'éléments à renvoyer"
           schema:
             minimum: 1
             default: 10
@@ -2546,7 +2546,7 @@ paths:
         - name: skipPages
           required: true
           in: query
-          description: The number of pages to skip to
+          description: "Le nombre de pages à ignorer"
           schema:
             minimum: 0
             default: 0
@@ -2554,7 +2554,7 @@ paths:
         - name: pageSize
           required: true
           in: query
-          description: The number of items to return
+          description: "Le nombre d'éléments à renvoyer"
           schema:
             minimum: 1
             default: 10
@@ -2579,7 +2579,7 @@ paths:
         - name: skipPages
           required: true
           in: query
-          description: The number of pages to skip to
+          description: "Le nombre de pages à ignorer"
           schema:
             minimum: 0
             default: 0
@@ -2587,7 +2587,7 @@ paths:
         - name: pageSize
           required: true
           in: query
-          description: The number of items to return
+          description: "Le nombre d'éléments à renvoyer"
           schema:
             minimum: 1
             default: 10
@@ -2617,7 +2617,7 @@ paths:
         - name: showAll
           required: false
           in: query
-          description: Show all point
+          description: "Afficher tous les points"
           schema:
             type: boolean
       responses:
@@ -2686,7 +2686,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Sponsor2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - sponsor
       x-stoplight:
@@ -2714,7 +2714,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Sponsor2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - sponsor
       x-stoplight:
@@ -2726,7 +2726,7 @@ paths:
         - name: sponsorId
           required: true
           in: path
-          description: Sponsor id
+          description: "ID du sponsor"
           schema:
             type: number
       responses:
@@ -2737,7 +2737,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Sponsor2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - sponsor
       x-stoplight:
@@ -2747,6 +2747,7 @@ paths:
       operationId: SponsorController_updateSponsor
       parameters:
         - name: sponsorId
+          description: "ID du sponsor"
           required: true
           in: path
           schema:
@@ -2765,7 +2766,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Sponsor2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - sponsor
       x-stoplight:
@@ -2775,6 +2776,7 @@ paths:
       parameters:
         - name: sponsorId
           required: true
+          description: "ID du sponsor"
           in: path
           schema:
             type: number
@@ -2786,7 +2788,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Sponsor2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - sponsor
       x-stoplight:
@@ -2803,7 +2805,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Sponsor2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - sponsor
       x-stoplight:
@@ -2825,7 +2827,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Sponsor2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - sponsor
       x-stoplight:
@@ -2837,7 +2839,7 @@ paths:
         - name: searchValue
           required: false
           in: query
-          description: Search value
+          description: "Valeur de recherche"
           example: User
           schema:
             default: User
@@ -2845,7 +2847,7 @@ paths:
         - name: skipPages
           required: true
           in: query
-          description: The number of pages to skip to
+          description: "Le nombre de pages à ignorer"
           schema:
             minimum: 0
             default: 0
@@ -2853,7 +2855,7 @@ paths:
         - name: pageSize
           required: true
           in: query
-          description: The number of items to return
+          description: "Le nombre d'éléments à renvoyer"
           schema:
             minimum: 1
             default: 10
@@ -2866,7 +2868,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Sponsor2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - sponsor
       x-stoplight:
@@ -2878,13 +2880,13 @@ paths:
         - name: id
           required: true
           in: query
-          description: Sponsor id
+          description: "ID du sponsor"
           schema:
             type: number
         - name: skipPages
           required: true
           in: query
-          description: The number of pages to skip to
+          description: "Le nombre de pages à ignorer"
           schema:
             minimum: 0
             default: 0
@@ -2892,7 +2894,7 @@ paths:
         - name: pageSize
           required: true
           in: query
-          description: The number of items to return
+          description: "Le nombre d'éléments à renvoyer"
           schema:
             minimum: 1
             default: 10
@@ -2905,7 +2907,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ClubEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - sponsor
       x-stoplight:
@@ -2922,7 +2924,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Sponsor2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - sponsor
       x-stoplight:
@@ -2939,7 +2941,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Sponsor2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - sponsor
       x-stoplight:
@@ -2968,7 +2970,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ClubsSponsorsEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - sponsor
       x-stoplight:
@@ -2980,7 +2982,7 @@ paths:
         - name: id
           required: true
           in: path
-          description: Sponsor ID to attach files to
+          description: "ID du sponsor auquel joindre des fichiers"
           schema:
             type: number
       requestBody:
@@ -2991,9 +2993,9 @@ paths:
               $ref: '#/components/schemas/UpdateUniqueImagesDto'
       responses:
         '200':
-          description: File uploaded successfully and associated with the sponsor.
+          description: "Fichier téléchargé avec succès et associé au sponsor."
         '400':
-          description: Bad Request. Ensure the file and dates are provided.
+          description: "Mauvaise Requête. Assurez-vous que le fichier et les dates sont fournis."
       tags:
         - sponsor
       x-stoplight:
@@ -3004,12 +3006,12 @@ paths:
         - name: id
           required: true
           in: path
-          description: Unique Image ID to delete
+          description: "ID unique de l'image à supprimer"
           schema:
             type: number
       responses:
         '200':
-          description: Image deleted successfully.
+          description: "Image supprimée avec succès."
       tags:
         - sponsor
       x-stoplight:
@@ -3026,7 +3028,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/RoomsService'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - rooms
       x-stoplight:
@@ -3054,7 +3056,7 @@ paths:
               schema:
                 type: boolean
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - rooms
       x-stoplight:
@@ -3076,7 +3078,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/RoomsService'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - rooms
       x-stoplight:
@@ -3105,7 +3107,7 @@ paths:
               schema:
                 type: boolean
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - rooms
       x-stoplight:
@@ -3122,7 +3124,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/DriverCarEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - vehicle
       x-stoplight:
@@ -3150,7 +3152,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/DriverCarEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - vehicle
       x-stoplight:
@@ -3172,7 +3174,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/DriverCarEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - vehicle
       x-stoplight:
@@ -3189,7 +3191,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/CarsEntity'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - vehicle
       x-stoplight:
@@ -3213,7 +3215,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/CarsEntity'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - vehicle
       x-stoplight:
@@ -3242,7 +3244,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/DriverLicenseEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - vehicle
       x-stoplight:
@@ -3258,7 +3260,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/DriverLicenseEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - vehicle
       x-stoplight:
@@ -3280,7 +3282,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/DriverLicenseEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - vehicle
       x-stoplight:
@@ -3291,7 +3293,7 @@ paths:
       parameters: []
       responses:
         '200':
-          description: Api response
+          description: "Réponse de l'API"
           content:
             application/json:
               schema:
@@ -3324,7 +3326,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/DisciplineEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - disciplines
       x-stoplight:
@@ -3374,7 +3376,7 @@ paths:
         - name: clubName
           required: false
           in: query
-          description: Club name
+          description: "Nom du club"
           example: Sports Club
           schema:
             type: string
@@ -3407,13 +3409,13 @@ paths:
               $ref: '#/components/schemas/UpdateDisciplineDto'
       responses:
         '200':
-          description: Discipline has updated succesfully
+          description: "La discipline a été mise à jour avec succès"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DisciplineEntity2'
         '400':
-          description: Discipline with ID 1 not found
+          description: "La discipline avec l'ID 1 est introuvable"
       tags:
         - disciplines
       x-stoplight:
@@ -3428,13 +3430,13 @@ paths:
             type: string
       responses:
         '200':
-          description: Discipline has deleted succesfully
+          description: "La discipline a été supprimée avec succès"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DisciplineEntity2'
         '400':
-          description: Discipline with ID 1 not found
+          description: "La discipline avec l'ID 1 est introuvable"
       tags:
         - disciplines
       x-stoplight:
@@ -3446,7 +3448,7 @@ paths:
         - name: skipPages
           required: true
           in: query
-          description: The number of pages to skip to
+          description: "Le nombre de pages à ignorer"
           schema:
             minimum: 0
             default: 0
@@ -3454,7 +3456,7 @@ paths:
         - name: pageSize
           required: true
           in: query
-          description: The number of items to return
+          description: "Le nombre d'éléments à renvoyer"
           schema:
             minimum: 1
             default: 10
@@ -3472,7 +3474,7 @@ paths:
         - name: searchValue
           required: false
           in: query
-          description: Search value
+          description: "Valeur de recherche"
           example: User
           schema:
             default: User
@@ -3492,7 +3494,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/GroupEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - group
       x-stoplight:
@@ -3508,13 +3510,13 @@ paths:
               $ref: '#/components/schemas/GroupDto'
       responses:
         '201':
-          description: Create a new group
+          description: "Créer un nouveau groupe"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/GroupEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - group
       x-stoplight:
@@ -3530,7 +3532,7 @@ paths:
             type: number
       responses:
         '200':
-          description: List of groups
+          description: "Liste des groupes"
           content:
             application/json:
               schema:
@@ -3538,7 +3540,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/GroupEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - group
       x-stoplight:
@@ -3550,18 +3552,18 @@ paths:
         - name: id
           required: true
           in: path
-          description: Group ID
+          description: "ID du groupe"
           schema:
             type: string
       responses:
         '200':
-          description: Get group by id
+          description: "Obtenir un groupe par son ID"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/GroupEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - group
       x-stoplight:
@@ -3572,7 +3574,7 @@ paths:
         - name: id
           required: true
           in: path
-          description: Group ID
+          description: "ID du groupe"
           schema:
             type: string
       requestBody:
@@ -3583,13 +3585,13 @@ paths:
               $ref: '#/components/schemas/GroupDto'
       responses:
         '200':
-          description: Update a group by id
+          description: "Mettre à jour un groupe par son ID"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/GroupEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - group
       x-stoplight:
@@ -3600,18 +3602,18 @@ paths:
         - name: id
           required: true
           in: path
-          description: Group ID
+          description: "ID du groupe"
           schema:
             type: string
       responses:
         '200':
-          description: Delete a group by id
+          description: "Supprimer un groupe par son ID"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/GroupEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - group
       x-stoplight:
@@ -3623,7 +3625,7 @@ paths:
         - name: id
           required: true
           in: path
-          description: Group ID
+          description: "ID du groupe"
           schema:
             type: string
       requestBody:
@@ -3634,13 +3636,13 @@ paths:
               $ref: '#/components/schemas/GroupDescriptionDto'
       responses:
         '200':
-          description: Update a group description by id
+          description: "Mettre à jour la description d'un groupe par son ID"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/GroupEntity2'
         '400':
-          description: Bad Request
+          description: Mauvaise Requête
       tags:
         - group
       x-stoplight:
@@ -3667,15 +3669,15 @@ components:
       properties:
         phone:
           type: string
-          description: Phone number
+          description: "Numéro de téléphone"
           example: '+905521234567'
         password:
           type: string
-          description: User Password
+          description: "Mot de passe de l'utilisateur"
           example: Abc12345
         temporaryPassword:
           type: string
-          description: Admin temporary password
+          description: "Mot de passe temporaire d'administrateur"
           example: Abc12345
       required:
         - phone
@@ -5150,11 +5152,11 @@ components:
       properties:
         phone:
           type: string
-          description: Phone number
+          description: "Numéro de téléphone"
           example: '+380639793505'
         password:
           type: string
-          description: User Password
+          description: "Mot de passe de l'utilisateur"
           example: Abc12345
       required:
         - phone
@@ -5166,7 +5168,7 @@ components:
       properties:
         phone:
           type: string
-          description: Phone number
+          description: "Numéro de téléphone"
           example: '+905525520012'
         verificationCode:
           type: number
@@ -5182,17 +5184,17 @@ components:
       properties:
         members:
           type: string
-          description: JSON string of user IDs to whom the email will be sent
+          description: "Chaîne JSON contenant les ID d'utilisateurs à qui l'e-mail sera envoyé"
           example: '["example.yahoo.com"]'
           default: '["example.yahoo.com"]'
         letterTitle:
           type: string
-          description: Text of the email to be sent
+          description: "Texte de l'e-mail à envoyer"
           example: Example Tiile!
           default: Example Tiile!
         letterText:
           type: string
-          description: Text of the email to be sent
+          description: "Texte de l'e-mail à envoyer"
           example: Hello, this is a custom email!
           default: Hello, this is a custom email!
       required:
@@ -5208,7 +5210,7 @@ components:
           type: string
           minLength: 3
           maxLength: 320
-          description: The email address of the user, has 3 to 320 characters according to RFC 3696
+          description: "L'adresse e-mail de l'utilisateur, comporte entre 3 et 320 caractères conformément à la RFC 3696"
           example: admin@mail.projectname
       required:
         - email
@@ -5219,7 +5221,7 @@ components:
       properties:
         phone:
           type: string
-          description: Phone number
+          description: "Numéro de téléphone"
           example: '+905521234567'
       required:
         - phone
@@ -5230,7 +5232,7 @@ components:
       properties:
         phones:
           type: string
-          description: Phone number
+          description: "Numéro de téléphone"
           example: '["905521234567"]'
           default: '["905521234567"]'
       required:
@@ -5244,11 +5246,11 @@ components:
           type: string
           minLength: 6
           maxLength: 20
-          description: New password of the user, has 8 to 20 characters
+          description: "Nouveau mot de passe de l'utilisateur, comporte entre 8 et 20 caractères"
           example: Abc12345
         token:
           type: string
-          description: Reset token
+          description: "Jeton de réinitialisation"
           example: 585230a5-0f59-4dff-9330-ac076d43dc25
       required:
         - newPassword
@@ -5262,11 +5264,11 @@ components:
           type: string
           minLength: 6
           maxLength: 20
-          description: New password of the user, has 8 to 20 characters
+          description: "Nouveau mot de passe de l'utilisateur, comporte entre 8 et 20 caractères"
           example: Abc12345
         temporaryPassword:
           type: string
-          description: Temporary Password
+          description: "Mot de passe temporaire"
           example: Skd123d
       required:
         - newPassword
@@ -5321,58 +5323,59 @@ components:
       properties:
         name:
           type: string
-          description: Name
-          default: User
+          description: "Prénom"
+          default: "User"
         surname:
           type: string
-          description: Surname
-          default: Surname
+          description: "Nom de famille"
+          default: "Surname"
         photoUrl:
           type: string
-          description: photoUrl
-          default: photoUrl
+          description: "URL de la photo"
+          default: "photoUrl"
         email:
           type: string
-          description: Email
-          default: user@mail.coolrool
+          description: "E-mail"
+          default: "user@mail.coolrool"
         address:
           type: string
-          description: Address
-          default: French Paris
-          example: French Paris
+          description: "Adresse"
+          default: "French Paris"
+          example: "French Paris"
         dateOfBirth:
           format: date-time
           type: string
-          description: Date of Birth
-          example: '2012-12-12T00:00:00Z'
+          description: "Date de naissance"
+          example: "2012-12-12T00:00:00Z"
         isPassenger:
           type: boolean
-          description: Is Passenger
+          description: "Est passager"
         isDriver:
           type: boolean
-          description: Is Driver
+          description: "Est conducteur"
         profileComplete:
           type: boolean
-          description: Profile complete
+          description: "Profil complet"
         gender:
-          description: Gender
+          description: "Genre"
           $ref: '#/components/schemas/GenderEnum'
         role:
-          description: Role
+          description: "Rôle"
           $ref: '#/components/schemas/RoleEnum'
         language:
-          description: Language
+          description: "Langue"
           $ref: '#/components/schemas/LanguageEnum'
         removeEmail:
           type: boolean
-          description: Remove email
+          description: "Supprimer l'e-mail"
         img:
           type: string
-          description: User img
+          description: "Image de l'utilisateur"
           format: binary
         isFirstAccess:
           type: boolean
-          description: Is First Access
+          description: "Première connexion"
+
       x-stoplight:
         id: pswmyvpe4y5s0
     LicenseNumberDto:
@@ -5380,17 +5383,17 @@ components:
       properties:
         licenseNumber:
           type: string
-          description: User license number
+          description: "Numéro de licence de l'utilisateur"
           default: 30P4ZW8FO
           example: 30P4ZW8FO
         clubId:
           type: number
-          description: Club id
+          description: "ID du club"
           default: 1
           example: 1
         getNotification:
           type: boolean
-          description: UserRelativesEntity
+          description: "Entité des proches de l'utilisateur (UserRelativesEntity)"
           default: true
           example: true
       required:
@@ -5402,126 +5405,126 @@ components:
       properties:
         name:
           type: string
-          description: Name
-          default: User
+          description: "Prénom"
+          default: "User"
         surname:
           type: string
-          description: Surname
-          default: Surname
+          description: "Nom de famille"
+          default: "Surname"
         licenseNumber:
           type: string
           maxLength: 50
-          description: License Number
-          example: O1KZ13CXK
-          default: O1KZ13CXK
+          description: "Numéro de licence"
+          example: "O1KZ13CXK"
+          default: "O1KZ13CXK"
         address:
           type: string
-          description: Address
-          default: French Paris
-          example: French Paris
+          description: "Adresse"
+          default: "French Paris"
+          example: "French Paris"
         dateOfBirth:
           format: date-time
           type: string
-          description: Date of Birth
-          example: '2012-12-12T00:00:00Z'
+          description: "Date de naissance"
+          example: "2012-12-12T00:00:00Z"
         country:
           type: string
           maxLength: 50
-          description: Country
-          example: France
-          default: France
+          description: "Pays"
+          example: "France"
+          default: "France"
         city:
           type: string
           maxLength: 50
-          description: City
-          example: Paris
-          default: Paris
+          description: "Ville"
+          example: "Paris"
+          default: "Paris"
         postalCode:
           type: string
           maxLength: 50
-          description: Postal code
-          default: '70001'
-          example: '70001'
+          description: "Code postal"
+          default: "70001"
+          example: "70001"
         secondPhone:
           type: string
-          description: Phone number
-          example: '+905521234567'
+          description: "Numéro de téléphone secondaire"
+          example: "+905521234567"
         phone:
           type: string
-          description: Phone number
-          example: '+905521234567'
+          description: "Numéro de téléphone"
+          example: "+905521234567"
         email:
           type: string
           maxLength: 50
-          description: Email
-          default: user@mail.coolrool
+          description: "E-mail"
+          default: "user@mail.coolrool"
         category:
           type: string
           maxLength: 50
-          description: Category
-          default: U1
-          example: U1
+          description: "Catégorie"
+          default: "U1"
+          example: "U1"
         isPassenger:
           type: boolean
-          description: Is Passenger
+          description: "Est passager"
         isDriver:
           type: boolean
-          description: Is Driver
+          description: "Est conducteur"
         deleteLicense:
           type: boolean
-          description: Delete driver license
+          description: "Supprimer le permis de conduire"
         status:
           type: string
-          description: Status
-          default: Member
+          description: "Statut"
+          default: "Member"
           example: '["Membre"]'
         groups:
           type: string
-          description: Groups
+          description: "Groupes"
           default: '["1", "2"]'
           example: '["1", "2"]'
         carCountry:
           type: string
-          description: Car country
-          example: France
-          default: France
+          description: "Pays du véhicule"
+          example: "France"
+          default: "France"
         carSeats:
           type: number
-          description: Car seats amount
+          description: "Nombre de sièges dans la voiture"
           example: 5
           default: 5
         carBrand:
           type: string
-          description: Car brand
-          example: Audi
-          default: Audi
+          description: "Marque de la voiture"
+          example: "Audi"
+          default: "Audi"
         carModel:
           type: string
-          description: Car model
-          example: A8
-          default: A8
+          description: "Modèle de la voiture"
+          example: "A8"
+          default: "A8"
         carNumber:
           type: string
-          description: Car number
-          example: AA-124-BB
-          default: AA-123-BB
+          description: "Numéro de la voiture"
+          example: "AA-124-BB"
+          default: "AA-123-BB"
         gender:
-          description: Gender
+          description: "Genre"
           $ref: '#/components/schemas/GenderEnum'
         role:
-          description: Role
+          description: "Rôle"
           $ref: '#/components/schemas/RoleEnum'
         img:
           type: string
-          description: User img
+          description: "Image de l'utilisateur"
           format: binary
         front:
           type: string
-          description: Front side
+          description: "Face avant"
           format: binary
         back:
           type: string
-          description: Back side
+          description: "Face arrière"
           format: binary
       x-stoplight:
         id: 6lzgw9qnecoqp
@@ -5557,11 +5560,11 @@ components:
       properties:
         phone:
           type: string
-          description: Phone number
+          description: "Numéro de téléphone"
           example: '+905521234567'
         clubId:
           type: number
-          description: Club ID
+          description: "ID du club"
           default: 1
       required:
         - phone
@@ -5573,12 +5576,12 @@ components:
       properties:
         phones:
           type: string
-          description: Phone number
+          description: "Numéro de téléphone"
           example: '["905521234567"]'
           default: '["905521234567"]'
         clubIds:
           type: string
-          description: Club id
+          description: "ID du club"
           example: '["47"]'
           default: '["47"]'
       required:
@@ -5599,26 +5602,27 @@ components:
       properties:
         profileId:
           type: number
-          description: The user profile ID
+          description: "ID du profil utilisateur"
           example: 1
           default: 1
         relativeId:
           type: number
-          description: The relative ID
+          description: "ID du proche"
           example: 1
           default: 1
         clubId:
           type: number
-          description: The club ID
+          description: "ID du club"
           example: 1
           default: 1
         isAdd:
           type: boolean
-          description: Add the club
+          description: "Ajouter le club"
           default: true
         memberRole:
-          description: Member Role Enum
+          description: "Enum de rôles de membre"
           $ref: '#/components/schemas/MemberRoleEnum'
+
       required:
         - profileId
         - isAdd
@@ -5630,7 +5634,7 @@ components:
       properties:
         groups:
           type: string
-          description: Groups in JSON string format
+          description: "Groupes au format chaîne JSON"
           default: '["1", "2"]'
           example: '["1", "2"]'
       required:
@@ -5642,12 +5646,12 @@ components:
       properties:
         groups:
           type: string
-          description: Groups in JSON string format
+          description: "Groupes au format chaîne JSON"
           default: '["1", "2"]'
           example: '["1", "2"]'
         members:
           type: string
-          description: Members in JSON string format
+          description: "Membres au format chaîne JSON"
           default: '["1", "2"]'
           example: '["1", "2"]'
       required:
@@ -5660,28 +5664,28 @@ components:
       properties:
         name:
           type: string
-          description: Name
-          default: User
+          description: "Prénom"
+          default: "User"
         surname:
           type: string
-          description: Surname
-          default: Surname
+          description: "Nom de famille"
+          default: "Surname"
         phone:
           type: string
-          description: Phone number
-          example: '+905521234567'
+          description: "Numéro de téléphone"
+          example: "+905521234567"
         photoUrl:
           type: string
-          description: Photo
+          description: "Photo"
         role:
-          description: Role
+          description: "Rôle"
           $ref: '#/components/schemas/RoleEnum'
         img:
           type: string
-          description: User img
+          description: "Image de l'utilisateur"
           format: binary
         clubs:
-          description: Clubs
+          description: "Clubs"
           type: array
           items:
             type: string
@@ -5694,28 +5698,28 @@ components:
       properties:
         relativeId:
           type: number
-          description: Relative id
+          description: "ID du membre de la famille"
           default: 1
         name:
           type: string
-          description: Name
-          default: User
+          description: "Prénom"
+          default: "User"
         surname:
           type: string
-          description: Surname
-          default: Surname
+          description: "Nom de famille"
+          default: "Surname"
         role:
-          description: Role
+          description: "Rôle"
           $ref: '#/components/schemas/RoleEnum'
         removePhoto:
           type: boolean
-          description: Remove relative photo
+          description: "Supprimer la photo du proche"
         img:
           type: string
-          description: User img
+          description: "Image de l'utilisateur"
           format: binary
         clubs:
-          description: Clubs
+          description: "Clubs"
           type: array
           items:
             type: string
@@ -5728,7 +5732,7 @@ components:
       properties:
         relativeId:
           type: number
-          description: Relative id
+          description: "ID du membre de la famille"
           default: 1
       required:
         - relativeId
@@ -5739,11 +5743,11 @@ components:
       properties:
         relativeId:
           type: number
-          description: Relative id
+          description: "ID du membre de la famille"
           default: 1
         isConfirmed:
           type: boolean
-          description: Confirm Status
+          description: "Statut de confirmation"
       required:
         - relativeId
         - isConfirmed
@@ -5755,12 +5759,12 @@ components:
         relativeId:
           type: number
           minimum: 1
-          description: Relative id
+          description: "ID du membre de la famille"
           default: 1
         clubId:
           type: number
           minimum: 1
-          description: Club id
+          description: "ID du club"
           default: 1
       required:
         - relativeId
@@ -5772,98 +5776,98 @@ components:
         name:
           type: string
           maxLength: 150
-          description: Club name
-          example: Sports Club
+          description: "Nom du club"
+          example: "Sports Club"
         latitude:
           type: number
-          description: Latitude
+          description: "Latitude"
           example: 51.5074
         longitude:
           type: number
-          description: Longitude
+          description: "Longitude"
           example: -0.1278
         license:
           type: string
           maxLength: 150
-          description: Club license
-          example: ABC123
+          description: "Licence du club"
+          example: "ABC123"
         zipCode:
           type: string
           maxLength: 150
-          description: ZIP code
-          example: '12345'
+          description: "Code postal"
+          example: "12345"
         logo:
           type: string
-          description: Club logo
+          description: "Logo du club"
           format: binary
         clubPhoto:
           type: string
-          description: Club photo
+          description: "Photo du club"
           format: binary
         description:
           type: string
           maxLength: 1000
-          description: Club description
-          example: A sports club offering various disciplines.
+          description: "Description du club"
+          example: "Un club sportif offrant diverses disciplines."
         country:
           type: string
           maxLength: 150
-          description: Club country
-          example: France
+          description: "Pays du club"
+          example: "France"
         city:
           type: string
           maxLength: 150
-          description: Club city
-          example: France
+          description: "Ville du club"
+          example: "France"
         address:
           type: string
-          description: Club address
-          example: 123 Club Street
+          description: "Adresse du club"
+          example: "123 Club Street"
         email:
           type: string
           maxLength: 150
-          description: Club email
-          example: info@sportsclub.com
+          description: "E-mail du club"
+          example: "info@sportsclub.com"
         website:
           type: string
           maxLength: 150
-          description: Sponsor website
-          example: https://www.sponsor.com
-          default: https://www.sponsor.com
+          description: "Site web du sponsor"
+          example: "https://www.sponsor.com"
+          default: "https://www.sponsor.com"
         primaryPhone:
           type: string
           maxLength: 150
-          description: Primary phone number
-          example: +1-555-123-4567
+          description: "Numéro de téléphone principal"
+          example: "+1-555-123-4567"
         secondaryPhone:
           type: string
           maxLength: 150
-          description: Secondary phone number
-          example: +1-555-987-6543
+          description: "Numéro de téléphone secondaire"
+          example: "+1-555-987-6543"
         facebook:
           type: string
           maxLength: 150
-          description: Club Facebook
-          example: https://www.facebook.com/zenBitTech/3
+          description: "Facebook du club"
+          example: "https://www.facebook.com/zenBitTech/3"
         twitter:
           type: string
           maxLength: 150
-          description: Club Twitter
-          example: https://twitter.com
+          description: "Twitter du club"
+          example: "https://twitter.com"
         instagram:
           type: string
           maxLength: 150
-          description: Club Instagram
-          example: https://www.instagram.com/zenbitteam
+          description: "Instagram du club"
+          example: "https://www.instagram.com/zenbitteam"
         linkedIn:
           type: string
           maxLength: 150
-          description: Club LinkedIn
-          example: https://www.linkedin.com/company/zenbit-tech
+          description: "LinkedIn du club"
+          example: "https://www.linkedin.com/company/zenbit-tech"
         disciplines:
           type: string
           maxLength: 150
-          description: List of disciplines IDs
+          description: "Liste des IDs de disciplines"
       required:
         - name
         - license
@@ -5907,10 +5911,10 @@ components:
       properties:
         clubId:
           type: number
-          description: Club ID
+          description: "ID du club"
         disciplineId:
           type: number
-          description: Discipline ID
+          description: "ID de la discipline"
       required:
         - clubId
       x-stoplight:
@@ -5920,11 +5924,11 @@ components:
       properties:
         clubId:
           type: number
-          description: Club ID
+          description: "ID du club"
           example: 1
         deleteTracking:
           type: boolean
-          description: Confirm Status
+          description: "Statut de confirmation"
       required:
         - clubId
         - deleteTracking
@@ -5936,98 +5940,98 @@ components:
         name:
           type: string
           maxLength: 150
-          description: Club name
-          example: Sports Club
+          description: "Nom du club"
+          example: "Sports Club"
         latitude:
           type: number
-          description: Latitude
+          description: "Latitude"
           example: 51.5074
         longitude:
           type: number
-          description: Longitude
+          description: "Longitude"
           example: -0.1278
         license:
           type: string
           maxLength: 150
-          description: Club license
-          example: ABC123
+          description: "Licence du club"
+          example: "ABC123"
         zipCode:
           type: string
           maxLength: 150
-          description: ZIP code
-          example: '12345'
+          description: "Code postal"
+          example: "12345"
         logo:
           type: string
-          description: Club logo
+          description: "Logo du club"
           format: binary
         clubPhoto:
           type: string
-          description: Club photo
+          description: "Photo du club"
           format: binary
         description:
           type: string
           maxLength: 1000
-          description: Club description
-          example: A sports club offering various disciplines.
+          description: "Description du club"
+          example: "Un club sportif offrant diverses disciplines."
         country:
           type: string
           maxLength: 150
-          description: Club country
-          example: France
+          description: "Pays du club"
+          example: "France"
         city:
           type: string
           maxLength: 150
-          description: Club city
-          example: France
+          description: "Ville du club"
+          example: "France"
         address:
           type: string
-          description: Club address
-          example: 123 Club Street
+          description: "Adresse du club"
+          example: "123 Club Street"
         email:
           type: string
           maxLength: 150
-          description: Club email
-          example: info@sportsclub.com
+          description: "E-mail du club"
+          example: "info@sportsclub.com"
         website:
           type: string
           maxLength: 150
-          description: Sponsor website
-          example: https://www.sponsor.com
-          default: https://www.sponsor.com
+          description: "Site web du sponsor"
+          example: "https://www.sponsor.com"
+          default: "https://www.sponsor.com"
         primaryPhone:
           type: string
           maxLength: 150
-          description: Primary phone number
-          example: +1-555-123-4567
+          description: "Numéro de téléphone principal"
+          example: "+1-555-123-4567"
         secondaryPhone:
           type: string
           maxLength: 150
-          description: Secondary phone number
-          example: +1-555-987-6543
+          description: "Numéro de téléphone secondaire"
+          example: "+1-555-987-6543"
         facebook:
           type: string
           maxLength: 150
-          description: Club Facebook
-          example: https://www.facebook.com/zenBitTech/3
+          description: "Facebook du club"
+          example: "https://www.facebook.com/zenBitTech/3"
         twitter:
           type: string
           maxLength: 150
-          description: Club Twitter
-          example: https://twitter.com
+          description: "Twitter du club"
+          example: "https://twitter.com"
         instagram:
           type: string
           maxLength: 150
-          description: Club Instagram
-          example: https://www.instagram.com/zenbitteam
+          description: "Instagram du club"
+          example: "https://www.instagram.com/zenbitteam"
         linkedIn:
           type: string
           maxLength: 150
-          description: Club LinkedIn
-          example: https://www.linkedin.com/company/zenbit-tech
+          description: "LinkedIn du club"
+          example: "https://www.linkedin.com/company/zenbit-tech"
         disciplines:
           type: string
           maxLength: 150
-          description: List of disciplines IDs
+          description: "Liste des IDs de disciplines"
       x-stoplight:
         id: 674xbmhk7oo7p
     ClubRequestDto:
@@ -6036,12 +6040,12 @@ components:
         name:
           type: string
           maxLength: 255
-          description: The name of the club request
-          default: Fight Club
+          description: "Le nom de la demande de club"
+          default: "Fight Club"
         zipCode:
           type: string
-          description: The zip code of the club request
-          default: '12345'
+          description: "Le code postal de la demande de club"
+          default: "12345"
       required:
         - name
         - zipCode
@@ -6052,14 +6056,14 @@ components:
       properties:
         clubId:
           type: number
-          description: Club ID
+          description: "ID du club"
           default: 1
         sendEmail:
           type: boolean
-          description: Send email
+          description: "Envoyer un e-mail"
         sendSms:
           type: boolean
-          description: Send SMS
+          description: "Envoyer un SMS"
         csv:
           type: string
           description: Csv
@@ -6074,124 +6078,124 @@ components:
         clubId:
           type: number
           minimum: 1
-          description: Club ID
+          description: "ID du club"
           example: 1
           default: 1
         platformId:
           type: string
-          description: ID Unique platform
-          default: A123
-          example: A123
+          description: "ID unique de la plateforme"
+          default: "A123"
+          example: "A123"
         name:
           type: string
           maxLength: 50
-          description: Name
-          default: User
+          description: "Prénom"
+          default: "User"
         surname:
           type: string
           maxLength: 50
-          description: Surname
-          default: Surname
+          description: "Nom de famille"
+          default: "Surname"
         email:
           type: string
           maxLength: 50
-          description: Email
-          default: user@mail.coolrool
+          description: "E-mail"
+          default: "user@mail.coolrool"
         phone:
           type: string
-          description: Phone number
-          example: '+380639793505'
+          description: "Numéro de téléphone"
+          example: "+380639793505"
         secondPhone:
           type: string
-          description: Phone number
-          example: '+380639793505'
+          description: "Numéro de téléphone secondaire"
+          example: "+380639793505"
         licenseNumber:
           type: string
           maxLength: 50
-          description: License Number
-          example: O1KZ13CXK
-          default: O1KZ13CXK
+          description: "Numéro de licence"
+          example: "O1KZ13CXK"
+          default: "O1KZ13CXK"
         dateOfBirth:
           format: date-time
           type: string
-          description: Date of Birth
-          example: '2012-12-12T00:00:00Z'
+          description: "Date de naissance"
+          example: "2012-12-12T00:00:00Z"
         country:
           type: string
           maxLength: 50
-          description: Country
-          example: France
-          default: France
+          description: "Pays"
+          example: "France"
+          default: "France"
         address:
           type: string
-          description: Address
-          default: French Paris
-          example: French Paris
+          description: "Adresse"
+          default: "French Paris"
+          example: "French Paris"
         postalCode:
           type: string
           maxLength: 50
-          description: Postal code
-          default: '70001'
-          example: '70001'
+          description: "Code postal"
+          default: "70001"
+          example: "70001"
         category:
           type: string
           maxLength: 50
-          description: Category
-          default: U1
-          example: U1
+          description: "Catégorie"
+          default: "U1"
+          example: "U1"
         gender:
-          description: Gender
+          description: "Genre"
           $ref: '#/components/schemas/GenderEnum'
         isPassenger:
           type: boolean
-          description: Is Passenger
+          description: "Est passager"
         isDriver:
           type: boolean
-          description: Is Driver
+          description: "Est conducteur"
         sendEmail:
           type: boolean
-          description: Send email
+          description: "Envoyer un e-mail"
         sendSms:
           type: boolean
-          description: Send SMS
+          description: "Envoyer un SMS"
         status:
           type: string
-          description: Status
-          default: Member
+          description: "Statut"
+          default: "Member"
           example: '["Membre"]'
         groups:
           type: string
-          description: Groups
+          description: "Groupes"
           default: '["1", "2"]'
           example: '["1", "2"]'
         carCountry:
           type: string
-          description: Car country
-          example: France
-          default: France
+          description: "Pays du véhicule"
+          example: "France"
+          default: "France"
         carBrand:
           type: string
-          description: Car brand
-          example: Audi
-          default: Audi
+          description: "Marque de la voiture"
+          example: "Audi"
+          default: "Audi"
         carModel:
           type: string
-          description: Car model
-          example: A8
-          default: A8
+          description: "Modèle de la voiture"
+          example: "A8"
+          default: "A8"
         carNumber:
           type: string
-          description: Car number
-          example: AA-124-BB
-          default: AA-123-BB
+          description: "Numéro du véhicule"
+          example: "AA-124-BB"
+          default: "AA-123-BB"
         carSeats:
           type: number
-          description: Car seats amount
+          description: "Nombre de sièges dans la voiture"
           example: 5
           default: 5
         img:
           type: string
-          description: User img
+          description: "Image de l'utilisateur"
           format: binary
       required:
         - clubId
@@ -6215,13 +6219,13 @@ components:
             - queue
             - activity
             - default
-          description: The type of the notification
+          description: "Le type de la notification"
         eventId:
           type: string
-          description: The ID of the event
+          description: "L'ID de l'événement"
         eventCarId:
           type: string
-          description: The ID of the event car
+          description: "L'ID de la voiture de l'événement"
       required:
         - type
       x-stoplight:
@@ -6233,9 +6237,9 @@ components:
           type: string
           example: 1465e1c9-e533-4025-82f1-42d6225b239f
           default: 1465e1c9-e533-4025-82f1-42d6225b239f
-          description: The token of the device to receive the notification
+          description: "Le jeton de l'appareil qui recevra la notification"
         data:
-          description: The data of the notification
+          description: "Les données de la notification"
           allOf:
             - $ref: '#/components/schemas/NotificationDataDto'
       required:
@@ -6248,7 +6252,7 @@ components:
       properties:
         eventCarId:
           type: string
-          description: Event car id
+          description: "ID de la voiture de l'événement"
           example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
           default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
         lat:
@@ -6271,19 +6275,19 @@ components:
       properties:
         eventCarId:
           type: string
-          description: Event Car id
+          description: "ID de la voiture de l'événement"
           example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
           default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
         departSeats:
           type: number
           minimum: 0
-          description: Depart Seats
+          description: "Places pour le départ"
           example: 3
           default: 3
         returnSeats:
           type: number
           minimum: 0
-          description: Returning Seats
+          description: "Places pour le retour"
           example: 3
           default: 3
       required:
@@ -6295,7 +6299,7 @@ components:
       properties:
         eventId:
           type: string
-          description: Event id
+          description: "ID de l'événement"
           example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
           default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
       required:
@@ -6307,7 +6311,7 @@ components:
       properties:
         eventId:
           type: string
-          description: Event id
+          description: "ID de l'événement"
           example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
           default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
       required:
@@ -6326,18 +6330,18 @@ components:
       properties:
         eventCarId:
           type: string
-          description: Event Car id
+          description: "ID de la voiture de l'événement"
           example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
           default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
         eventParticipantId:
           type: string
-          description: Event Participant Id
+          description: "ID du participant à l'événement"
           example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
           default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
         tripType:
-          example: Going
-          description: The trip type of the event point
-          default: Going
+          example: "Going"
+          description: "Le type de trajet du point de l'événement"
+          default: "Going"
           $ref: '#/components/schemas/TripType'
       required:
         - eventCarId
@@ -6365,7 +6369,7 @@ components:
       properties:
         eventCarId:
           type: string
-          description: Event Car id
+          description: "ID de la voiture de l'événement"
           example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
           default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
         isDepart:
@@ -6413,7 +6417,7 @@ components:
       properties:
         notificationId:
           type: string
-          description: Notification id
+          description: "ID de la notification"
           example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
           default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
       required:
@@ -6434,42 +6438,42 @@ components:
       properties:
         address:
           type: string
-          example: 123 Main Street
-          description: The address of the event point
+          example: "123 Main Street"
+          description: "L'adresse du point de l'événement"
         latitude:
           type: number
           example: 40.748817
-          description: The latitude coordinates of the event point
+          description: "Les coordonnées de latitude du point de l'événement"
         longitude:
           type: number
           example: -73.98542
-          description: The longitude coordinates of the event point
+          description: "Les coordonnées de longitude du point de l'événement"
         order:
           type: number
           example: 1
-          description: The order of the event point
+          description: "L'ordre du point de l'événement"
         description:
           type: string
-          example: Lorem ipsum dolor sit amet
-          description: The description of the event point
+          example: "Lorem ipsum dolor sit amet"
+          description: "La description du point de l'événement"
         type:
-          example: depart
-          description: The type of the event point
-          default: depart
+          example: "depart"
+          description: "Le type du point de l'événement"
+          default: "depart"
           $ref: '#/components/schemas/PointType'
         tripType:
-          example: Going
-          description: The trip type of the event point
-          default: Going
+          example: "Going"
+          description: "Le type de trajet du point de l'événement"
+          default: "Going"
           $ref: '#/components/schemas/TripType'
         arriveTime:
           type: string
-          example: '2023-04-27T10:00:00.000Z'
-          description: The arrival time of the event point
+          example: "2023-04-27T10:00:00.000Z"
+          description: "L'heure d'arrivée du point de l'événement"
         photo:
           type: string
-          example: https://placeimg.com/640/480/any
-          description: The URL of the photo of the event point
+          example: "https://placeimg.com/640/480/any"
+          description: "L'URL de la photo du point de l'événement"
       required:
         - address
         - latitude
@@ -6485,30 +6489,30 @@ components:
       properties:
         name:
           type: string
-          example: Event Name
-          default: The Hero
+          example: "Event Name"
+          default: "The Hero"
         date:
           type: string
-          example: '2023-04-24T10:00:00.000Z'
-          default: '2023-04-24T10:00:00.000Z'
+          example: "2023-04-24T10:00:00.000Z"
+          default: "2023-04-24T10:00:00.000Z"
         clubId:
           type: number
           example: 1
-          description: The club ID
+          description: "L'ID du club"
           default: 1
         sendEmail:
           type: boolean
-          description: Send email
+          description: "Envoyer un e-mail"
         sendPush:
           type: boolean
-          description: Send SMS
+          description: "Envoyer un SMS"
         points:
-          description: An array of event points
+          description: "Un tableau de points de l'événement"
           type: array
           items:
-            $ref: '#/components/schemas/CreateEventPointDto'
+            $ref: "#/components/schemas/CreateEventPointDto"
         participants:
-          description: An array of event participants
+          description: "Un tableau de participants à l'événement"
           type: array
           items:
             type: number
@@ -6526,33 +6530,33 @@ components:
       properties:
         name:
           type: string
-          example: Event Name
-          default: The Hero
+          example: "Event Name"
+          default: "The Hero"
         date:
           type: string
-          example: '2023-04-24T10:00:00.000Z'
-          default: '2023-04-24T10:00:00.000Z'
+          example: "2023-04-24T10:00:00.000Z"
+          default: "2023-04-24T10:00:00.000Z"
         sendEmail:
           type: boolean
-          description: Send email
+          description: "Envoyer un e-mail"
         sendPush:
           type: boolean
-          description: Send SMS
+          description: "Envoyer un SMS"
         isUpdate:
           type: boolean
-          description: Event update
+          description: "Mise à jour de l'événement"
         points:
-          description: An array of event points
+          description: "Un tableau de points de l'événement"
           type: array
           items:
-            $ref: '#/components/schemas/CreateEventPointDto'
+            $ref: "#/components/schemas/CreateEventPointDto"
         addedParticipants:
-          description: An array of event added participants
+          description: "Un tableau de participants ajoutés à l'événement"
           type: array
           items:
             type: number
         deletedParticipants:
-          description: An array of event deleted participants
+          description: "Un tableau de participants supprimés de l'événement"
           type: array
           items:
             type: number
@@ -6568,20 +6572,20 @@ components:
       properties:
         eventId:
           type: string
-          description: Event id
+          description: "ID de l'événement"
           example: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
           default: 576e3d06-cc0b-4795-ada8-3709e1e01ec7
         adminPassword:
           type: string
-          description: Admin password
+          description: "Mot de passe administrateur"
           example: Abc12345
           default: Abc12345
         sendEmail:
           type: boolean
-          description: Send email
+          description: "Envoyer un e-mail"
         sendPush:
           type: boolean
-          description: Send SMS
+          description: "Envoyer un SMS"
       required:
         - eventId
         - adminPassword
@@ -6597,16 +6601,16 @@ components:
           example: The event ID
           default: 47680b08-87f8-449f-9b8a-5aaa35b4af4c
         participants:
-          description: An array of event participants
+          description: "Un tableau de participants à l'événement"
           type: array
           items:
             type: number
         sendEmail:
           type: boolean
-          description: Send email
+          description: "Envoyer un e-mail"
         sendPush:
           type: boolean
-          description: Send SMS
+          description: "Envoyer un SMS"
       required:
         - eventId
         - participants
@@ -6619,7 +6623,7 @@ components:
       properties:
         img:
           type: string
-          description: User img
+          description: "Image de l'utilisateur"
           format: binary
       x-stoplight:
         id: rxdb5sk4fspmy
@@ -6646,176 +6650,176 @@ components:
         name:
           type: string
           maxLength: 150
-          description: Name
-          default: User
-          example: Sponsor 3
+          description: "Nom"
+          default: "User"
+          example: "Sponsor 3"
         description:
           type: string
           maxLength: 500
-          description: Description
-          default: Sponsor description
-          example: Description
+          description: "Description"
+          default: "Sponsor description"
+          example: "Description"
         website:
           type: string
           maxLength: 150
-          description: Sponsor website
-          example: https://www.sponsor.com
-          default: https://www.sponsor.com
+          description: "Site web du sponsor"
+          example: "https://www.sponsor.com"
+          default: "https://www.sponsor.com"
         isGlobal:
           type: boolean
-          description: Description
+          description: "Description"
         contactPersonGender:
-          description: Contact Person Gender
-          example: Male
+          description: "Genre de la personne de contact"
+          example: "Male"
           nullable: false
-          $ref: '#/components/schemas/GenderEnum'
+          $ref: "#/components/schemas/GenderEnum"
         contactPersonName:
           type: string
           maxLength: 150
-          description: Contact Person Name
-          default: User
-          example: User
+          description: "Prénom de la personne de contact"
+          default: "User"
+          example: "User"
         contactPersonSurname:
           type: string
           maxLength: 150
-          description: Contact Person Surname
-          default: Surname
-          example: Surname
+          description: "Nom de famille de la personne de contact"
+          default: "Surname"
+          example: "Surname"
         contactPersonBirthday:
           type: string
           maxLength: 150
-          description: Contact Person Birthday
-          default: '2023-07-23'
-          example: '2023-05-05'
+          description: "Date de naissance de la personne de contact"
+          default: "2023-07-23"
+          example: "2023-05-05"
         contactPersonNationality:
           type: string
           maxLength: 150
-          description: Contact Person Nationality
-          default: Nationality
-          example: Nationality
+          description: "Nationalité de la personne de contact"
+          default: "Nationality"
+          example: "Nationality"
         contactPersonAddress:
           type: string
-          description: Contact Person Address
-          default: Address
-          example: Address
+          description: "Adresse de la personne de contact"
+          default: "Address"
+          example: "Address"
         contactPersonPhone:
           type: string
-          description: Contact Person Phone
-          default: '+33631234567'
-          example: '+33631234567'
+          description: "Téléphone de la personne de contact"
+          default: "+33631234567"
+          example: "+33631234567"
         contactPersonEmail:
           type: string
           maxLength: 150
-          description: Contact Person Email
-          default: example@email.com
-          example: example@email.com
+          description: "E-mail de la personne de contact"
+          default: "example@email.com"
+          example: "example@email.com"
         contactPersonNameOfBusiness:
           type: string
           maxLength: 150
-          description: Name of business
-          default: Business
-          example: Business
+          description: "Nom de l'entreprise"
+          default: "Business"
+          example: "Business"
         contactPersonFrenchCompanyNumber:
           type: string
           maxLength: 150
-          description: French company number
-          default: French company number
-          example: French company number
+          description: "Numéro d'entreprise française"
+          default: "French company number"
+          example: "French company number"
         organizationPhoneNumber:
           type: string
           maxLength: 150
-          description: Phone number 1 of organization
-          default: '+33631234567'
-          example: '+33631234567'
+          description: "Numéro de téléphone 1 de l'organisation"
+          default: "+33631234567"
+          example: "+33631234567"
         organizationSecondPhoneNumber:
           type: string
           maxLength: 150
-          description: Phone number 2 of organization
-          default: '+33631234568'
-          example: '+33631234568'
+          description: "Numéro de téléphone 2 de l'organisation"
+          default: "+33631234568"
+          example: "+33631234568"
         organizationEmail:
           type: string
           maxLength: 150
-          description: Email of organization
-          default: example@email.com
-          example: example@email.com
+          description: "E-mail de l'organisation"
+          default: "example@email.com"
+          example: "example@email.com"
         entrepreneursNumber:
           type: string
           maxLength: 150
-          description: Entrepreneurs number
-          default: '12345'
-          example: '12345'
+          description: "Numéro d'entrepreneur"
+          default: "12345"
+          example: "12345"
         invoiceEmail:
           type: string
           maxLength: 150
-          description: Email for invoice
-          default: example@email.com
-          example: example@email.com
+          description: "E-mail pour la facturation"
+          default: "example@email.com"
+          example: "example@email.com"
         invoicePersonEmail:
           type: string
           maxLength: 150
-          description: Invoice Person Email
-          default: example@email.com
-          example: example@email.com
+          description: "E-mail de la personne chargée de la facturation"
+          default: "example@email.com"
+          example: "example@email.com"
         invoiceCountry:
           type: string
           maxLength: 150
-          description: Country
-          default: Country
-          example: Country
+          description: "Pays"
+          default: "Country"
+          example: "Country"
         invoiceAddress:
           type: string
-          description: Address
-          default: Address
-          example: Address
+          description: "Adresse"
+          default: "Address"
+          example: "Address"
         identificationNumber:
           type: string
           maxLength: 150
-          description: Identification Number
-          default: A12345
-          example: A144524
+          description: "Numéro d'identification"
+          default: "A12345"
+          example: "A144524"
         invoiceZipCode:
           type: string
           maxLength: 150
-          description: Zip code
-          default: '12345'
-          example: '12345'
+          description: "Code postal"
+          default: "12345"
+          example: "12345"
         invoiceRegion:
           type: string
           maxLength: 150
-          description: Region
-          default: Region
-          example: Region
+          description: "Région"
+          default: "Region"
+          example: "Region"
         contactEmail:
           type: string
           maxLength: 150
-          description: contactEmail
-          default: contactEmail
-          example: contactEmail@mail.com
+          description: "E-mail de contact"
+          default: "contactEmail"
+          example: "contactEmail@mail.com"
         contactFirstName:
           type: string
           maxLength: 150
-          description: contactFirstName
-          default: contactFirstName
-          example: contactFirstName
+          description: "Prénom du contact"
+          default: "contactFirstName"
+          example: "contactFirstName"
         contactSecondName:
           type: string
           maxLength: 150
-          description: contactSecondName
-          default: contactSecondName
-          example: contactSecondName
+          description: "Nom du contact"
+          default: "contactSecondName"
+          example: "contactSecondName"
         invoiceMobileNumber:
           type: string
           maxLength: 150
-          description: invoiceMobileNumber
-          default: invoiceMobileNumber
-          example: invoiceMobileNumber
+          description: "Numéro de téléphone mobile pour la facturation"
+          default: "invoiceMobileNumber"
+          example: "invoiceMobileNumber"
         clubs:
           type: string
-          description: List of clubs IDs
+          description: "Liste des IDs de clubs"
         img:
           type: string
-          description: User img
+          description: "Image de l'utilisateur"
           format: binary
       required:
         - name
@@ -6850,155 +6854,155 @@ components:
         name:
           type: string
           maxLength: 150
-          description: Name
-          default: User
-          example: Sponsor 3
+          description: "Nom"
+          default: "User"
+          example: "Sponsor 3"
         description:
           type: string
           maxLength: 500
-          description: Description
-          default: Sponsor description
-          example: Description
+          description: "Description"
+          default: "Sponsor description"
+          example: "Description"
         website:
           type: string
           maxLength: 150
-          description: Sponsor website
-          example: https://www.sponsor.com
-          default: https://www.sponsor.com
+          description: "Site web du sponsor"
+          example: "https://www.sponsor.com"
+          default: "https://www.sponsor.com"
         isGlobal:
           type: boolean
-          description: Description
+          description: "Description"
         contactPersonGender:
-          description: Contact Person Gender
-          example: Male
+          description: "Genre de la personne de contact"
+          example: "Male"
           nullable: false
-          $ref: '#/components/schemas/GenderEnum'
+          $ref: "#/components/schemas/GenderEnum"
         contactPersonName:
           type: string
           maxLength: 150
-          description: Contact Person Name
-          default: User
-          example: User
+          description: "Prénom de la personne de contact"
+          default: "User"
+          example: "User"
         contactPersonSurname:
           type: string
           maxLength: 150
-          description: Contact Person Surname
-          default: Surname
-          example: Surname
+          description: "Nom de famille de la personne de contact"
+          default: "Surname"
+          example: "Surname"
         contactPersonBirthday:
           type: string
           maxLength: 150
-          description: Contact Person Birthday
-          default: '2023-07-23'
-          example: '2023-05-05'
+          description: "Date de naissance de la personne de contact"
+          default: "2023-07-23"
+          example: "2023-05-05"
         contactPersonNationality:
           type: string
           maxLength: 150
-          description: Contact Person Nationality
-          default: Nationality
-          example: Nationality
+          description: "Nationalité de la personne de contact"
+          default: "Nationality"
+          example: "Nationality"
         contactPersonAddress:
           type: string
-          description: Contact Person Address
-          default: Address
-          example: Address
+          description: "Adresse de la personne de contact"
+          default: "Address"
+          example: "Address"
         contactPersonPhone:
           type: string
-          description: Contact Person Phone
-          default: '+33631234567'
-          example: '+33631234567'
+          description: "Téléphone de la personne de contact"
+          default: "+33631234567"
+          example: "+33631234567"
         contactPersonEmail:
           type: string
           maxLength: 150
-          description: Contact Person Email
-          default: example@email.com
-          example: example@email.com
+          description: "E-mail de la personne de contact"
+          default: "example@email.com"
+          example: "example@email.com"
         contactPersonNameOfBusiness:
           type: string
           maxLength: 150
-          description: Name of business
-          default: Business
-          example: Business
+          description: "Nom de l'entreprise"
+          default: "Business"
+          example: "Business"
         contactPersonFrenchCompanyNumber:
           type: string
           maxLength: 150
-          description: French company number
-          default: French company number
-          example: French company number
+          description: "Numéro d'entreprise française"
+          default: "French company number"
+          example: "French company number"
         organizationPhoneNumber:
           type: string
           maxLength: 150
-          description: Phone number 1 of organization
-          default: '+33631234567'
-          example: '+33631234567'
+          description: "Numéro de téléphone 1 de l'organisation"
+          default: "+33631234567"
+          example: "+33631234567"
         organizationSecondPhoneNumber:
           type: string
           maxLength: 150
-          description: Phone number 2 of organization
-          default: '+33631234568'
-          example: '+33631234568'
+          description: "Numéro de téléphone 2 de l'organisation"
+          default: "+33631234568"
+          example: "+33631234568"
         organizationEmail:
           type: string
           maxLength: 150
-          description: Email of organization
-          default: example@email.com
-          example: example@email.com
+          description: "E-mail de l'organisation"
+          default: "example@email.com"
+          example: "example@email.com"
         entrepreneursNumber:
           type: string
           maxLength: 150
-          description: Entrepreneurs number
-          default: '12345'
-          example: '12345'
+          description: "Numéro d'entrepreneur"
+          default: "12345"
+          example: "12345"
         invoiceEmail:
           type: string
           maxLength: 150
-          description: Email for invoice
-          default: example@email.com
-          example: example@email.com
+          description: "E-mail pour la facturation"
+          default: "example@email.com"
+          example: "example@email.com"
         invoicePersonEmail:
           type: string
           maxLength: 150
-          description: Invoice Person Email
-          default: example@email.com
-          example: example@email.com
+          description: "E-mail de la personne chargée de la facturation"
+          default: "example@email.com"
+          example: "example@email.com"
         invoiceCountry:
           type: string
           maxLength: 150
-          description: Country
-          default: Country
-          example: Country
+          description: "Pays"
+          default: "Country"
+          example: "Country"
         invoiceAddress:
           type: string
-          description: Address
-          default: Address
-          example: Address
+          description: "Adresse"
+          default: "Address"
+          example: "Address"
         identificationNumber:
           type: string
           maxLength: 150
-          description: Identification Number
-          default: A12345
-          example: A144524
+          description: "Numéro d'identification"
+          default: "A12345"
+          example: "A144524"
         invoiceZipCode:
           type: string
           maxLength: 150
-          description: Zip code
-          default: '12345'
-          example: '12345'
+          description: "Code postal"
+          default: "12345"
+          example: "12345"
         invoiceRegion:
           type: string
           maxLength: 150
-          description: Region
-          default: Region
-          example: Region
+          description: "Région"
+          default: "Region"
+          example: "Region"
         addClubs:
           type: string
-          description: List of added clubs IDs
+          description: "Liste des IDs de clubs à ajouter"
         removeClubs:
           type: string
-          description: List of removed clubs IDs
+          description: "Liste des IDs de clubs à supprimer"
         img:
           type: string
-          description: User img
+          description: "Image de l'utilisateur"
           format: binary
       x-examples: {}
       x-stoplight:
@@ -7008,12 +7012,12 @@ components:
       properties:
         clubId:
           type: number
-          description: Club id
+          description: "ID du club"
           default: 1
           example: 1
         sponsorId:
           type: number
-          description: Sponsor id
+          description: "ID du sponsor"
           default: 1
           example: 1
       required:
@@ -7026,26 +7030,26 @@ components:
       properties:
         specialDate:
           type: string
-          description: Special date start
-          default: Wed Oct 23 2024 00:00:00 GMT+0300
-          example: Wed Oct 23 2024 00:00:00 GMT+0300
+          description: "Date spéciale de début"
+          default: "Wed Oct 23 2024 00:00:00 GMT+0300"
+          example: "Wed Oct 23 2024 00:00:00 GMT+0300"
         endSpecialDate:
           type: string
-          description: Special date end
-          default: Wed Oct 24 2024 00:00:00 GMT+0300
-          example: Wed Oct 24 2024 00:00:00 GMT+0300
+          description: "Date spéciale de fin"
+          default: "Wed Oct 24 2024 00:00:00 GMT+0300"
+          example: "Wed Oct 24 2024 00:00:00 GMT+0300"
         url:
           type: string
-          description: URL of the image
-          example: https://example.com/image.jpg
+          description: "URL de l'image"
+          example: "https://example.com/image.jpg"
         name:
           type: string
-          description: Name of the image
-          example: Sponsor Banner Image
+          description: "Nom de l'image"
+          example: "Sponsor Banner Image"
         description:
           type: string
-          description: Description of the image
-          example: This is a banner image for the sponsor.
+          description: "Description de l'image"
+          example: "Ceci est une image de bannière pour le sponsor."
       required:
         - specialDate
         - endSpecialDate
@@ -7111,27 +7115,27 @@ components:
       properties:
         country:
           type: string
-          description: Country
-          example: French
-          default: French
+          description: "Pays"
+          example: "French"
+          default: "French"
         brand:
           type: string
-          description: Car brand
-          example: Audi
-          default: Audi
+          description: "Marque de la voiture"
+          example: "Audi"
+          default: "Audi"
         model:
           type: string
-          description: Car model
-          example: A8
-          default: A8
+          description: "Modèle de la voiture"
+          example: "A8"
+          default: "A8"
         number:
           type: string
-          description: Car number
-          example: AA-123-BB
-          default: AA-123-BB
+          description: "Numéro de la voiture"
+          example: "AA-123-BB"
+          default: "AA-123-BB"
         seats:
           type: number
-          description: Seats
+          description: "Nombre de sièges"
           example: 3
           default: 3
       required:
@@ -7147,28 +7151,28 @@ components:
       properties:
         carId:
           type: number
-          description: CarId
+          description: "ID de la voiture"
           example: 1
         country:
           type: string
-          description: Country
-          example: French
+          description: "Pays"
+          example: "French"
         brand:
           type: string
-          description: Car brand
-          example: Audi
+          description: "Marque de la voiture"
+          example: "Audi"
         model:
           type: string
-          description: Car model
-          example: A8
+          description: "Modèle de la voiture"
+          example: "A8"
         number:
           type: string
-          description: Car number
-          example: AA-123-BB
-          default: AA-123-BB
+          description: "Numéro de la voiture"
+          example: "AA-123-BB"
+          default: "AA-123-BB"
         seats:
           type: number
-          description: Seats
+          description: "Nombre de sièges"
           example: 1
       required:
         - carId
@@ -7179,11 +7183,11 @@ components:
       properties:
         front:
           type: string
-          description: Front side
+          description: "Face avant"
           format: binary
         back:
           type: string
-          description: Back side
+          description: "Face arrière"
           format: binary
       required:
         - front
@@ -7195,10 +7199,10 @@ components:
       properties:
         name:
           type: string
-          description: name of discipline
+          description: "Nom de la discipline"
           example: Mathematics
         priority:
-          description: Specify the priority. From 1 to 8. Required to display of an icon when selecting disciplines.
+          description: "Spécifiez la priorité. De 1 à 8. Requis pour l'affichage d'une icône lors de la sélection des disciplines."
           example: football
           nullable: true
           $ref: '#/components/schemas/DisciplineIconSlotOrder'
@@ -7211,10 +7215,10 @@ components:
       properties:
         name:
           type: string
-          description: The name of the discipline
+          description: "Nom de la discipline"
           example: Football
         priority:
-          description: Specify the priority. From 1 to 8. Required to display of an icon when selecting disciplines.
+          description: "Spécifiez la priorité. De 1 à 8. Requis pour l'affichage d'une icône lors de la sélection des disciplines."
           example: football
           nullable: true
           $ref: '#/components/schemas/DisciplineIconSlotOrder'
@@ -7233,11 +7237,11 @@ components:
         name:
           type: string
           maxLength: 50
-          description: Group name
+          description: "Nom du groupe"
           example: Yellow Belt
         clubId:
           type: number
-          description: Club ID
+          description: "ID du club"
           example: 1
       required:
         - name
@@ -7250,7 +7254,7 @@ components:
         description:
           type: string
           maxLength: 80
-          description: Description of the group
+          description: "Description du groupe"
           example: A group for yellow belt members.
       x-stoplight:
         id: 10gw9q50zojjr
